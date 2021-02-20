@@ -1,0 +1,2 @@
+E:\work\projoct\dtu\code\tool_java\c++\epass_login\epass_login\x64\Debug\epass_login.exe
+E:\work\projoct\dtu\code\tool_java\c++\epass_login\epass_login\x64\Debug\epass_login.pdb

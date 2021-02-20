@@ -1,0 +1,15 @@
+#ifndef __EP3003_CSP_CONST_H__
+#define __EP3003_CSP_CONST_H__
+
+#define CSP_NAME			"EnterSafe ePass3003 CSP v1.0"
+// algorithm extended by Ftsafe
+#define ALG_SID_SSF33			33
+#define CALG_SSF33			(ALG_CLASS_DATA_ENCRYPT|ALG_TYPE_BLOCK|ALG_SID_SSF33)
+#define CALG_IDEA           (ALG_CLASS_DATA_ENCRYPT|ALG_TYPE_BLOCK|ALG_SID_IDEA)
+#define CALG_AES            (ALG_CLASS_DATA_ENCRYPT|ALG_TYPE_BLOCK|ALG_SID_AES)
+
+#define ALG_SID_SCB2			40
+// Mechanism for SCB2
+#define CALG_SCB2			(ALG_CLASS_DATA_ENCRYPT|ALG_TYPE_BLOCK|ALG_SID_SCB2)
+
+#endif // __EP3003_CSP_CONST_H__

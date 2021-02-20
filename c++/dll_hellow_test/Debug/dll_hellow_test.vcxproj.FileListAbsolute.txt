@@ -1,0 +1,2 @@
+E:\work\projoct\dtu\code\tool_java\c++\dll_hellow_test\Debug\dll_hellow_test.dll
+E:\work\projoct\dtu\code\tool_java\c++\dll_hellow_test\Debug\dll_hellow_test.pdb

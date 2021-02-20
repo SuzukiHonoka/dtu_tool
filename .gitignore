@@ -1,0 +1,19 @@
+*.class
+*.log
+*_s11/
+*bin/
+
+# VS
+.vs/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+out/
+artifacts/
