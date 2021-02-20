@@ -1,25 +1,14 @@
 package com.nj.dtu;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import net.sf.json.JSONObject;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-
-import net.sf.json.JSONObject;
 
 public class tool_ui_certificate extends tool_ui_base {
 	// 串口实例

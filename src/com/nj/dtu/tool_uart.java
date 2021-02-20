@@ -1,22 +1,17 @@
 package com.nj.dtu;
 
-import gnu.io.CommPortIdentifier;
-import gnu.io.PortInUseException;
-import gnu.io.SerialPort;
-import gnu.io.SerialPortEvent;
-import gnu.io.SerialPortEventListener;
-import gnu.io.UnsupportedCommOperationException;
+import gnu.io.*;
 
-import java.util.*;
-import java.util.concurrent.Semaphore;
-
-import javax.swing.JOptionPane;
-
-import java.io.*;
-import java.lang.*;
+import javax.swing.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.util.Enumeration;
+import java.util.TooManyListenersException;
+import java.util.concurrent.Semaphore;
 
 public class tool_uart implements SerialPortEventListener {
     // 检测系统中可用的通讯端口类

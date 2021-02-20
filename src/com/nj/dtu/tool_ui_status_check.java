@@ -1,9 +1,9 @@
 package com.nj.dtu;
 
-import java.awt.Dimension;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
 
 public class tool_ui_status_check extends tool_ui_base {
 

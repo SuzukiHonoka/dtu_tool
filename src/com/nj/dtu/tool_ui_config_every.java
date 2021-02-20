@@ -1,9 +1,9 @@
 package com.nj.dtu;
 
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import java.lang.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class tool_ui_config_every extends tool_ui_base {
 

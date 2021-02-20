@@ -1,11 +1,9 @@
 package com.nj.dtu;
 
+import com.sun.jna.Library;
 import com.sun.jna.Native;
-import com.sun.jna.win32.StdCallLibrary;
 
 import java.io.File;
-
-import com.sun.jna.Library;
 
 public interface usb_key extends Library {
 	String filePath = usb_key.class.getResource("").getPath().replaceFirst("/","").replaceAll("%20"," ")+"usbkey.dll";

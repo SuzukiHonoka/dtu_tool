@@ -1,20 +1,12 @@
 package com.nj.dtu;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.Semaphore;
-
-import javax.swing.JOptionPane;
-
-import org.apache.commons.codec.cli.Digest;
+import net.sf.json.JSONObject;
 import org.apache.commons.codec.digest.DigestUtils;
 
-import net.sf.json.JSONObject;
+import javax.swing.*;
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class tool_data_process extends tool_ui_base {
 	// 串口实例

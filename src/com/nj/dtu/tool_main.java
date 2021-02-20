@@ -1,28 +1,25 @@
 package com.nj.dtu;
 
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.lang.*;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.UIManager;
+import javax.swing.*;
+import java.awt.*;
+import java.io.File;
 
 public class tool_main {
 	public static void main(String[] args) throws Exception {
+		loadLIB(".");
 		setUi();
 		show();
-		
 	}
 
+	public static void loadLIB(String path){
+		File dir = new File(path);
+		File[] files = dir.listFiles((dir1, name) -> name.endsWith(".dll"));
+		if (files != null) {
+			for (File file: files){
+				System.load(file.getAbsolutePath());
+			}
+		}
+	}
 
 	public static void show() {
 		// 全局的设备信息
