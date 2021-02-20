@@ -14,11 +14,11 @@ public interface usb_key extends Library {
 	void test();
 	
 	
-	//Ìí¼ÓÃØÔ¿¶Ô
+	//æ·»åŠ ç§˜é’¥å¯¹
 	int add_key_pair();
-	//ÅĞ¶ÏÉè±¸ÊÇ·ñ´æÔÚÃØÔ¿¶Ô
+	//åˆ¤æ–­è®¾å¤‡æ˜¯å¦å­˜åœ¨ç§˜é’¥å¯¹
 	int get_key_pair();
-	// µ¼³öÃØÔ¿
+	// å¯¼å‡ºç§˜é’¥
 	int export_pubkey_pair(String file_path);
 	
     public static void main(String[] args) {

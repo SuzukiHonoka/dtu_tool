@@ -30,25 +30,25 @@ import javax.swing.JTextField;
 public class tool_ui_base {
 	final String file_ini_name = "sys_param.ini";
 	final int MAX_split = 1024;
-    //´´½¨ÏÂÀ­ÁĞ±í
+    //åˆ›å»ºä¸‹æ‹‰åˆ—è¡¨
     public JComboBox buildJComboBox(Object selectedItem, String name, String[] elements, int selectedIndex, int x, int y, int width, int height) {
         DefaultComboBoxModel codeTypeModel = new DefaultComboBoxModel();
-        // elements ÏÂÀ­¿òÖĞµÄÑ¡Ïî
+        // elements ä¸‹æ‹‰æ¡†ä¸­çš„é€‰é¡¹
         for (String element : elements) {
             codeTypeModel.addElement(element);
         }
         JComboBox codeTypeBox = new JComboBox(codeTypeModel);
         codeTypeBox.setName(name);
-        // Ä¬ÈÏÑ¡ÖĞµÄÏÂÀ­¿òÑ¡Ïî
+        // é»˜è®¤é€‰ä¸­çš„ä¸‹æ‹‰æ¡†é€‰é¡¹
         codeTypeBox.setSelectedItem(selectedItem);
 //        codeTypeBox.setSelectedItem(selectedIndex);
         codeTypeBox.setBounds(x, y, width, height);
-        // Ìí¼ÓÏÂÀ­¿òÊÂ¼ş¼àÌıÆ÷
+        // æ·»åŠ ä¸‹æ‹‰æ¡†äº‹ä»¶ç›‘å¬å™¨
         codeTypeBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    // Ñ¡ÔñµÄÏÂÀ­¿òÑ¡Ïî
+                    // é€‰æ‹©çš„ä¸‹æ‹‰æ¡†é€‰é¡¹
                     System.out.println(e.getItem());
                 }
             }
@@ -56,7 +56,7 @@ public class tool_ui_base {
         return codeTypeBox;
     }
     
-    //´´½¨ÎÄ±¾¿ò
+    //åˆ›å»ºæ–‡æœ¬æ¡†
     public JTextField buildJTextField(String defaultValue, String name, int columns, int x, int y, int width, int height) {
         JTextField text = new JTextField(columns);
         text.setText(defaultValue);
@@ -65,30 +65,30 @@ public class tool_ui_base {
         return text;
     }
     
-    //´´½¨°´Å¥
+    //åˆ›å»ºæŒ‰é’®
     public JButton buildJButton(String name, int x, int y, int width, int height) {
         JButton button = new JButton(name);
         button.setBounds(x, y, width, height);
         return button;
     }
-    //´´½¨°´Å¥
+    //åˆ›å»ºæŒ‰é’®
     public JButton buildJButtonSmall(String name, int x, int y, int width, int height) {
         JButton button = new JButton(name);
         button.setBounds(x, y, width, height);
-        Font font2 = new Font("·ÂËÎ",Font.PLAIN,14);  
+        Font font2 = new Font("ä»¿å®‹",Font.PLAIN,14);  
         button.setFont(font2);
         button.setMargin(new Insets(0,0,0,0));
         return button;
     }
     
-    //´´½¨TEXT
+    //åˆ›å»ºTEXT
     public JTextArea buildJJTextArea(int row, int clo,int x, int y, int width, int height) {
     	JTextArea text_area = new JTextArea(row,clo);
     	text_area.setBounds(x, y, width, height);
         return text_area;
     }
     
-    //´´½¨¹ö¶¯Ìõ
+    //åˆ›å»ºæ»šåŠ¨æ¡
     public JScrollPane buildJJScrollPane(JTextArea text_area,int x, int y, int width, int height) {
     	JScrollPane scrollpane = new JScrollPane(text_area);
 //    	JTextArea text_area = new JTextArea(row,clo);
@@ -96,7 +96,7 @@ public class tool_ui_base {
         return scrollpane;
     }
     
-    //´´½¨±êÇ©
+    //åˆ›å»ºæ ‡ç­¾
     public JLabel buildJLabel(String name, int x, int y, int width, int height) {
         JLabel label = new JLabel(name);
         label.setBounds(x, y, width, height);
@@ -111,30 +111,30 @@ public class tool_ui_base {
 		}
 		
 	    try { 
-	    	// ÏòÎÄ¼şĞ´Èë¶ÔÏóĞ´ÈëĞÅÏ¢
+	    	// å‘æ–‡ä»¶å†™å…¥å¯¹è±¡å†™å…¥ä¿¡æ¯
 	   	    FileWriter fileWriter = new FileWriter(fileText);
-	        // Ğ´ÎÄ¼ş      
+	        // å†™æ–‡ä»¶      
 	        fileWriter.write(strBuffer);
-	        // ¹Ø±Õ
+	        // å…³é—­
 	        fileWriter.close();
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
 	}
 	
-	//ÎÄ¼ş±£´æ
+	//æ–‡ä»¶ä¿å­˜
 	public void ParaToFile(final String strBuffer,final String file_name) throws IOException {
 	    File fileText = new File(file_name);
 		if(!fileText.exists()){
 			fileText.createNewFile();
 		}
 	    try { 
-	      // ÏòÎÄ¼şĞ´Èë¶ÔÏóĞ´ÈëĞÅÏ¢
+	      // å‘æ–‡ä»¶å†™å…¥å¯¹è±¡å†™å…¥ä¿¡æ¯
 	      FileWriter fileWriter = new FileWriter(fileText);
 	 
-	      // Ğ´ÎÄ¼ş      
+	      // å†™æ–‡ä»¶      
 	      fileWriter.write(strBuffer);
-	      // ¹Ø±Õ
+	      // å…³é—­
 	      fileWriter.close();
 	    }
 	    catch (IOException e)
@@ -144,7 +144,7 @@ public class tool_ui_base {
 	    }
 	}
 
-    //½«byteÊı×éĞ´ÈëÎÄ¼ş
+    //å°†byteæ•°ç»„å†™å…¥æ–‡ä»¶
 	public void createFile(String path, byte[] content) throws IOException {
 	
 		if(null==path||("").equals(path))
@@ -155,7 +155,7 @@ public class tool_ui_base {
 		fos.close();
 	}
 
-	//¶ÁÈ¡ÎÄ¼ş
+	//è¯»å–æ–‡ä»¶
     public  String readFileContent(String fileName) throws FileNotFoundException, UnsupportedEncodingException {
     	FileInputStream file = new FileInputStream(fileName);
         BufferedReader reader = new BufferedReader(new InputStreamReader(file));;
@@ -191,7 +191,7 @@ public class tool_ui_base {
         for (int i = 0; i < src.length; i++) {
             int v = src[i] & 0xFF;
             String hv = Integer.toHexString(v);
-            //stringBuilder.append(i + ":");//ĞòºÅ 2¸öÊı×ÖÎª1×é
+            //stringBuilder.append(i + ":");//åºå· 2ä¸ªæ•°å­—ä¸º1ç»„
             if (hv.length() < 2) {
                 stringBuilder.append(0);
             }
@@ -200,7 +200,7 @@ public class tool_ui_base {
         return stringBuilder.toString();
     }
     
-    //¶ÁÈ¡ÎÄ¼şµÄMD5
+    //è¯»å–æ–‡ä»¶çš„MD5
 	public static String getMD5(String file) throws FileNotFoundException {
         FileInputStream fileInputStream = new FileInputStream(file);
         try {
@@ -310,7 +310,7 @@ public class tool_ui_base {
 		return checksum;	
 	}
 	
-	//byte ×Ö½ÚĞ£Ñé
+	//byte å­—èŠ‚æ ¡éªŒ
 	public byte do_check_sum(byte[] buf,int buf_start,int buf_len) {
 		int checksum = 0;
 		byte ret;
@@ -326,15 +326,15 @@ public class tool_ui_base {
 		return ret;
 	}
 	
-	//½«Êı×Ö×ª»¯
+	//å°†æ•°å­—è½¬åŒ–
 	public String num_str_2byte(int num) {
 		return String.format("%04x", num);
 	}
 	
     /**
-     * hex×Ö·û´®×ªbyteÊı×é
-     * @param inHex ´ı×ª»»µÄHex×Ö·û´®
-     * @return ×ª»»ºóµÄbyteÊı×é½á¹û
+     * hexå­—ç¬¦ä¸²è½¬byteæ•°ç»„
+     * @param inHex å¾…è½¬æ¢çš„Hexå­—ç¬¦ä¸²
+     * @return è½¬æ¢åçš„byteæ•°ç»„ç»“æœ
      */
 	public static String strTo16hexstr(String s) {
 	    String str = "";
@@ -347,36 +347,36 @@ public class tool_ui_base {
 	}
 	
     /**
-     * ÅĞ¶ÏIPµØÖ·µÄºÏ·¨ĞÔ£¬ÕâÀï²ÉÓÃÁËÕıÔò±í´ïÊ½µÄ·½·¨À´ÅĞ¶Ï
-     * return true£¬ºÏ·¨
+     * åˆ¤æ–­IPåœ°å€çš„åˆæ³•æ€§ï¼Œè¿™é‡Œé‡‡ç”¨äº†æ­£åˆ™è¡¨è¾¾å¼çš„æ–¹æ³•æ¥åˆ¤æ–­
+     * return trueï¼Œåˆæ³•
      * */
     public static boolean ipCheck(String text) {
         if (text != null && !text.isEmpty()) {
-            // ¶¨ÒåÕıÔò±í´ïÊ½
+            // å®šä¹‰æ­£åˆ™è¡¨è¾¾å¼
             String regex = "^(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|[1-9])\\.(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\.(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\.(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)$";
-            // ÅĞ¶ÏipµØÖ·ÊÇ·ñÓëÕıÔò±í´ïÊ½Æ¥Åä
+            // åˆ¤æ–­ipåœ°å€æ˜¯å¦ä¸æ­£åˆ™è¡¨è¾¾å¼åŒ¹é…
             if (text.matches(regex)) {
-                // ·µ»ØÅĞ¶ÏĞÅÏ¢
+                // è¿”å›åˆ¤æ–­ä¿¡æ¯
                 return true;
             } else {
-                // ·µ»ØÅĞ¶ÏĞÅÏ¢
+                // è¿”å›åˆ¤æ–­ä¿¡æ¯
                 return false;
             }
         }
         return false;
     }
-    //Æ¥Åä  www.baidu.com
+    //åŒ¹é…  www.baidu.com
     public static boolean url_check(String text) {
         if (text != null && !text.isEmpty()) {
-            // ¶¨ÒåÕıÔò±í´ïÊ½
+            // å®šä¹‰æ­£åˆ™è¡¨è¾¾å¼
             String regex = "^(www.|[a-zA-Z].)[a-zA-Z0-9\\-\\.]+\\.(com|edu|gov|mil|net|org|biz|info|name|museum|us|ca|uk)*$";
-            // ÅĞ¶ÏipµØÖ·ÊÇ·ñÓëÕıÔò±í´ïÊ½Æ¥Åä
+            // åˆ¤æ–­ipåœ°å€æ˜¯å¦ä¸æ­£åˆ™è¡¨è¾¾å¼åŒ¹é…
             if (text.matches(regex)) {
-                // ·µ»ØÅĞ¶ÏĞÅÏ¢
+                // è¿”å›åˆ¤æ–­ä¿¡æ¯
             	System.out.println("text true");
                 return true;
             } else {
-                // ·µ»ØÅĞ¶ÏĞÅÏ¢
+                // è¿”å›åˆ¤æ–­ä¿¡æ¯
             	System.out.println("text false");
                 return false;
             }
@@ -384,29 +384,29 @@ public class tool_ui_base {
         return false;
     }
     /**
-     * Hex×Ö·û´®×ªbyte
-     * @param inHex ´ı×ª»»µÄHex×Ö·û´®
-     * @return ×ª»»ºóµÄbyte
+     * Hexå­—ç¬¦ä¸²è½¬byte
+     * @param inHex å¾…è½¬æ¢çš„Hexå­—ç¬¦ä¸²
+     * @return è½¬æ¢åçš„byte
      */
     public static byte hexToByte(String inHex) {
         return (byte) Integer.parseInt(inHex, 16);
     }
 	
     /**
-     * hex×Ö·û´®×ªbyteÊı×é
-     * @param inHex ´ı×ª»»µÄHex×Ö·û´®
-     * @return ×ª»»ºóµÄbyteÊı×é½á¹û
+     * hexå­—ç¬¦ä¸²è½¬byteæ•°ç»„
+     * @param inHex å¾…è½¬æ¢çš„Hexå­—ç¬¦ä¸²
+     * @return è½¬æ¢åçš„byteæ•°ç»„ç»“æœ
      */
     public static byte[] hexToByteArray(String inHex) {
         int hexlen = inHex.length();
         byte[] result;
         if (hexlen % 2 == 1) {
-            // ÆæÊı
+            // å¥‡æ•°
             hexlen++;
             result = new byte[(hexlen / 2)];
             inHex = "0" + inHex;
         } else {
-            // Å¼Êı
+            // å¶æ•°
             result = new byte[(hexlen / 2)];
         }
         int j = 0;
@@ -465,27 +465,27 @@ public class tool_ui_base {
     	return xuhaowei;
     }
     
-    //16½øÖÆ×Ö·û´®×ªÊı×Ö int
+    //16è¿›åˆ¶å­—ç¬¦ä¸²è½¬æ•°å­— int
 	public static int str16_to_int16(String s) {
         int b = Integer.parseInt(s.replaceAll("^0[x|X]", ""), 16);
 //        System.out.println("b " + b);
         return b;
 	}	
-    //½²int ×ª»¯Îª×Ö·û´®
+    //è®²int è½¬åŒ–ä¸ºå­—ç¬¦ä¸²
 	public String numToHex16(int b) {
         return String.format("%04x", b);
     }
-    //½²int ×ª»¯Îª×Ö·û´®
+    //è®²int è½¬åŒ–ä¸ºå­—ç¬¦ä¸²
 	public String numToHex_2_byte(int b) {
         return String.format("%04x", b);
     }
 	
-    //½²int ×ª»¯Îª×Ö·û´®
+    //è®²int è½¬åŒ–ä¸ºå­—ç¬¦ä¸²
 	public String numToHex8(int b) {
         return String.format("%08x", b);
     }
 	
-    //½²int ×ª»¯Îª×Ö·û´®
+    //è®²int è½¬åŒ–ä¸ºå­—ç¬¦ä¸²
 	public String numToHex_4_byte(int b) {
         return String.format("%08x", b);
     }
@@ -520,7 +520,7 @@ public class tool_ui_base {
 		return new String(bytes,"gb2312");
 	}
 	
-    //ÎÄ¼ş×·¼ÓĞ´
+    //æ–‡ä»¶è¿½åŠ å†™
     public static void appendFile(String file_name, String content) throws IOException {
     	File file = new File(file_name);
         OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(file, true),"UTF-8");
@@ -528,7 +528,7 @@ public class tool_ui_base {
         out.close();
     }
     /** 
-     * »ñÈ¡µ±Ç°Ê±¼ä 
+     * è·å–å½“å‰æ—¶é—´ 
      *  
      * @param args 
      */ 

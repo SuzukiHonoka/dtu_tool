@@ -1,7 +1,7 @@
 package com.nj.dtu;
 
 public class tool_device_info extends tool_ui_base {
-    //Éè±¸»ù±¾ĞÅÏ¢
+    //è®¾å¤‡åŸºæœ¬ä¿¡æ¯
     public String device_name = "";
     public String device_type = "";
     public String device_location = "";
@@ -13,7 +13,7 @@ public class tool_device_info extends tool_ui_base {
     public String tx = "";
     public String time = "";
 
-    //Éè±¸eth
+    //è®¾å¤‡eth
     public String device_wan_ip = "";
     public String device_wan_netmask = "";
     public String device_wan_gateway = "";
@@ -21,7 +21,7 @@ public class tool_device_info extends tool_ui_base {
     public String device_lan_netmask = "";
     public String device_lan_gateway = "";
 
-    //Éè±¸sim
+    //è®¾å¤‡sim
     public String device_apn0 = "";
     public String device_code0 = "";
     public String device_name0 = "";
@@ -62,7 +62,7 @@ public class tool_device_info extends tool_ui_base {
     public String ping_info;
 
     public String device_softversion;
-    // **************************     ×´Ì¬ĞÅÏ¢           ************************************/
+    // **************************     çŠ¶æ€ä¿¡æ¯           ************************************/
 
 
     public void tool_device_info_get() {
@@ -79,7 +79,7 @@ public class tool_device_info extends tool_ui_base {
             System.out.println("device_location: " + device_location);
             System.out.println("device_software_vesion: " + device_software_vesion);
 
-            //Íø¿Ú
+            //ç½‘å£
             device_wan_ip = device_config.get("NET0", "devip0");
             device_wan_netmask = device_config.get("NET0", "netmask0");
             device_wan_gateway = device_config.get("NET0", "defaultgw0");
@@ -117,7 +117,7 @@ public class tool_device_info extends tool_ui_base {
             System.out.println("device_pwd1: " + device_pwd1);
             System.out.println("device_pin1: " + device_pin1);
 
-            //ËíµÀ²ÎÊı
+            //éš§é“å‚æ•°
             device_isenc1 = device_config.get("policy1", "isenc1");
             device_protect_dtuip1 = device_config.get("policy1", "protect_dtuip1");
             device_mainip1 = device_config.get("policy1", "mainip1");
@@ -128,7 +128,7 @@ public class tool_device_info extends tool_ui_base {
             System.out.println("device_mainip1: " + device_mainip1);
             System.out.println("device_protect_mainip1: " + device_protect_mainip1);
 
-            //ÒµÎñ´®¿Ú
+            //ä¸šåŠ¡ä¸²å£
             device_rate = device_config.get("serial", "rate");
             device_databit = device_config.get("serial", "databit");
             device_verifybit = device_config.get("serial", "verifybit");
@@ -142,7 +142,7 @@ public class tool_device_info extends tool_ui_base {
             System.out.println("device_tcp101_servers: " + device_tcp101_servers);
             System.out.println("device_tcp101_localserver: " + device_tcp101_localserver);
         } catch (Exception e) {
-            System.out.println("¶ÁÈ¡³ö´í " + e);
+            System.out.println("è¯»å–å‡ºé”™ " + e);
         }
     }
 
@@ -153,28 +153,28 @@ public class tool_device_info extends tool_ui_base {
         device_status_run_time = run_time;
     }
 
-    //½²ÅäÖÃĞÅÏ¢±£´æµ½
+    //è®²é…ç½®ä¿¡æ¯ä¿å­˜åˆ°
     public void tool_device_info_set(tool_ui_config_every tool_user_set_config) {
         IniEditor device_config = new IniEditor();
         try {
             //device_config.load(file_ini_name);
 
         } catch (Exception e) {
-            System.out.println("Ğ´³ö´í " + e);
+            System.out.println("å†™å‡ºé”™ " + e);
         }
     }
 
-    //±£´æpingĞÅÏ¢
+    //ä¿å­˜pingä¿¡æ¯
     public void tool_device_ping_info(String ping_ret) {
         ping_info = ping_info + ping_ret;
     }
 
-    //±£´æpingĞÅÏ¢
+    //ä¿å­˜pingä¿¡æ¯
     public void tool_device_ping_info_clear() {
         ping_info = "";
     }
 
-    //±£´æ°æ±¾ĞÅÏ¢
+    //ä¿å­˜ç‰ˆæœ¬ä¿¡æ¯
     public void tool_device_softversion_info(String str) {
         device_softversion = str.substring(0, 4);
     }

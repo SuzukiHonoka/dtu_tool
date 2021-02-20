@@ -50,15 +50,15 @@ public class tool_ui_set_user extends tool_ui_base implements MouseListener {
 		loginPanel = new JPanel();
 		loginPanel.setPreferredSize(new Dimension(990, 100));
 		loginPanel.setLayout(null);
-		loginPanel.setBorder(BorderFactory.createTitledBorder("µÇÂ¼"));	
-		loginPanel.add(buildJLabel("Éó¼ÆÓÃ»§", 30, 30, 80, 20));	
+		loginPanel.setBorder(BorderFactory.createTitledBorder("ç™»å½•"));	
+		loginPanel.add(buildJLabel("å®¡è®¡ç”¨æˆ·", 30, 30, 80, 20));	
 		listCheck = new JList<String>();
 		listCheck.addMouseListener(this);
 		JScrollPane jsp=new JScrollPane(listCheck);
 		jsp.setBounds(30, 50, 130, 220);		
 		setListCheck(dtu_tool_ui.g_data_process.mapCheck);
 		loginPanel.add(jsp);
-		loginPanel.add(buildJLabel("ÅäÖÃÓÃ»§", 180, 30, 80, 20));
+		loginPanel.add(buildJLabel("é…ç½®ç”¨æˆ·", 180, 30, 80, 20));
 		listConfig = new JList<String>();
 		listConfig.addMouseListener(this);
 		JScrollPane jsp2=new JScrollPane(listConfig);
@@ -66,18 +66,18 @@ public class tool_ui_set_user extends tool_ui_base implements MouseListener {
 		setListConfig(dtu_tool_ui.g_data_process.mapConfig);
 		loginPanel.add(jsp2);
 		
-		loginPanel.add(buildJLabel("ÓÃ»§Ãû", 360, 60, 50, 20));
+		loginPanel.add(buildJLabel("ç”¨æˆ·å", 360, 60, 50, 20));
 		textName  = buildJTextField("", "", 20, 420, 60, 185, 25);
 		loginPanel.add(textName);
-		loginPanel.add(buildJLabel("ÃÜ  Âë", 360, 110, 50, 20));
+		loginPanel.add(buildJLabel("å¯†  ç ", 360, 110, 50, 20));
 		textPass = new JPasswordField(20);
 		textPass.setBounds( 420, 110, 185, 25);
 		loginPanel.add(textPass);
 		
-		radioButton1 =new JRadioButton("Éó¼ÆÓÃ»§");
+		radioButton1 =new JRadioButton("å®¡è®¡ç”¨æˆ·");
 		radioButton1.setBounds( 385, 160, 100, 20);
 		loginPanel.add(radioButton1);
-		radioButton2 =new JRadioButton("ÅäÖÃÓÃ»§");
+		radioButton2 =new JRadioButton("é…ç½®ç”¨æˆ·");
 		radioButton2.setBounds( 485, 160, 100, 20);
 		loginPanel.add(radioButton2);
 		ButtonGroup group=new ButtonGroup();
@@ -86,35 +86,35 @@ public class tool_ui_set_user extends tool_ui_base implements MouseListener {
 		group.add(radioButton2);
 	
         
-	    btLogin =  buildJButton("Ìí¼Ó", 360, 200, 100, 30);
+	    btLogin =  buildJButton("æ·»åŠ ", 360, 200, 100, 30);
 	    btLogin.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(dtu_tool_ui.g_data_process.Md5.equals("")){
-					JOptionPane.showMessageDialog(null, "ÃÜÂë²»´æÔÚ£¬Çëµ¼Èë");
+					JOptionPane.showMessageDialog(null, "å¯†ç ä¸å­˜åœ¨ï¼Œè¯·å¯¼å…¥");
 					return;
 				}
 				String pass = String.valueOf(textPass.getPassword());
 				String name = textName.getText();
 				if(name.equals("")||pass.equals("")){
-					JOptionPane.showMessageDialog(null, "ÕËºÅÃÜÂë²»ÄÜÎª¿Õ");
+					JOptionPane.showMessageDialog(null, "è´¦å·å¯†ç ä¸èƒ½ä¸ºç©º");
 					return;
 				}
 				if(isSpecialChar(name)||isSpecialChar(pass)){
-					JOptionPane.showMessageDialog(null, "²»ÄÜ°üº¬:;");
+					JOptionPane.showMessageDialog(null, "ä¸èƒ½åŒ…å«:;");
 					return;
 				}
 				if(pass.length()<8){
-					JOptionPane.showMessageDialog(null, "ÃÜÂë²»ÄÜĞ¡ÓÚ8Î»");
+					JOptionPane.showMessageDialog(null, "å¯†ç ä¸èƒ½å°äº8ä½");
 					return;
 				}
 				if(!usbUtils.checkPasswordRule(pass)){
-					JOptionPane.showMessageDialog(null, "ÃÜÂë±ØĞë°üº¬×ÖÄ¸¡¢Êı×Ö¡¢·ûºÅ ÈıÖÖ×Ö·û");
+					JOptionPane.showMessageDialog(null, "å¯†ç å¿…é¡»åŒ…å«å­—æ¯ã€æ•°å­—ã€ç¬¦å· ä¸‰ç§å­—ç¬¦");
 					return;
 				}
 				
 				if(dtu_tool_ui.g_data_process.mapCheck.containsKey(name)||dtu_tool_ui.g_data_process.mapConfig.containsKey(name)){
-					JOptionPane.showMessageDialog(null, "¸ÃÓÃ»§ÒÑ´æÔÚ");
+					JOptionPane.showMessageDialog(null, "è¯¥ç”¨æˆ·å·²å­˜åœ¨");
 					return;
 				}
 			
@@ -136,7 +136,7 @@ public class tool_ui_set_user extends tool_ui_base implements MouseListener {
 		});
 	  
 	    loginPanel.add(btLogin);	
-	    JButton get = buildJButton("»ñÈ¡ÓÃ»§ĞÅÏ¢", 470, 200, 135, 30);
+	    JButton get = buildJButton("è·å–ç”¨æˆ·ä¿¡æ¯", 470, 200, 135, 30);
 	    get.addActionListener(new ActionListener() {
 			
 			@Override
@@ -152,36 +152,36 @@ public class tool_ui_set_user extends tool_ui_base implements MouseListener {
 			}
 		});
 	    loginPanel.add(get);	
-	    creatKey =  buildJButton("´´½¨usb-keyÃÜÔ¿¶Ô", 700, 60, 180, 25);
+	    creatKey =  buildJButton("åˆ›å»ºusb-keyå¯†é’¥å¯¹", 700, 60, 180, 25);
 	    creatKey.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dtu_tool_ui.loading("ÕıÔÚ´´½¨");
+				dtu_tool_ui.loading("æ­£åœ¨åˆ›å»º");
 				 new Thread() {
 						public void run() {
 							if(!usbUtils.isExits()){
-								JOptionPane.showMessageDialog(null, "Çë²åÈëusb key");
+								JOptionPane.showMessageDialog(null, "è¯·æ’å…¥usb key");
 								dtu_tool_ui.stop();
 					    		return;
 					    	}
 						
 							 if(usb_key.INSTANCE.get_key_pair()==0){
 								
-							  //ÊÇ 0;·ñ 1
-					            int n = JOptionPane.showConfirmDialog(null, "ÃÜÔ¿ÒÑ´æÔÚ£¬ÊÇ·ñÖØĞÂ´´½¨?", "", JOptionPane.YES_NO_OPTION);
+							  //æ˜¯ 0;å¦ 1
+					            int n = JOptionPane.showConfirmDialog(null, "å¯†é’¥å·²å­˜åœ¨ï¼Œæ˜¯å¦é‡æ–°åˆ›å»º?", "", JOptionPane.YES_NO_OPTION);
 					            if(n==0){
-					            	dtu_tool_ui.loading("ÕıÔÚ´´½¨");
+					            	dtu_tool_ui.loading("æ­£åœ¨åˆ›å»º");
 						        	usb_key.INSTANCE.add_key_pair();
 						        	usb_key.INSTANCE.add_key_pair();					      
-						        	JOptionPane.showMessageDialog(null, "´´½¨³É¹¦");
+						        	JOptionPane.showMessageDialog(null, "åˆ›å»ºæˆåŠŸ");
 					            }
 							
 						        }else{
-						        	dtu_tool_ui.loading("ÕıÔÚ´´½¨");
+						        	dtu_tool_ui.loading("æ­£åœ¨åˆ›å»º");
 						        	usb_key.INSTANCE.add_key_pair();
 						        	usb_key.INSTANCE.add_key_pair();
 						        
-						        	JOptionPane.showMessageDialog(null, "´´½¨³É¹¦");
+						        	JOptionPane.showMessageDialog(null, "åˆ›å»ºæˆåŠŸ");
 						        }
 							 dtu_tool_ui.stop();
 						}
@@ -192,15 +192,15 @@ public class tool_ui_set_user extends tool_ui_base implements MouseListener {
 			}
 		});
 	    loginPanel.add(creatKey);	
-	    importKey =  buildJButton("µ¼Èë¹«Ô¿µ½Éè±¸", 700, 100, 180, 25);
+	    importKey =  buildJButton("å¯¼å…¥å…¬é’¥åˆ°è®¾å¤‡", 700, 100, 180, 25);
 	    importKey.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dtu_tool_ui.loading("ÕıÔÚµ¼Èë");
+				dtu_tool_ui.loading("æ­£åœ¨å¯¼å…¥");
 				 new Thread() {
 						public void run() {
 							if(!usbUtils.isExits()){
-								 JOptionPane.showMessageDialog(null,"Çë²åÈëusb key");
+								 JOptionPane.showMessageDialog(null,"è¯·æ’å…¥usb key");
 					    		return;
 					    	}
 							  if(usb_key.INSTANCE.get_key_pair()==0){			   
@@ -216,7 +216,7 @@ public class tool_ui_set_user extends tool_ui_base implements MouseListener {
 									}
 						        		
 						        }else{
-						        	 JOptionPane.showMessageDialog(null,"usbkey²»´æÔÚÃÜÔ¿ÇëÏÈ´´½¨");
+						        	 JOptionPane.showMessageDialog(null,"usbkeyä¸å­˜åœ¨å¯†é’¥è¯·å…ˆåˆ›å»º");
 						        }
 						}
 					}.start();
@@ -226,15 +226,15 @@ public class tool_ui_set_user extends tool_ui_base implements MouseListener {
 		});
 	    loginPanel.add(importKey);	
 	    
-	    removeKey =  buildJButton("É¾³ıÉè±¸¹«Ô¿", 700, 140, 180, 25);
+	    removeKey =  buildJButton("åˆ é™¤è®¾å¤‡å…¬é’¥", 700, 140, 180, 25);
 	    removeKey.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dtu_tool_ui.loading("ÕıÔÚÉ¾³ı");
+				dtu_tool_ui.loading("æ­£åœ¨åˆ é™¤");
 				 new Thread() {
 						public void run() {
 							if(!usbUtils.isExits()){
-								 JOptionPane.showMessageDialog(null,"Çë²åÈëusb key");
+								 JOptionPane.showMessageDialog(null,"è¯·æ’å…¥usb key");
 					    		return;
 					    	}
 							  if(usb_key.INSTANCE.get_key_pair()==0){			   
@@ -250,7 +250,7 @@ public class tool_ui_set_user extends tool_ui_base implements MouseListener {
 									}
 						        		
 						        }else{
-						        	 JOptionPane.showMessageDialog(null,"usbkey²»´æÔÚÃÜÔ¿");
+						        	 JOptionPane.showMessageDialog(null,"usbkeyä¸å­˜åœ¨å¯†é’¥");
 						        }
 						}
 					}.start();
@@ -258,7 +258,7 @@ public class tool_ui_set_user extends tool_ui_base implements MouseListener {
 		});
 	    loginPanel.add(removeKey);
 	    
-	    JButton getMD5= buildJButton("ÑéÖ¤ÃÜÔ¿µ¼Èë",700, 180, 180, 25);
+	    JButton getMD5= buildJButton("éªŒè¯å¯†é’¥å¯¼å…¥",700, 180, 180, 25);
 	    getMD5.addActionListener(new ActionListener() {
 			
 			@Override
@@ -294,12 +294,12 @@ public class tool_ui_set_user extends tool_ui_base implements MouseListener {
 	}
 //	public void setTip(){
 //		if(dtu_tool_ui.g_data_process.Md5.equals(""))
-//			tipLabel.setText("Éè±¸Î´µ¼ÈëÃÜÔ¿");
+//			tipLabel.setText("è®¾å¤‡æœªå¯¼å…¥å¯†é’¥");
 //		else
-//			tipLabel.setText("Éè±¸ÒÑµ¼ÈëÃÜÔ¿");
+//			tipLabel.setText("è®¾å¤‡å·²å¯¼å…¥å¯†é’¥");
 //	}
 	public boolean isSpecialChar(String str) {
-       if(str.contains(":")||str.contains("£º")||str.contains("£»")||str.contains(";"))
+       if(str.contains(":")||str.contains("ï¼š")||str.contains("ï¼›")||str.contains(";"))
     	   return true;
         return false;
     }
@@ -314,8 +314,8 @@ public class tool_ui_set_user extends tool_ui_base implements MouseListener {
 	 private void doubleClick(MouseEvent e) {
 	        Object source = e.getSource();
 	        String name = ((JList<String>)source).getSelectedValue();
-	        //ÊÇ 0;·ñ 1
-            int n = JOptionPane.showConfirmDialog(null, "È·ÈÏÉ¾³ı "+name+"?", "", JOptionPane.YES_NO_OPTION);
+	        //æ˜¯ 0;å¦ 1
+            int n = JOptionPane.showConfirmDialog(null, "ç¡®è®¤åˆ é™¤ "+name+"?", "", JOptionPane.YES_NO_OPTION);
             if(n==0){
             String cmd = "";	
             String pass = "";

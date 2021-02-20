@@ -17,18 +17,18 @@ import org.apache.commons.codec.digest.DigestUtils;
 import net.sf.json.JSONObject;
 
 public class tool_data_process extends tool_ui_base {
-	// ´®¿ÚÊµÀı
+	// ä¸²å£å®ä¾‹
 	tool_uart g_uart_process;
-	// È«¾ÖµÄÉè±¸ĞÅÏ¢
+	// å…¨å±€çš„è®¾å¤‡ä¿¡æ¯
 	tool_device_info g_dtu_device_info;
-	// È«¾ÖµÄÉè±¸ĞÅÏ¢
+	// å…¨å±€çš„è®¾å¤‡ä¿¡æ¯
 	tool_ui g_tool_ui_all;
 
-	// ´®¿ÚÊı¾İ±äÁ¿
+	// ä¸²å£æ•°æ®å˜é‡
 	String data = "";
 	String frame_data = "";
 
-	// Ğ­ÒéÏà¹Ø±äÁ¿
+	// åè®®ç›¸å…³å˜é‡
 	String FRAME_BEGIN = "5A5A";
 	String FRAME_END = "A5A5";
 	final String FRAME_ACK_TYPE = "93";
@@ -36,14 +36,14 @@ public class tool_data_process extends tool_ui_base {
 	final String FRAME_SYNC_TYPE = "97";
 	final String FRAME_ACK_LEN = "0001";
 	final String FRAME_ACK_LOAD = "06";
-	// ·ÖÆ¬Í·µÄ´óĞ¡
+	// åˆ†ç‰‡å¤´çš„å¤§å°
 	final int FRAME_FRAG_HEAD_LEN = 15;
 	final String fRAME_CMD_TRUE = "01";
 
-	// Ó¦¸ÃÊÇÎŞ·ûºÅ £¿£¿
+	// åº”è¯¥æ˜¯æ— ç¬¦å· ï¼Ÿï¼Ÿ
 	public int frame_expected_id = 1;
 
-	// ±¨ÎÄ½âÎö
+	// æŠ¥æ–‡è§£æ
 	String frame_head = "";
 	String frame_type = "";
 	String frame_id = "";
@@ -59,58 +59,58 @@ public class tool_data_process extends tool_ui_base {
 	int frame_input_frag_ack_upload_flag = 0;
 	int frame_input_frag_ack_flag = 0;
 	String frame_data_frag_loadString;
-	// ½ÓÊÕµ½µÄ·ÖÆ¬ºÅID
+	// æ¥æ”¶åˆ°çš„åˆ†ç‰‡å·ID
 	String frame_input_frag_ack_id;
 
-	// ±¨ÎÄ·¢ËÍÃüÁî×Ö CMD_ID,Îª16½øÖÆ
-	final String CMD_CONFIG_REQUEST = "01"; /* ÅäÖÃ²ÎÊıÇëÇó */
-	final String CMD_PEIDIAN_REQUEST = "03"; /* ÅäµçÇëÇó */
-	final String CMD_SYS_RUNTIME_REQUEST = "05"; /* ÏµÍ³ÔËĞĞÊ±¼ä */
-	final String CMD_SYS_FIRMWARE_SET = "06"; /* Éı¼¶Ö¸Áî */
-	final String CMD_CONFIG_SET = "11"; /* PCÏÂ·¢ÅäÖÃ */
-	final String CMD_CONFIG_UPLOAD = "12"; /* µ¼ÈëÅäÖÃÎÄ¼ş */
-	final String CMD_CONFIG_DOWNLOAD = "13"; /* µ¼³öÅäÖÃÎÄ¼ş */
-	final String CMD_SYS_FIRMWARE_UPLOAD = "14"; /* µ¼ÈëÉı¼¶ÎÄ¼ş */
-	final String CMD_SYS_FIRMWARE_UPLOAD_O = "20"; /* µ¼ÈëÉı¼¶ÎÄ¼ş */
-	final String CMD_CERTIFICATE_REQUEST = "15"; /* ÇëÇóÖ¤Êé */
-	final String CMD_CERTIFICATE_UPLOAD = "16"; /* µ¼ÈëÖ¤Êé */
-	final String CMD_CERTIFICATE_UPLOAD_O = "22"; /* µ¼ÈëÇ©·¢Ö¤Êé */
-	final String CMD_PING_REQUEST = "17"; /* ÍøÂç¼ì²â */
-	final String CMD_LOG_REQUEST = "18"; /* ÈÕÖ¾ÇëÇó */
-	final String CMD_MD5_SEND = "19"; /* MD5·¢ËÍ */
-	final String CMD_FRAG_DATA_ACK = "20"; /* ·ÖÆ¬Ó¦´ğACK */
+	// æŠ¥æ–‡å‘é€å‘½ä»¤å­— CMD_ID,ä¸º16è¿›åˆ¶
+	final String CMD_CONFIG_REQUEST = "01"; /* é…ç½®å‚æ•°è¯·æ±‚ */
+	final String CMD_PEIDIAN_REQUEST = "03"; /* é…ç”µè¯·æ±‚ */
+	final String CMD_SYS_RUNTIME_REQUEST = "05"; /* ç³»ç»Ÿè¿è¡Œæ—¶é—´ */
+	final String CMD_SYS_FIRMWARE_SET = "06"; /* å‡çº§æŒ‡ä»¤ */
+	final String CMD_CONFIG_SET = "11"; /* PCä¸‹å‘é…ç½® */
+	final String CMD_CONFIG_UPLOAD = "12"; /* å¯¼å…¥é…ç½®æ–‡ä»¶ */
+	final String CMD_CONFIG_DOWNLOAD = "13"; /* å¯¼å‡ºé…ç½®æ–‡ä»¶ */
+	final String CMD_SYS_FIRMWARE_UPLOAD = "14"; /* å¯¼å…¥å‡çº§æ–‡ä»¶ */
+	final String CMD_SYS_FIRMWARE_UPLOAD_O = "20"; /* å¯¼å…¥å‡çº§æ–‡ä»¶ */
+	final String CMD_CERTIFICATE_REQUEST = "15"; /* è¯·æ±‚è¯ä¹¦ */
+	final String CMD_CERTIFICATE_UPLOAD = "16"; /* å¯¼å…¥è¯ä¹¦ */
+	final String CMD_CERTIFICATE_UPLOAD_O = "22"; /* å¯¼å…¥ç­¾å‘è¯ä¹¦ */
+	final String CMD_PING_REQUEST = "17"; /* ç½‘ç»œæ£€æµ‹ */
+	final String CMD_LOG_REQUEST = "18"; /* æ—¥å¿—è¯·æ±‚ */
+	final String CMD_MD5_SEND = "19"; /* MD5å‘é€ */
+	final String CMD_FRAG_DATA_ACK = "20"; /* åˆ†ç‰‡åº”ç­”ACK */
 	final String CMD_MD5_CHECK = "21"; /* MD5 check */
 
 	final String CMD_SET_REBOOT = "30"; /*  */
 	final String CMD_SET_GET_VERSION = "31"; /*  */
-	// ÓĞ·µ»ØÖµµÄshellÖ´ĞĞ
+	// æœ‰è¿”å›å€¼çš„shellæ‰§è¡Œ
 	final String CMD_RUN_SHELL_2 = "98"; /*  */
 	final String CMD_RUN_SHELL = "99"; /*  */
 	// ACKCMD_ID
 	final String CMD_ACK = "06"; /* MD5 check */
 
-	final String CMD_REBOOT = "00"; /* ÖØÆô */
-	final String CMD_ENC = "01"; /* ¼ÓÃÜÖ¤ÊéĞÅÏ¢ */
-	final String CMD_SIG = "02"; /* Ç©ÃûÖ¤ÊéĞÅÏ¢ */
-	final String CMD_IN = "03"; /* µ¼ÈëÇ©·¢Ö¤Êé */
-	final String CMD_P10 = "04"; /* µ¼ÈëÇ©·¢Ö¤Êé */
+	final String CMD_REBOOT = "00"; /* é‡å¯ */
+	final String CMD_ENC = "01"; /* åŠ å¯†è¯ä¹¦ä¿¡æ¯ */
+	final String CMD_SIG = "02"; /* ç­¾åè¯ä¹¦ä¿¡æ¯ */
+	final String CMD_IN = "03"; /* å¯¼å…¥ç­¾å‘è¯ä¹¦ */
+	final String CMD_P10 = "04"; /* å¯¼å…¥ç­¾å‘è¯ä¹¦ */
 	final String CMD_VER = "05"; /* cat version */
-	final String CMD_INI_OUT = "06"; /* µ¼³öÅäÖÃÎÄ¼ş */
-	final String CMD_INI_IN = "07"; /* µ¼ÈëÅäÖÃÎÄ¼ş */
-	final String CMD_RUN_DATE = "08"; /* ÖÜÆÚ */
-	final String CMD_SET_DATE = "09"; /* ÏµÍ³Ê±¼äÉèÖÃ */
-	final String CMD_HW_DATE = "10"; /* ÉèÖÃÓ²¼şÊ±ÖÓ */
-	final String CMD_CREATE = "11"; /* Éú³ÉÇëÇóÖ¤ÊéĞÅÏ¢ */
-	final String CMD_STATE = "12"; /* ×´Ì¬×Ô¶¨Òå */
+	final String CMD_INI_OUT = "06"; /* å¯¼å‡ºé…ç½®æ–‡ä»¶ */
+	final String CMD_INI_IN = "07"; /* å¯¼å…¥é…ç½®æ–‡ä»¶ */
+	final String CMD_RUN_DATE = "08"; /* å‘¨æœŸ */
+	final String CMD_SET_DATE = "09"; /* ç³»ç»Ÿæ—¶é—´è®¾ç½® */
+	final String CMD_HW_DATE = "10"; /* è®¾ç½®ç¡¬ä»¶æ—¶é’Ÿ */
+	final String CMD_CREATE = "11"; /* ç”Ÿæˆè¯·æ±‚è¯ä¹¦ä¿¡æ¯ */
+	final String CMD_STATE = "12"; /* çŠ¶æ€è‡ªå®šä¹‰ */
 	final String CMD_SET_LOG = "13"; /* set log */
 	final String CMD_GET_LOG = "14"; /* get log */
-	final String CMD_GET_MD5 = "15"; /* get MD5  ÑéÖ¤ */
-	final String CMD_IMPORT_KEY = "16"; /* µ¼ÈëÃÜÔ¿ */
-	final String CMD_ADD_USER = "17"; /* Ìí¼ÓÓÃ»§ */
-	final String CMD_GET_CONFIG_USER = "18"; /* »ñÈ¡ÅäÖÃÓÃ»§ */
-	final String CMD_GET_CHECK_USER = "19"; /* »ñÈ¡Éó¼ÆÓÃ»§ */
-	final String CMD_REMOVE_USER = "20"; /* É¾³ıÓÃ»§ */
-	final String CMD_REMOVE_KEY = "21"; /* É¾³ıÃÜÔ¿ */
+	final String CMD_GET_MD5 = "15"; /* get MD5  éªŒè¯ */
+	final String CMD_IMPORT_KEY = "16"; /* å¯¼å…¥å¯†é’¥ */
+	final String CMD_ADD_USER = "17"; /* æ·»åŠ ç”¨æˆ· */
+	final String CMD_GET_CONFIG_USER = "18"; /* è·å–é…ç½®ç”¨æˆ· */
+	final String CMD_GET_CHECK_USER = "19"; /* è·å–å®¡è®¡ç”¨æˆ· */
+	final String CMD_REMOVE_USER = "20"; /* åˆ é™¤ç”¨æˆ· */
+	final String CMD_REMOVE_KEY = "21"; /* åˆ é™¤å¯†é’¥ */
 	
 	String last_p10_name = "";
 	Boolean iniAccept = true;
@@ -136,26 +136,26 @@ public class tool_data_process extends tool_ui_base {
 		return false;   
 	}
 
-	// ÕÒµ½Ò»¸öÍêÕûµÄ±¨ÎÄ
+	// æ‰¾åˆ°ä¸€ä¸ªå®Œæ•´çš„æŠ¥æ–‡
 	public int data_find_one_frame() {
 		int ret = 0;
 		int index_begin = data.indexOf(FRAME_BEGIN);
 		int index_end = data.indexOf(FRAME_END);
 
-		// ÏÈÇå¿Õ
+		// å…ˆæ¸…ç©º
 		frame_data = "";
 
-		// ·Ö±ğ²éÕÒÍ·ºÍÎ²,Ã»ÕÒµ½¾ÍÊ²Ã´¶¼²»×ö
+		// åˆ†åˆ«æŸ¥æ‰¾å¤´å’Œå°¾,æ²¡æ‰¾åˆ°å°±ä»€ä¹ˆéƒ½ä¸åš
 		if (index_begin >= 0 && index_end >= 0 && index_end > index_begin) {
-			// ÍêÕûµÄÓĞ°üº¬Í·ºÍÎ² 5A 5A 93 00 02 00 01 06 63 A5 A5
+			// å®Œæ•´çš„æœ‰åŒ…å«å¤´å’Œå°¾ 5A 5A 93 00 02 00 01 06 63 A5 A5
 			frame_data = data.substring(index_begin, index_end + 4);
 			frame_data = frame_data.substring(4, frame_data.length() - 4);
 			frame_data = frame_data.replaceAll("005A00", "5A");
 			frame_data = frame_data.replaceAll("00A500", "A5");
 
-			System.out.println("back frame_data£º " + frame_data);
+			System.out.println("back frame_dataï¼š " + frame_data);
 
-			// ±¨ÎÄÊ£Óà¸´ÖÆ
+			// æŠ¥æ–‡å‰©ä½™å¤åˆ¶
 			if ((data.length() - 1) > index_end + 3) {
 				data = data.substring(index_end + 4, data.length());
 			} else {
@@ -167,77 +167,77 @@ public class tool_data_process extends tool_ui_base {
 		return ret;
 	}
 
-	// ·¢ËÍACK±¨ÎÄ
+	// å‘é€ACKæŠ¥æ–‡
 	public String send_cmd_ack() {
 		// String ack = "93"+OctHex(shujuxuhao)+"000106";
 		String cmd_len = "0001";
 		String cmd_str = FRAME_ACK_TYPE + numToHex16(frame_expected_id) + cmd_len + CMD_ACK;
 		String cmd_chk = checkSum(cmd_str);
 
-		System.out.println("send_cmd_ack£º " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
+		System.out.println("send_cmd_ackï¼š " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 
 		return (FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 	}
 
-	// µ¼³öÅäÖÃÎÄ¼ş
+	// å¯¼å‡ºé…ç½®æ–‡ä»¶
 	public String send_cmd_config_download() {
 		String cmd_len = "0001";
 		String cmd_str = FRAME_DATA_TYPE + numToHex16(frame_expected_id) + cmd_len + CMD_CONFIG_DOWNLOAD;
 		String cmd_chk = checkSum(cmd_str);
 
-		System.out.println("send_cmd_config_download£º " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
+		System.out.println("send_cmd_config_downloadï¼š " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 
 		return (FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 	}
 
-	// ÅäÖÃ²ÎÊıÇëÇó
+	// é…ç½®å‚æ•°è¯·æ±‚
 	public String send_cmd_config_request() {
 		String cmd_len = "0001";
 		String cmd_str = FRAME_DATA_TYPE + numToHex16(frame_expected_id) + cmd_len + CMD_CONFIG_REQUEST;
 		String cmd_chk = checkSum(cmd_str);
 
-		System.out.println("data_send_cmd_config_request£º " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
+		System.out.println("data_send_cmd_config_requestï¼š " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 
 		return (FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 	}
 
-	// //»ñÈ¡Ö¤ÊéĞÅÏ¢
+	// //è·å–è¯ä¹¦ä¿¡æ¯
 	// public String send_cmd_status_rx_tx_runtime() {
 	// String cmd_len = "0001";
 	// String cmd_str= FRAME_DATA_TYPE + numToHex16(frame_expected_id) + cmd_len
 	// + CMD_SYS_RUNTIME_REQUEST;
 	// String cmd_chk = checkSum(cmd_str);
 	//
-	// System.out.println("send_cmd_status_rx_tx_runtime£º " + FRAME_BEGIN +
+	// System.out.println("send_cmd_status_rx_tx_runtimeï¼š " + FRAME_BEGIN +
 	// cmd_str + cmd_chk + FRAME_END);
 	//
 	// return (FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 	// }
 
-	// Éè±¸×´Ì¬
+	// è®¾å¤‡çŠ¶æ€
 	public String send_cmd_status_rx_tx_runtime() {
 		String cmd_len = "0001";
 		String cmd_str = FRAME_DATA_TYPE + numToHex16(frame_expected_id) + cmd_len + CMD_SYS_RUNTIME_REQUEST;
 		String cmd_chk = checkSum(cmd_str);
 
-		System.out.println("send_cmd_status_rx_tx_runtime£º " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
+		System.out.println("send_cmd_status_rx_tx_runtimeï¼š " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 
 		return (FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 	}
 
-	// ÅäÖÃ²ÎÊı±£´æµ½Éè±¸
+	// é…ç½®å‚æ•°ä¿å­˜åˆ°è®¾å¤‡
 	/*
-	 * ±¨ÎÄ¸ñÊ½£º 9F ±¨ÎÄĞòºÅ Êı¾İ³¤¶È 12 size£¨ÅäÖÃÎÄ¼ş´óĞ¡£¬4×Ö½Ú£© ·ÖÆ¬ºÅ£¨2×Ö½Ú£© Æ«ÒÆÁ¿£¨4×Ö½Ú£© ³¤¶È£¨4×Ö½Ú£© ·ÖÆ¬ÎÄ¼ş
+	 * æŠ¥æ–‡æ ¼å¼ï¼š 9F æŠ¥æ–‡åºå· æ•°æ®é•¿åº¦ 12 sizeï¼ˆé…ç½®æ–‡ä»¶å¤§å°ï¼Œ4å­—èŠ‚ï¼‰ åˆ†ç‰‡å·ï¼ˆ2å­—èŠ‚ï¼‰ åç§»é‡ï¼ˆ4å­—èŠ‚ï¼‰ é•¿åº¦ï¼ˆ4å­—èŠ‚ï¼‰ åˆ†ç‰‡æ–‡ä»¶
 	 * CheckSum
 	 */
 	public String send_cmd_config_upload() {
 		/*
-		 * ±¨ÎÄ¸ñÊ½£º 9F ±¨ÎÄĞòºÅ Êı¾İ³¤¶È 12 size£¨ÅäÖÃÎÄ¼ş´óĞ¡£¬4×Ö½Ú£© ·ÖÆ¬ºÅ£¨1×Ö½Ú£© Æ«ÒÆÁ¿£¨4×Ö½Ú£© ³¤¶È£¨4×Ö½Ú£© ·ÖÆ¬ÎÄ¼ş
+		 * æŠ¥æ–‡æ ¼å¼ï¼š 9F æŠ¥æ–‡åºå· æ•°æ®é•¿åº¦ 12 sizeï¼ˆé…ç½®æ–‡ä»¶å¤§å°ï¼Œ4å­—èŠ‚ï¼‰ åˆ†ç‰‡å·ï¼ˆ1å­—èŠ‚ï¼‰ åç§»é‡ï¼ˆ4å­—èŠ‚ï¼‰ é•¿åº¦ï¼ˆ4å­—èŠ‚ï¼‰ åˆ†ç‰‡æ–‡ä»¶
 		 * CheckSum
 		 */
 		try {
 			String config_file_md5 = getMD5(file_ini_name);
-			// ¶ÁÈ¡ÎÄ¼ş
+			// è¯»å–æ–‡ä»¶
 			String cmd_str = "";
 			String cmd_frame_id = numToHex_2_byte(frame_expected_id);
 			String config_file_content = readFileContent(file_ini_name);
@@ -254,7 +254,7 @@ public class tool_data_process extends tool_ui_base {
 
 			String cmd_chk = checkSum(cmd_str);
 
-			System.out.println("send data£º" + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
+			System.out.println("send dataï¼š" + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 
 			return (FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 		} catch (Exception e) {
@@ -264,34 +264,34 @@ public class tool_data_process extends tool_ui_base {
 		return "";
 	}
 
-	// µ¼ÈëÖ¤ÊéÇëÇó
+	// å¯¼å…¥è¯ä¹¦è¯·æ±‚
 	public String send_cmd_csr_upload(String str) {
 		int cmd_len = 0;
 
-		cmd_len = cmd_len + 1; // ÃüÁî±¾ÉíÒ»¸ö×Ö½Ú
+		cmd_len = cmd_len + 1; // å‘½ä»¤æœ¬èº«ä¸€ä¸ªå­—èŠ‚
 		cmd_len = cmd_len + str.length();
 
 		String cmd_str = FRAME_DATA_TYPE + numToHex16(frame_expected_id) + num_str_2byte(cmd_len)
 				+ CMD_CERTIFICATE_REQUEST + strTo16hexstr(str);
 		String cmd_chk = checkSum(cmd_str);
 
-		System.out.println("send_cmd_run_shell£º " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
+		System.out.println("send_cmd_run_shellï¼š " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 
 		return (FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 	}
 
-	// ÖØÆôÃüÁî
+	// é‡å¯å‘½ä»¤
 	public String send_cmd_run_shell(String shell_com) {
 		int cmd_len = 0;
 
-		cmd_len = cmd_len + 1; // ÃüÁî±¾ÉíÒ»¸ö×Ö½Ú
+		cmd_len = cmd_len + 1; // å‘½ä»¤æœ¬èº«ä¸€ä¸ªå­—èŠ‚
 		cmd_len = cmd_len + shell_com.length();
 
 		String cmd_str = FRAME_DATA_TYPE + numToHex16(frame_expected_id) + num_str_2byte(cmd_len) + CMD_RUN_SHELL
 				+ strTo16hexstr(shell_com);
 		String cmd_chk = checkSum(cmd_str);
 
-		System.out.println("send_cmd_run_shell£º " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
+		System.out.println("send_cmd_run_shellï¼š " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 
 		return (FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 	}
@@ -300,15 +300,15 @@ public class tool_data_process extends tool_ui_base {
 	public String send_cmd_run_shell_2(String shell_com_id, String shell_com) {
 		int cmd_len = 0;
 
-		cmd_len = cmd_len + 1; // ÃüÁî±¾ÉíÒ»¸ö×Ö½Ú
-		cmd_len = cmd_len + shell_com_id.length(); // ÃüÁî±¾ÉíÒ»¸ö×Ö½Ú
+		cmd_len = cmd_len + 1; // å‘½ä»¤æœ¬èº«ä¸€ä¸ªå­—èŠ‚
+		cmd_len = cmd_len + shell_com_id.length(); // å‘½ä»¤æœ¬èº«ä¸€ä¸ªå­—èŠ‚
 		cmd_len = cmd_len + shell_com.length();
 
 		String cmd_str = FRAME_DATA_TYPE + numToHex16(frame_expected_id) + num_str_2byte(cmd_len) + CMD_RUN_SHELL_2
 				+ strTo16hexstr(shell_com_id) + strTo16hexstr(shell_com);
 		
 		String cmd_chk = checkSum(cmd_str);
-		System.out.println("send_cmd_run_shell£º " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
+		System.out.println("send_cmd_run_shellï¼š " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 
 		return (FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 	}
@@ -327,7 +327,7 @@ public class tool_data_process extends tool_ui_base {
 			} else if (cmd_id.equals(CMD_IN)) {
 				g_tool_ui_all.Panel_log.tool_log_set(data);
 			} else if (cmd_id.equals(CMD_P10)) {
-				if (last_p10_name.equals(g_dtu_device_info.device_x509_req_file_path)) // Ä¿Ç°ÖØ·¢»áÓĞÁ½´Î½á¹û
+				if (last_p10_name.equals(g_dtu_device_info.device_x509_req_file_path)) // ç›®å‰é‡å‘ä¼šæœ‰ä¸¤æ¬¡ç»“æœ
 					return;
 				last_p10_name = g_dtu_device_info.device_x509_req_file_path;
 				g_tool_ui_all.stop();
@@ -336,9 +336,9 @@ public class tool_data_process extends tool_ui_base {
 					String md5 = DigestUtils
 							.md5Hex(new FileInputStream(new File(g_dtu_device_info.device_x509_req_file_path)));	
 					if (data.contains(md5)) {
-						JOptionPane.showMessageDialog(null, "µ¼³ö³É¹¦£¡");
+						JOptionPane.showMessageDialog(null, "å¯¼å‡ºæˆåŠŸï¼");
 					} else {
-						JOptionPane.showMessageDialog(null, "µ¼³öÊ§°Ü£¡");
+						JOptionPane.showMessageDialog(null, "å¯¼å‡ºå¤±è´¥ï¼");
 					}
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
@@ -358,9 +358,9 @@ public class tool_data_process extends tool_ui_base {
 					String md5 = DigestUtils.md5Hex(
 							new FileInputStream(new File(g_dtu_device_info.device_config_download_config_file_path)));
 					if (data.contains(md5)) {
-						JOptionPane.showMessageDialog(null, "µ¼³ö³É¹¦£¡");
+						JOptionPane.showMessageDialog(null, "å¯¼å‡ºæˆåŠŸï¼");
 					} else {
-						JOptionPane.showMessageDialog(null, "µ¼³öÊ§°Ü£¡");
+						JOptionPane.showMessageDialog(null, "å¯¼å‡ºå¤±è´¥ï¼");
 					}
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
@@ -376,9 +376,9 @@ public class tool_data_process extends tool_ui_base {
 							new FileInputStream(new File(g_dtu_device_info.device_config_upload_config_file_path)));
 				
 					if (data.contains(md5)) {
-						JOptionPane.showMessageDialog(null, "µ¼Èë³É¹¦£¡");
+						JOptionPane.showMessageDialog(null, "å¯¼å…¥æˆåŠŸï¼");
 					} else {
-						JOptionPane.showMessageDialog(null, "µ¼ÈëÊ§°Ü£¡");
+						JOptionPane.showMessageDialog(null, "å¯¼å…¥å¤±è´¥ï¼");
 					}
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
@@ -402,7 +402,7 @@ public class tool_data_process extends tool_ui_base {
 				if (iniAccept)
 					return;
 				iniAccept = true;
-				JOptionPane.showMessageDialog(null, "ÉèÖÃ³É¹¦£¡");
+				JOptionPane.showMessageDialog(null, "è®¾ç½®æˆåŠŸï¼");
 			
 			}else if(cmd_id.equals(CMD_CREATE)){
 				if (iniAccept)
@@ -417,13 +417,13 @@ public class tool_data_process extends tool_ui_base {
 				g_tool_ui_all.Panel_log.tool_log_set(data);
 			}else if(cmd_id.equals(CMD_GET_LOG)){
 				g_tool_ui_all.Panel_other.jCheckBox.setSelected(data.equals("1"));
-				g_tool_ui_all.Panel_other.text_log_type.setText(data.equals("1")?"ÒÑ´ò¿ª":"ÒÑ¹Ø±Õ");
+				g_tool_ui_all.Panel_other.text_log_type.setText(data.equals("1")?"å·²æ‰“å¼€":"å·²å…³é—­");
 			}else if(cmd_id.equals(CMD_GET_MD5)){
 					Md5=data;
 					if(Md5.equals(""))
-						g_tool_ui_all.Panel_log.tool_log_set("Éè±¸Î´µ¼ÈëÃÜÔ¿");
+						g_tool_ui_all.Panel_log.tool_log_set("è®¾å¤‡æœªå¯¼å…¥å¯†é’¥");
 				    else
-					    g_tool_ui_all.Panel_log.tool_log_set("Éè±¸ÒÑµ¼ÈëÃÜÔ¿");
+					    g_tool_ui_all.Panel_log.tool_log_set("è®¾å¤‡å·²å¯¼å…¥å¯†é’¥");
 					
 			}else if(cmd_id.equals(CMD_IMPORT_KEY)){
 				g_tool_ui_all.stop();
@@ -441,9 +441,9 @@ public class tool_data_process extends tool_ui_base {
 						}
 			    	 }.start();
 			    
-					  JOptionPane.showMessageDialog(null, "Ìí¼Ó³É¹¦");
+					  JOptionPane.showMessageDialog(null, "æ·»åŠ æˆåŠŸ");
 			    }else{
-			       JOptionPane.showMessageDialog(null, "¸ÃÕË»§ÒÑ´æÔÚ");
+			       JOptionPane.showMessageDialog(null, "è¯¥è´¦æˆ·å·²å­˜åœ¨");
 			    }
 			}else if(cmd_id.equals(CMD_GET_CONFIG_USER)){
 				getUserList(data,true);
@@ -469,9 +469,9 @@ public class tool_data_process extends tool_ui_base {
 					}
 		    	 }.start();
 		    
-				  JOptionPane.showMessageDialog(null, "É¾³ı³É¹¦");
+				  JOptionPane.showMessageDialog(null, "åˆ é™¤æˆåŠŸ");
 			}else if(cmd_id.equals(CMD_REMOVE_KEY)){
-				 JOptionPane.showMessageDialog(null, "É¾³ı³É¹¦");
+				 JOptionPane.showMessageDialog(null, "åˆ é™¤æˆåŠŸ");
 				g_tool_ui_all.stop();
 			}
 			
@@ -506,18 +506,18 @@ public class tool_data_process extends tool_ui_base {
    }
 
 
-	// »ñÈ¡°æ±¾
+	// è·å–ç‰ˆæœ¬
 	public String send_cmd_get_version() {
 		String cmd_len = "0001";
 		String cmd_str = FRAME_DATA_TYPE + numToHex16(frame_expected_id) + cmd_len + CMD_SET_GET_VERSION;
 		String cmd_chk = checkSum(cmd_str);
 
-		System.out.println("send_cmd_get_version£º " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
+		System.out.println("send_cmd_get_versionï¼š " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 
 		return (FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 	}
 
-	// ·¢ËÍping¼ì²â±¨ÎÄ
+	// å‘é€pingæ£€æµ‹æŠ¥æ–‡
 	public String send_cmd_ping(String ping_url) {
 		int cmd_len = 0;
 		cmd_len = cmd_len + 1;
@@ -526,35 +526,35 @@ public class tool_data_process extends tool_ui_base {
 				+ strTo16hexstr(ping_url);
 		String cmd_chk = checkSum(cmd_str);
 
-		System.out.println("send_cmd_ping£º " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
+		System.out.println("send_cmd_pingï¼š " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 
 		return (FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 	}
 
-	// ·¢ËÍÊÕ¼¯logÖ¸Áî
+	// å‘é€æ”¶é›†logæŒ‡ä»¤
 	public String send_cmd_get_log() {
 		String cmd_len = "0001";
 		String cmd_str = FRAME_DATA_TYPE + numToHex16(frame_expected_id) + cmd_len + CMD_LOG_REQUEST;
 		String cmd_chk = checkSum(cmd_str);
 
-		System.out.println("send_cmd_get_log£º " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
+		System.out.println("send_cmd_get_logï¼š " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 
 		return (FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 	}
 
 	/*
-	 * 1.300msÃ»ÓĞÊÕµ½ÖØĞÂ·¢ËÍ 2.·¢ËÍµÄÊÇÊı¾İ±¨ÎÄ£¬±ØĞëµÈ´ıack±¨ÎÄ 3.ÅĞ¶Ï»úÖÆ£º
+	 * 1.300msæ²¡æœ‰æ”¶åˆ°é‡æ–°å‘é€ 2.å‘é€çš„æ˜¯æ•°æ®æŠ¥æ–‡ï¼Œå¿…é¡»ç­‰å¾…ackæŠ¥æ–‡ 3.åˆ¤æ–­æœºåˆ¶ï¼š
 	 */
 	public int wait_ack(String send_frame_data) {
 		int ret = 0;
-		// ·ÇÊı¾İ±¨ÎÄ²»ĞèÒªµÈ´ıAck
+		// éæ•°æ®æŠ¥æ–‡ä¸éœ€è¦ç­‰å¾…Ack
 		if (send_frame_data.substring(0, 2).equals(FRAME_DATA_TYPE) != true) {
 			System.out.println("now send frame is ack not wait");
 			return 1;
 		}
 
 		if (send_frame_data.substring(10, 12).equals(CMD_FRAG_DATA_ACK)) {
-			System.out.println("·ÖÆ¬±¨ÎÄ ²»ĞèÒªACK");
+			System.out.println("åˆ†ç‰‡æŠ¥æ–‡ ä¸éœ€è¦ACK");
 			return 1;
 		}
 
@@ -580,16 +580,16 @@ public class tool_data_process extends tool_ui_base {
 	}
 
 	public int wait_frag_expect_id(int frag_expect_id) {
-		// 50msÅĞ¶ÏÒ»´Î
+		// 50msåˆ¤æ–­ä¸€æ¬¡
 		int ret = 0;
 		int count = 0;
 		while (true) {
 			try {
-				// 5SÃ»ÊÕµ½±¨ÎÄ£¬ÔòÈÎÎñÊ§°Ü
+				// 5Sæ²¡æ”¶åˆ°æŠ¥æ–‡ï¼Œåˆ™ä»»åŠ¡å¤±è´¥
 				if (count++ > 100) {
 					break;
 				}
-				Thread.sleep(50); // ÑÓÊ±2Ãë
+				Thread.sleep(50); // å»¶æ—¶2ç§’
 				if (frag_expect_id == frame_input_frag_ack_flag) {
 					ret = 1;
 					break;
@@ -601,35 +601,35 @@ public class tool_data_process extends tool_ui_base {
 		return ret;
 	}
 
-	// ·¢ËÍÊÕµ½·ÖÆ¬È·ÈÏ±¨ÎÄ
-	// ¸ñÊ½£ºCMD_FRAG_DATA_ACK +
+	// å‘é€æ”¶åˆ°åˆ†ç‰‡ç¡®è®¤æŠ¥æ–‡
+	// æ ¼å¼ï¼šCMD_FRAG_DATA_ACK +
 	public String send_cmd_frag_ack() {
 		String cmd_len = "0005";
 		String cmd_str = FRAME_DATA_TYPE + numToHex16(frame_expected_id) + cmd_len + CMD_FRAG_DATA_ACK + frame_cmd_id
 				+ frame_input_frag_ack_id + fRAME_CMD_TRUE;
 		String cmd_chk = checkSum(cmd_str);
 
-		System.out.println("send_cmd_frag_ack£º " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
+		System.out.println("send_cmd_frag_ackï¼š " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 
 		return (FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 	}
 
-	// ·¢ËÍÉı¼¶ÃüÁî
+	// å‘é€å‡çº§å‘½ä»¤
 	public String send_cmd_upgrade_system() {
 		String cmd_len = "0001";
 		String cmd_str = FRAME_DATA_TYPE + numToHex16(frame_expected_id) + cmd_len + CMD_SYS_FIRMWARE_SET;
 		String cmd_chk = checkSum(cmd_str);
 
-		System.out.println("send_cmd_upgrade_system£º " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
+		System.out.println("send_cmd_upgrade_systemï¼š " + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 
 		return (FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 	}
 
 	/*
-	 * 9F ±¨ÎÄĞòºÅ(2×Ö½Ú) Êı¾İ³¤¶È (2×Ö½Ú) 14 size£¨Éı¼¶ÎÄ¼ş´óĞ¡£¬4×Ö½Ú£© ·ÖÆ¬ºÅ£¨2×Ö½Ú£© Æ«ÒÆÁ¿£¨4×Ö½Ú£© ³¤¶È£¨4×Ö½Ú£©
-	 * ·ÖÆ¬ÎÄ¼ş CheckSum 1 2 2 1 4 2 4 4
+	 * 9F æŠ¥æ–‡åºå·(2å­—èŠ‚) æ•°æ®é•¿åº¦ (2å­—èŠ‚) 14 sizeï¼ˆå‡çº§æ–‡ä»¶å¤§å°ï¼Œ4å­—èŠ‚ï¼‰ åˆ†ç‰‡å·ï¼ˆ2å­—èŠ‚ï¼‰ åç§»é‡ï¼ˆ4å­—èŠ‚ï¼‰ é•¿åº¦ï¼ˆ4å­—èŠ‚ï¼‰
+	 * åˆ†ç‰‡æ–‡ä»¶ CheckSum 1 2 2 1 4 2 4 4
 	 */
-	// ·¢ËÍÉı¼¶ÎÄ¼şµ½Éè±¸
+	// å‘é€å‡çº§æ–‡ä»¶åˆ°è®¾å¤‡
 	public int send_cmd_upload_update_file(String file_name, tool_uart serialPort) throws Exception {
 		byte[] tmp = new byte[1002 - 4];
 		byte[] buffer = new byte[1024];
@@ -639,7 +639,7 @@ public class tool_data_process extends tool_ui_base {
 		int fragmentation_id = 1;
 		int ret = 1;
 
-		// ´ÓµÚÒ»¸öÈË·ÖÆ¬¿ªÊ¼£¬³õÊ¼»¯
+		// ä»ç¬¬ä¸€ä¸ªäººåˆ†ç‰‡å¼€å§‹ï¼Œåˆå§‹åŒ–
 		frame_input_frag_ack_flag = 0;
 
 		FileInputStream in = new FileInputStream(file_name);
@@ -653,7 +653,7 @@ public class tool_data_process extends tool_ui_base {
 			buffer_p += 1;
 			buffer[buffer_p] = (byte) 0x9f;
 
-			// 2×Ö½Ú"±¨ÎÄĞòºÅ"
+			// 2å­—èŠ‚"æŠ¥æ–‡åºå·"
 			byte[] frame_id_int = intToByteArray4(frame_expected_id);
 
 			for (int j = 0; j < frame_id_int.length; j++) {
@@ -661,7 +661,7 @@ public class tool_data_process extends tool_ui_base {
 				buffer[buffer_p] = (byte) frame_id_int[j];
 			}
 
-			// 2×Ö½Ú"Êı¾İ³¤¶È"
+			// 2å­—èŠ‚"æ•°æ®é•¿åº¦"
 			byte[] frame_data_len = intToByteArray4(FRAME_FRAG_HEAD_LEN + count);
 
 			System.out.println("data len " + (FRAME_FRAG_HEAD_LEN + count));
@@ -675,53 +675,53 @@ public class tool_data_process extends tool_ui_base {
 			buffer_p += 1;
 			buffer[buffer_p] = (byte) (Integer.valueOf(CMD_SYS_FIRMWARE_UPLOAD_O) & 0xff);
 
-			// ÎÄ¼ş³¤¶È
-			byte[] file_len = intToByteArray8((int) fd.length()); // 4×Ö½Ú¡°ÎÄ¼ş´óĞ¡¡±
+			// æ–‡ä»¶é•¿åº¦
+			byte[] file_len = intToByteArray8((int) fd.length()); // 4å­—èŠ‚â€œæ–‡ä»¶å¤§å°â€
 			for (int j = 0; j < file_len.length; j++) {
 				buffer_p += 1;
 				buffer[buffer_p] = file_len[j];
 			}
 
-			// ·ÖÆ¬ºÅ
-			byte[] fragmentation_id_2 = intToByteArray4(fragmentation_id); // 2×Ö½Ú¡°·ÖÆ¬ºÅ¡±
+			// åˆ†ç‰‡å·
+			byte[] fragmentation_id_2 = intToByteArray4(fragmentation_id); // 2å­—èŠ‚â€œåˆ†ç‰‡å·â€
 			for (int j = 0; j < fragmentation_id_2.length; j++) {
 				buffer_p += 1;
 				buffer[buffer_p] = fragmentation_id_2[j];
 			}
 
-			// Æ«ÒÆÁ¿
-			byte[] bias = intToByteArray8(count); // 4×Ö½Ú¡°Æ«ÒÆÁ¿¡±
+			// åç§»é‡
+			byte[] bias = intToByteArray8(count); // 4å­—èŠ‚â€œåç§»é‡â€
 			for (int j = 0; j < bias.length; j++) {
 				buffer_p += 1;
 				buffer[buffer_p] = bias[j];
 			}
 
-			// ·ÖÆ¬³¤¶È
-			byte[] changdu = intToByteArray8(count); // 4×Ö½Ú¡°·ÖÆ¬³¤¶È¡±
+			// åˆ†ç‰‡é•¿åº¦
+			byte[] changdu = intToByteArray8(count); // 4å­—èŠ‚â€œåˆ†ç‰‡é•¿åº¦â€
 			for (int j = 0; j < changdu.length; j++) {
 				buffer_p += 1;
 				buffer[buffer_p] = changdu[j];
 			}
 
-			// Êı¾İ¿½±´
+			// æ•°æ®æ‹·è´
 			for (i = 0; i < count; i++) {
 				buffer_p += 1;
 				buffer[buffer_p] = tmp[i];
 			}
 
-			// Ğ£ÑéÂë
+			// æ ¡éªŒç 
 			byte check_sum = do_check_sum(buffer, 2, buffer_p + 1);
 			System.out.println("check_sum: " + check_sum);
 			buffer_p += 1;
 			buffer[buffer_p] = check_sum;
 
-			// ±¨ÎÄÎ²°Í
+			// æŠ¥æ–‡å°¾å·´
 			buffer_p += 1;
 			buffer[buffer_p] = (byte) 0xa5;
 			buffer_p += 1;
 			buffer[buffer_p] = (byte) 0xa5;
 
-			// ·¢ËÍÊı¾İ½Ó¿Ú
+			// å‘é€æ•°æ®æ¥å£
 			byte[] send_buffer = new byte[buffer_p + 1];
 			System.out.println("length: " + (buffer_p + 1));
 
@@ -732,14 +732,14 @@ public class tool_data_process extends tool_ui_base {
 			String data_read = new String(bytesToHexString(send_buffer).getBytes(), "gb2312");
 			Thread.sleep(50);
 			serialPort.sendComm(data_read);
-			// ·¢ËÍ³É¹¦Ö®ºóµÈ´ı·ÖÆ¬±¨ÎÄµ½´ï
+			// å‘é€æˆåŠŸä¹‹åç­‰å¾…åˆ†ç‰‡æŠ¥æ–‡åˆ°è¾¾
 			if (wait_frag_expect_id(fragmentation_id) == 1) {
-				System.out.println("·ÖÆ¬±»½ÓÊÕ³É¹¦£¬¼ÌĞø·¢ËÍ");
+				System.out.println("åˆ†ç‰‡è¢«æ¥æ”¶æˆåŠŸï¼Œç»§ç»­å‘é€");
 			} else {
 				ret = 0;
 				break;
 			}
-			// ·ÖÆ¬ID + 1
+			// åˆ†ç‰‡ID + 1
 			fragmentation_id += 1;
 		}
 
@@ -747,7 +747,7 @@ public class tool_data_process extends tool_ui_base {
 		return ret;
 	}
 
-	// ·¢ËÍÇ©·¢Ö¤Êéµ½Éè±¸
+	// å‘é€ç­¾å‘è¯ä¹¦åˆ°è®¾å¤‡
 	public int data_frame_data_x509_crt(String file_name, tool_uart serialPort) throws Exception {
 		byte[] tmp = new byte[1002 - 4];
 		byte[] buffer = new byte[1024];
@@ -757,7 +757,7 @@ public class tool_data_process extends tool_ui_base {
 		int fragmentation_id = 1;
 		int ret = 1;
 
-		// ´ÓµÚÒ»¸öÈË·ÖÆ¬¿ªÊ¼£¬³õÊ¼»¯
+		// ä»ç¬¬ä¸€ä¸ªäººåˆ†ç‰‡å¼€å§‹ï¼Œåˆå§‹åŒ–
 		frame_input_frag_ack_flag = 0;
 
 		FileInputStream in = new FileInputStream(file_name);
@@ -771,7 +771,7 @@ public class tool_data_process extends tool_ui_base {
 			buffer_p += 1;
 			buffer[buffer_p] = (byte) 0x9f;
 
-			// 2×Ö½Ú"±¨ÎÄĞòºÅ"
+			// 2å­—èŠ‚"æŠ¥æ–‡åºå·"
 			byte[] frame_id_int = intToByteArray4(frame_expected_id);
 
 			for (int j = 0; j < frame_id_int.length; j++) {
@@ -779,7 +779,7 @@ public class tool_data_process extends tool_ui_base {
 				buffer[buffer_p] = (byte) frame_id_int[j];
 			}
 
-			// 2×Ö½Ú"Êı¾İ³¤¶È"
+			// 2å­—èŠ‚"æ•°æ®é•¿åº¦"
 			byte[] frame_data_len = intToByteArray4(FRAME_FRAG_HEAD_LEN + count);
 
 			System.out.println("data len " + (FRAME_FRAG_HEAD_LEN + count));
@@ -793,53 +793,53 @@ public class tool_data_process extends tool_ui_base {
 			buffer_p += 1;
 			buffer[buffer_p] = (byte) (Integer.valueOf(CMD_CERTIFICATE_UPLOAD_O) & 0xff);
 
-			// ÎÄ¼ş³¤¶È
-			byte[] file_len = intToByteArray8((int) fd.length()); // 4×Ö½Ú¡°ÎÄ¼ş´óĞ¡¡±
+			// æ–‡ä»¶é•¿åº¦
+			byte[] file_len = intToByteArray8((int) fd.length()); // 4å­—èŠ‚â€œæ–‡ä»¶å¤§å°â€
 			for (int j = 0; j < file_len.length; j++) {
 				buffer_p += 1;
 				buffer[buffer_p] = file_len[j];
 			}
 
-			// ·ÖÆ¬ºÅ
-			byte[] fragmentation_id_2 = intToByteArray4(fragmentation_id); // 2×Ö½Ú¡°·ÖÆ¬ºÅ¡±
+			// åˆ†ç‰‡å·
+			byte[] fragmentation_id_2 = intToByteArray4(fragmentation_id); // 2å­—èŠ‚â€œåˆ†ç‰‡å·â€
 			for (int j = 0; j < fragmentation_id_2.length; j++) {
 				buffer_p += 1;
 				buffer[buffer_p] = fragmentation_id_2[j];
 			}
 
-			// Æ«ÒÆÁ¿
-			byte[] bias = intToByteArray8(count); // 4×Ö½Ú¡°Æ«ÒÆÁ¿¡±
+			// åç§»é‡
+			byte[] bias = intToByteArray8(count); // 4å­—èŠ‚â€œåç§»é‡â€
 			for (int j = 0; j < bias.length; j++) {
 				buffer_p += 1;
 				buffer[buffer_p] = bias[j];
 			}
 
-			// ·ÖÆ¬³¤¶È
-			byte[] changdu = intToByteArray8(count); // 4×Ö½Ú¡°·ÖÆ¬³¤¶È¡±
+			// åˆ†ç‰‡é•¿åº¦
+			byte[] changdu = intToByteArray8(count); // 4å­—èŠ‚â€œåˆ†ç‰‡é•¿åº¦â€
 			for (int j = 0; j < changdu.length; j++) {
 				buffer_p += 1;
 				buffer[buffer_p] = changdu[j];
 			}
 
-			// Êı¾İ¿½±´
+			// æ•°æ®æ‹·è´
 			for (i = 0; i < count; i++) {
 				buffer_p += 1;
 				buffer[buffer_p] = tmp[i];
 			}
 
-			// Ğ£ÑéÂë
+			// æ ¡éªŒç 
 			byte check_sum = do_check_sum(buffer, 2, buffer_p + 1);
 			System.out.println("check_sum: " + check_sum);
 			buffer_p += 1;
 			buffer[buffer_p] = check_sum;
 
-			// ±¨ÎÄÎ²°Í
+			// æŠ¥æ–‡å°¾å·´
 			buffer_p += 1;
 			buffer[buffer_p] = (byte) 0xa5;
 			buffer_p += 1;
 			buffer[buffer_p] = (byte) 0xa5;
 
-			// ·¢ËÍÊı¾İ½Ó¿Ú
+			// å‘é€æ•°æ®æ¥å£
 			byte[] send_buffer = new byte[buffer_p + 1];
 			System.out.println("length: " + (buffer_p + 1));
 
@@ -850,14 +850,14 @@ public class tool_data_process extends tool_ui_base {
 			String data_read = new String(bytesToHexString(send_buffer).getBytes(), "gb2312");
 			Thread.sleep(50);
 			serialPort.sendComm(data_read);
-			// ·¢ËÍ³É¹¦Ö®ºóµÈ´ı·ÖÆ¬±¨ÎÄµ½´ï
+			// å‘é€æˆåŠŸä¹‹åç­‰å¾…åˆ†ç‰‡æŠ¥æ–‡åˆ°è¾¾
 			if (wait_frag_expect_id(fragmentation_id) == 1) {
-				System.out.println("·ÖÆ¬±»½ÓÊÕ³É¹¦£¬¼ÌĞø·¢ËÍ");
+				System.out.println("åˆ†ç‰‡è¢«æ¥æ”¶æˆåŠŸï¼Œç»§ç»­å‘é€");
 			} else {
 				ret = 0;
 				break;
 			}
-			// ·ÖÆ¬ID + 1
+			// åˆ†ç‰‡ID + 1
 			fragmentation_id += 1;
 
 		}
@@ -876,7 +876,7 @@ public class tool_data_process extends tool_ui_base {
 		frame_expected_id = 1;
 	}
 
-	// ack ±¨ÎÄ
+	// ack æŠ¥æ–‡
 	public int frame_ack_process() {
 		int ret = 0;
 
@@ -889,15 +889,15 @@ public class tool_data_process extends tool_ui_base {
 		return ret;
 	}
 
-	// CMD_SYS_RUNTIME_REQUEST ±¨ÎÄ´¦Àí
+	// CMD_SYS_RUNTIME_REQUEST æŠ¥æ–‡å¤„ç†
 	public int frame_input_tx_tx_runtime_request() {
 		int ret = 1;
 		String status_json = "";
 		try {
 			status_json = convertHexToString(frame_data_subcmd_load);
-			System.out.println("frame_data_subcmd_load£º " + convertHexToString(frame_data_subcmd_load));
+			System.out.println("frame_data_subcmd_loadï¼š " + convertHexToString(frame_data_subcmd_load));
 		} catch (Exception e) {
-			System.out.println("frame_input_tx_tx_runtime_request ´íÎó");
+			System.out.println("frame_input_tx_tx_runtime_request é”™è¯¯");
 		}
 
 		JSONObject jsonObject = JSONObject.fromObject(status_json);
@@ -909,12 +909,12 @@ public class tool_data_process extends tool_ui_base {
 		return ret;
 	}
 
-	// pingÇëÇó
+	// pingè¯·æ±‚
 	public int frame_input_ping_request() {
 		int ret = 1;
 
 		try {
-			System.out.println("frame_input_ping_request £º " + convertHexToString(frame_data_subcmd_load));
+			System.out.println("frame_input_ping_request ï¼š " + convertHexToString(frame_data_subcmd_load));
 			g_dtu_device_info.tool_device_ping_info(convertHexToString(frame_data_subcmd_load));
 			g_tool_ui_all.Panel_status_check.tool_ping_set_textfield();
 		} catch (UnsupportedEncodingException e) {
@@ -925,12 +925,12 @@ public class tool_data_process extends tool_ui_base {
 		return ret;
 	}
 
-	// Èí¼ş°æ±¾
+	// è½¯ä»¶ç‰ˆæœ¬
 	public int frame_input_get_softversion() {
 		int ret = 1;
 
 		try {
-			System.out.println("frame_input_get_softversion £º " + convertHexToString(frame_data_subcmd_load));
+			System.out.println("frame_input_get_softversion ï¼š " + convertHexToString(frame_data_subcmd_load));
 			g_dtu_device_info.tool_device_softversion_info(convertHexToString(frame_data_subcmd_load));
 			g_tool_ui_all.Panel_status_check.tool_softversion_set_textfield();
 		} catch (UnsupportedEncodingException e) {
@@ -941,25 +941,25 @@ public class tool_data_process extends tool_ui_base {
 		return ret;
 	}
 
-	// ·ÖÆ¬±¨ÎÄ½ÓÊÕ³É¹¦£º
+	// åˆ†ç‰‡æŠ¥æ–‡æ¥æ”¶æˆåŠŸï¼š
 	public int frame_input_frag_ack() {
 		// frame_input_frag_ack_flag =
 		// Integer.valueOf(frame_data_load.substring(4,8));
-		// »ñÈ¡µ½·ÖÆ¬ID
+		// è·å–åˆ°åˆ†ç‰‡ID
 		frame_input_frag_ack_flag = Integer.parseInt(frame_data_load.substring(4, 8).replaceAll("^0[x|X]", ""), 16);
-		System.out.println("·ÖÆ¬½ÓÊÕ³É¹¦£º" + frame_input_frag_ack_flag);
+		System.out.println("åˆ†ç‰‡æ¥æ”¶æˆåŠŸï¼š" + frame_input_frag_ack_flag);
 		return 1;
 	}
 
-	// CMD_CONFIG_REQUEST ±¨ÎÄ´¦Àí
+	// CMD_CONFIG_REQUEST æŠ¥æ–‡å¤„ç†
 	public int frame_input_ini_file_request() {
 		int ret = 1;
 
-		// £¿ frame_data
+		// ï¼Ÿ frame_data
 		String frame_data_ini = frame_data.substring(40, frame_data.length() - 2);
 		try {
 			frame_data_ini = convertHexToString(frame_data_ini);
-			// Êı¾İ±£´æµ½iniÎÄ¼ş
+			// æ•°æ®ä¿å­˜åˆ°iniæ–‡ä»¶
 			ParaToFile(frame_data_ini, file_ini_name);
 			g_dtu_device_info.tool_device_info_get();
 			g_tool_ui_all.Panel_every.tool_ui_panel_every_text_update(g_dtu_device_info);
@@ -969,15 +969,15 @@ public class tool_data_process extends tool_ui_base {
 		return ret;
 	}
 
-	// µ¼³öÅäÖÃÎÄ¼ş
+	// å¯¼å‡ºé…ç½®æ–‡ä»¶
 	public int frame_input_ini_file_download() {
 		int ret = 1;
 
-		// £¿ frame_data
+		// ï¼Ÿ frame_data
 		String frame_data_ini = frame_data.substring(40, frame_data.length() - 2);
 		try {
 			frame_data_ini = convertHexToString(frame_data_ini);
-			// Êı¾İ±£´æµ½iniÎÄ¼ş
+			// æ•°æ®ä¿å­˜åˆ°iniæ–‡ä»¶
 			System.out.println("g_dtu_device_info.device_config_download_config_file_path "
 					+ g_dtu_device_info.device_config_download_config_file_path);
 			ParaToFile(frame_data_ini, g_dtu_device_info.device_config_download_config_file_path);
@@ -989,7 +989,7 @@ public class tool_data_process extends tool_ui_base {
 		return ret;
 	}
 
-	// µ¼³öÇëÇóÖ¤Êé
+	// å¯¼å‡ºè¯·æ±‚è¯ä¹¦
 	public int frame_x509_req_upload() {
 		int ret = 1;
 		if (g_dtu_device_info.device_x509_req_file_path == null
@@ -1004,7 +1004,7 @@ public class tool_data_process extends tool_ui_base {
 			return ret;
 		}
 			
-		// £¿ frame_data
+		// ï¼Ÿ frame_data
 		String frame_data_req = frame_data.substring(40, frame_data.length() - 2);
 		System.out.println("frame_data_req: " + frame_data_req);
 		try {
@@ -1022,11 +1022,11 @@ public class tool_data_process extends tool_ui_base {
 	}
 
 	// log
-	// ´¦ÀíÁ÷³Ì£º 1. ·¢ËÍÊÕ¼¯logÖ¸Áî 2. ½ÓÊÕ·ÖÆ¬±¨ÎÄ 3. »Ø¸´ACK 4. »Ø¸´½ÓÊÕ·ÖÆ¬³É¹¦±¨ÎÄ 5. »Øµ½1 6. ½ÓÊÕmd5ÎÄ¼ş
+	// å¤„ç†æµç¨‹ï¼š 1. å‘é€æ”¶é›†logæŒ‡ä»¤ 2. æ¥æ”¶åˆ†ç‰‡æŠ¥æ–‡ 3. å›å¤ACK 4. å›å¤æ¥æ”¶åˆ†ç‰‡æˆåŠŸæŠ¥æ–‡ 5. å›åˆ°1 6. æ¥æ”¶md5æ–‡ä»¶
 	public int frame_input_log() {
 		int ret = 1;
 		g_tool_ui_all.Panel_log.tool_log_set(frame_data_frag_loadString);
-		// ÑÓÊ±10MS
+		// å»¶æ—¶10MS
 		try {
 			Thread.sleep(10);
 		} catch (InterruptedException e) {
@@ -1042,11 +1042,11 @@ public class tool_data_process extends tool_ui_base {
 		return ret;
 	}
 
-	// µ¼³öÅäÖÃÎÄ¼şµ½Éè±¸
+	// å¯¼å‡ºé…ç½®æ–‡ä»¶åˆ°è®¾å¤‡
 	public String data_frame_data_ini_file_upload() {
 		try {
 			String file_down = g_dtu_device_info.device_config_upload_config_file_path;
-			// ¶ÁÈ¡ÎÄ¼ş
+			// è¯»å–æ–‡ä»¶
 			String cmd_str = "";
 			String cmd_frame_id = numToHex_2_byte(frame_expected_id);
 			String config_file_content = readFileContent(file_down);
@@ -1063,7 +1063,7 @@ public class tool_data_process extends tool_ui_base {
 
 			String cmd_chk = checkSum(cmd_str);
 
-			System.out.println("send data£º" + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
+			System.out.println("send dataï¼š" + FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 
 			return (FRAME_BEGIN + cmd_str + cmd_chk + FRAME_END);
 		} catch (Exception e) {
@@ -1072,11 +1072,11 @@ public class tool_data_process extends tool_ui_base {
 		return "";
 	}
 
-	// Í¬²½ÇëÇó±¨ÎÄ
+	// åŒæ­¥è¯·æ±‚æŠ¥æ–‡
 	public int frame_sync_process() {
 		int ret = 1;
 
-		// »Ø¸´ACK
+		// å›å¤ACK
 		try {
 			g_uart_process.sendComm(send_cmd_ack());
 		} catch (Exception e1) {
@@ -1089,11 +1089,11 @@ public class tool_data_process extends tool_ui_base {
 		return ret;
 	}
 
-	// Êı¾İ±¨ÎÄ
+	// æ•°æ®æŠ¥æ–‡
 	public int frame_data_process() {
 		int ret = 1;
 
-		// »Ø¸´ACK
+		// å›å¤ACK
 		try {
 			g_uart_process.sendComm(send_cmd_ack());
 		} catch (Exception e1) {
@@ -1102,7 +1102,7 @@ public class tool_data_process extends tool_ui_base {
 
 		// ID+1
 		frame_id_excepted();
-		// ½âÎöCMD id
+		// è§£æCMD id
 		frame_parser_cmd_id_process();
 
 		switch (frame_cmd_id) {
@@ -1134,23 +1134,23 @@ public class tool_data_process extends tool_ui_base {
 			frame_process_shell_2();
 			break;
 		case CMD_CERTIFICATE_UPLOAD_O:
-			JOptionPane.showMessageDialog(null, "µ¼ÈëÇ©·¢Ö¤Êé³É¹¦");
+			JOptionPane.showMessageDialog(null, "å¯¼å…¥ç­¾å‘è¯ä¹¦æˆåŠŸ");
 			break;
 
 		}
 		return ret;
 	}
 
-	// ±¨ÎÄ½âÎö£¬Ä¬ÈÏ½âÎöÄÜ³É¹¦
+	// æŠ¥æ–‡è§£æï¼Œé»˜è®¤è§£æèƒ½æˆåŠŸ
 	public int frame_parser_cmd_id_process() {
 		int ret = 1;
 
 		frame_cmd_id = frame_data.substring(10, 12);
-		System.out.println("frame_cmd_id£º " + frame_cmd_id);
-		// todo£¬ÓĞ·ÖÆ¬IDµÄÓĞ¶à¸ö±¨ÎÄ£¬¶¼ĞèÒª½ÓÊÕ
+		System.out.println("frame_cmd_idï¼š " + frame_cmd_id);
+		// todoï¼Œæœ‰åˆ†ç‰‡IDçš„æœ‰å¤šä¸ªæŠ¥æ–‡ï¼Œéƒ½éœ€è¦æ¥æ”¶
 		if (frame_cmd_id.equals(CMD_LOG_REQUEST)) {
 			frame_input_frag_ack_id = frame_data.substring(20, 24);
-			System.out.println("frame_input_frag_ack_id£º " + frame_input_frag_ack_id);
+			System.out.println("frame_input_frag_ack_idï¼š " + frame_input_frag_ack_id);
 			frame_data_frag_loadString = frame_data.substring(40, frame_data.length() - 2);
 			try {
 				frame_data_frag_loadString = convertHexToString(frame_data_frag_loadString);
@@ -1165,7 +1165,7 @@ public class tool_data_process extends tool_ui_base {
 		return ret;
 	}
 
-	// ±¨ÎÄ½âÎö£¬Ä¬ÈÏ½âÎöÄÜ³É¹¦
+	// æŠ¥æ–‡è§£æï¼Œé»˜è®¤è§£æèƒ½æˆåŠŸ
 	/*
 	 * 
 	 * 
@@ -1180,7 +1180,7 @@ public class tool_data_process extends tool_ui_base {
 		frame_data_load = frame_data.substring(10, frame_data.length() - 2);
 
 		if (frame_type.equals(FRAME_SYNC_TYPE) == false) {
-			System.out.println("back frame_type£º " + frame_type);
+			System.out.println("back frame_typeï¼š " + frame_type);
 			frame_data_subcmd_load = frame_data.substring(12, frame_data.length() - 2);
 		}
 
@@ -1189,14 +1189,14 @@ public class tool_data_process extends tool_ui_base {
 		return ret;
 	}
 
-	// ÀàĞÍ´¦Àí£ºack£¬data£¬sync£¬¶ªÆú
+	// ç±»å‹å¤„ç†ï¼šackï¼Œdataï¼Œsyncï¼Œä¸¢å¼ƒ
 	public int frame_type_process() {
 		int ret = 0;
 
 		switch (frame_type) {
 		case FRAME_ACK_TYPE:
 			ret = frame_ack_process();
-			System.out.println("ack±¨ÎÄ´¦Àí³É¹¦");
+			System.out.println("ackæŠ¥æ–‡å¤„ç†æˆåŠŸ");
 			break;
 		case FRAME_DATA_TYPE:
 			ret = frame_data_process();
@@ -1209,44 +1209,44 @@ public class tool_data_process extends tool_ui_base {
 		return ret;
 	}
 
-	// Êı¾İÈë¿Ú
+	// æ•°æ®å…¥å£
 	public void data_input(String read_data_buf) throws Exception {
 		int ret;
 
-		// Êı¾İ¸´ÖÆ
+		// æ•°æ®å¤åˆ¶
 		data = data.concat(read_data_buf);
 
 		while (true) {
-			// ÕÒµ½Ò»¸öÍêÕûµÄÖ¡
+			// æ‰¾åˆ°ä¸€ä¸ªå®Œæ•´çš„å¸§
 			ret = data_find_one_frame();
 			if (ret == 0 || frame_data.equals("")) {
 				break;
 			}
 
-			// ¿ªÊ¼´¦ÀíÊı¾İ 1.Ğ£Ñé 2.±¨ÎÄ½âÎö 3. ±¨ÎÄÀàĞÍ´¦Àí
-			// 1.Ğ£Ñé
+			// å¼€å§‹å¤„ç†æ•°æ® 1.æ ¡éªŒ 2.æŠ¥æ–‡è§£æ 3. æŠ¥æ–‡ç±»å‹å¤„ç†
+			// 1.æ ¡éªŒ
 			if (frame_check() == 0) {
-				System.out.println("Êı¾İĞ£ÑéÊ§°Ü£º" + frame_data);
+				System.out.println("æ•°æ®æ ¡éªŒå¤±è´¥ï¼š" + frame_data);
 				continue;
 			}
 
-			// 2.±¨ÎÄ½âÎö
+			// 2.æŠ¥æ–‡è§£æ
 			if (frame_parser_process() == 0) {
-				System.out.println("Êı¾İ±¨ÎÄ½âÎöÊ§°Ü£º " + frame_data);
+				System.out.println("æ•°æ®æŠ¥æ–‡è§£æå¤±è´¥ï¼š " + frame_data);
 				continue;
 			}
 
-			// 3.±¨ÎÄÀàĞÍ´¦Àí
+			// 3.æŠ¥æ–‡ç±»å‹å¤„ç†
 			if (frame_type_process() == 0) {
-				System.out.println("Êı¾İ´¦ÀíÊ§°Ü£º " + frame_data);
+				System.out.println("æ•°æ®å¤„ç†å¤±è´¥ï¼š " + frame_data);
 				continue;
 			}
 
-			System.out.println("±¨ÎÄ´¦Àí³É¹¦ £¡");
+			System.out.println("æŠ¥æ–‡å¤„ç†æˆåŠŸ ï¼");
 		}
 	}
 
-	// Ğ£Ñé
+	// æ ¡éªŒ
 	public int frame_check() {
 		int ret = 0;
 		String ret1;
@@ -1260,12 +1260,12 @@ public class tool_data_process extends tool_ui_base {
 		ret_byte_1 = hexToByteArray(ret1)[0];
 		ret_byte_2 = hexToByteArray(ret2)[0];
 
-		// Ğ£Ñé³É¹¦
+		// æ ¡éªŒæˆåŠŸ
 		if ((ret_byte_1 + ret_byte_2 + 0x1) == 0x00) {
 			ret = 1;
 		}
 
-		// Ä¬ÈÏ·µ»Ø0£¬Ğ£ÑéÊ§°Ü
+		// é»˜è®¤è¿”å›0ï¼Œæ ¡éªŒå¤±è´¥
 		return ret;
 	}
 }

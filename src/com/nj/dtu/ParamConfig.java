@@ -1,25 +1,25 @@
 package com.nj.dtu;
 
 /**
- * ´®¿Ú±ØÒª²ÎÊı½ÓÊÕÀà
+ * ä¸²å£å¿…è¦å‚æ•°æ¥æ”¶ç±»
  */
 public class ParamConfig {
 
-    private String serialNumber;// ´®¿ÚºÅ
-    private int baudRate;        // ²¨ÌØÂÊ
-    private int checkoutBit;    // Ğ£ÑéÎ»
-    private int dataBit;        // Êı¾İÎ»
-    private int stopBit;        // Í£Ö¹Î»
+    private String serialNumber;// ä¸²å£å·
+    private int baudRate;        // æ³¢ç‰¹ç‡
+    private int checkoutBit;    // æ ¡éªŒä½
+    private int dataBit;        // æ•°æ®ä½
+    private int stopBit;        // åœæ­¢ä½
     
     public ParamConfig() {}
         
     /**
-     * ¹¹Ôì·½·¨
-     * @param serialNumber    ´®¿ÚºÅ
-     * @param baudRate        ²¨ÌØÂÊ
-     * @param checkoutBit    Ğ£ÑéÎ»
-     * @param dataBit        Êı¾İÎ»
-     * @param stopBit        Í£Ö¹Î»
+     * æ„é€ æ–¹æ³•
+     * @param serialNumber    ä¸²å£å·
+     * @param baudRate        æ³¢ç‰¹ç‡
+     * @param checkoutBit    æ ¡éªŒä½
+     * @param dataBit        æ•°æ®ä½
+     * @param stopBit        åœæ­¢ä½
      */
     public ParamConfig(String serialNumber, int baudRate, int checkoutBit, int dataBit, int stopBit) {
         this.serialNumber = serialNumber;

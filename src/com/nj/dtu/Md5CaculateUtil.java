@@ -8,12 +8,12 @@ import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
  
 /**
- *MD5¼ÆËã¹¤¾ß
+ *MD5è®¡ç®—å·¥å…·
  */
 public class Md5CaculateUtil {
  
     /**
-     * »ñÈ¡Ò»¸öÎÄ¼şµÄmd5Öµ(¿É´¦Àí´óÎÄ¼ş)
+     * è·å–ä¸€ä¸ªæ–‡ä»¶çš„md5å€¼(å¯å¤„ç†å¤§æ–‡ä»¶)
      * @return md5 value
      */
     public static String getMD5(File file) {
@@ -42,8 +42,8 @@ public class Md5CaculateUtil {
     }
  
     /**
-     * ÇóÒ»¸ö×Ö·û´®µÄmd5Öµ
-     * @param target ×Ö·û´®
+     * æ±‚ä¸€ä¸ªå­—ç¬¦ä¸²çš„md5å€¼
+     * @param target å­—ç¬¦ä¸²
      * @return md5 value
      */
     public static String MD5(String target) {
@@ -55,6 +55,6 @@ public class Md5CaculateUtil {
         File file = new File("D:/1/pdi-ce-7.0.0.0-24.zip");
         String md5 = getMD5(file);
         long endTime = System.currentTimeMillis();
-        System.out.println("MD5:" + md5 + "\n ºÄÊ±:" + ((endTime - beginTime) / 1000) + "s");
+        System.out.println("MD5:" + md5 + "\n è€—æ—¶:" + ((endTime - beginTime) / 1000) + "s");
     }
 }

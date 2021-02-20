@@ -19,15 +19,15 @@ import java.net.Socket;
 import java.net.SocketAddress;
 
 public class tool_uart implements SerialPortEventListener {
-    // ¼ì²âÏµÍ³ÖĞ¿ÉÓÃµÄÍ¨Ñ¶¶Ë¿ÚÀà
+    // æ£€æµ‹ç³»ç»Ÿä¸­å¯ç”¨çš„é€šè®¯ç«¯å£ç±»
     public CommPortIdentifier commPortId;
-    // Ã¶¾ÙÀàĞÍ
+    // æšä¸¾ç±»å‹
     public Enumeration<CommPortIdentifier> portList;
-    // RS232´®¿Ú
+    // RS232ä¸²å£
     public static SerialPort serialPort;
-    // ÊäÈëÁ÷
+    // è¾“å…¥æµ
     public InputStream inputStream;
-    // Êä³öÁ÷
+    // è¾“å‡ºæµ
     public static OutputStream outputStream;
 
     static tool_data_process data_process;
@@ -36,7 +36,7 @@ public class tool_uart implements SerialPortEventListener {
     private ParamConfig param; 
     
     public static Socket socket;
-    public static int type = 0; //0Î´Ñ¡Ôñ 1´®¿Ú  2Íø¿Ú
+    public static int type = 0; //0æœªé€‰æ‹© 1ä¸²å£  2ç½‘å£
     Thread sendThrea;
     send_net senSun;
 
@@ -49,57 +49,57 @@ public class tool_uart implements SerialPortEventListener {
     @SuppressWarnings("unchecked")
     public int init(ParamConfig paramConfig) throws Exception {
     	if(type ==2){
-    		JOptionPane.showMessageDialog(null, "ÇëÏÈ¹Ø±ÕÍø¿Ú£¡");
+    		JOptionPane.showMessageDialog(null, "è¯·å…ˆå…³é—­ç½‘å£ï¼");
     		return 0;
     	}
     	param = paramConfig;
-        // »ñÈ¡ÏµÍ³ÖĞËùÓĞµÄÍ¨Ñ¶¶Ë¿Ú
+        // è·å–ç³»ç»Ÿä¸­æ‰€æœ‰çš„é€šè®¯ç«¯å£
         portList = CommPortIdentifier.getPortIdentifiers();
-        // ¼ÇÂ¼ÊÇ·ñº¬ÓĞÖ¸¶¨´®¿Ú
+        // è®°å½•æ˜¯å¦å«æœ‰æŒ‡å®šä¸²å£
         boolean isExsist = false;
         int ret = 0;
-        // Ñ­»·Í¨Ñ¶¶Ë¿Ú
+        // å¾ªç¯é€šè®¯ç«¯å£
         while (portList.hasMoreElements()) {
             commPortId = portList.nextElement();
-            // ÅĞ¶ÏÊÇ·ñÊÇ´®¿Ú
+            // åˆ¤æ–­æ˜¯å¦æ˜¯ä¸²å£
             if (commPortId.getPortType() == CommPortIdentifier.PORT_SERIAL) {
-                // ±È½Ï´®¿ÚÃû³ÆÊÇ·ñÊÇÖ¸¶¨´®¿Ú
+                // æ¯”è¾ƒä¸²å£åç§°æ˜¯å¦æ˜¯æŒ‡å®šä¸²å£
                 if (paramConfig.getSerialNumber().equals(commPortId.getName())) {
-                    // ´®¿Ú´æÔÚ
+                    // ä¸²å£å­˜åœ¨
                     isExsist = true;
-                    // ´ò¿ª´®¿Ú
+                    // æ‰“å¼€ä¸²å£
                     try {
-                        // open:£¨Ó¦ÓÃ³ÌĞòÃû¡¾ËæÒâÃüÃû¡¿£¬×èÈûÊ±µÈ´ıµÄºÁÃëÊı£©
+                        // open:ï¼ˆåº”ç”¨ç¨‹åºåã€éšæ„å‘½åã€‘ï¼Œé˜»å¡æ—¶ç­‰å¾…çš„æ¯«ç§’æ•°ï¼‰
                         serialPort = (SerialPort) commPortId.open(Object.class.getSimpleName(), 2000);
-                        // ÉèÖÃ´®¿Ú¼àÌı
+                        // è®¾ç½®ä¸²å£ç›‘å¬
                         serialPort.addEventListener(this);
-                        // ÉèÖÃ´®¿ÚÊı¾İÊ±¼äÓĞĞ§(¿É¼àÌı)
+                        // è®¾ç½®ä¸²å£æ•°æ®æ—¶é—´æœ‰æ•ˆ(å¯ç›‘å¬)
                         serialPort.notifyOnDataAvailable(true);
-                        // ÉèÖÃ´®¿ÚÍ¨Ñ¶²ÎÊı:²¨ÌØÂÊ£¬Êı¾İÎ»£¬Í£Ö¹Î»,Ğ£Ñé·½Ê½
+                        // è®¾ç½®ä¸²å£é€šè®¯å‚æ•°:æ³¢ç‰¹ç‡ï¼Œæ•°æ®ä½ï¼Œåœæ­¢ä½,æ ¡éªŒæ–¹å¼
                         serialPort.setSerialPortParams(paramConfig.getBaudRate(), paramConfig.getDataBit(),
                                 paramConfig.getStopBit(), paramConfig.getCheckoutBit());
                         ret = 1;
                     } catch (PortInUseException e) {
-                        JOptionPane.showMessageDialog(null, "¶Ë¿Ú±»Õ¼ÓÃ£¡");
+                        JOptionPane.showMessageDialog(null, "ç«¯å£è¢«å ç”¨ï¼");
                     } catch (TooManyListenersException e) {
-                        JOptionPane.showMessageDialog(null, "¼àÌıÆ÷¹ı¶à£¡");
+                        JOptionPane.showMessageDialog(null, "ç›‘å¬å™¨è¿‡å¤šï¼");
                     } catch (UnsupportedCommOperationException e) {
-                        JOptionPane.showMessageDialog(null, "²»Ö§³ÖµÄCOMM¶Ë¿Ú²Ù×÷Òì³££¡");
+                        JOptionPane.showMessageDialog(null, "ä¸æ”¯æŒçš„COMMç«¯å£æ“ä½œå¼‚å¸¸ï¼");
                     }
                     break;
                 }
             }
         }
-        // Èô²»´æÔÚ¸Ã´®¿ÚÔòÅ×³öÒì³£
+        // è‹¥ä¸å­˜åœ¨è¯¥ä¸²å£åˆ™æŠ›å‡ºå¼‚å¸¸
         if (!isExsist) {
-        	JOptionPane.showMessageDialog(null, "²»´æÔÚ¸Ã´®¿Ú!");
+        	JOptionPane.showMessageDialog(null, "ä¸å­˜åœ¨è¯¥ä¸²å£!");
         }
 
         return ret;
     }
     public void initNet(String host,int port){
     	if(type ==1){
-    		JOptionPane.showMessageDialog(null, "ÇëÏÈ¹Ø±Õ´®¿Ú£¡");
+    		JOptionPane.showMessageDialog(null, "è¯·å…ˆå…³é—­ä¸²å£ï¼");
     		return;
     	}
     	    type=2;
@@ -123,7 +123,7 @@ public class tool_uart implements SerialPortEventListener {
 								
 							Thread.sleep(10);
 							data_process.g_tool_ui_all.stop();
-				    	     data_process.g_tool_ui_all.Panel_load.tool_open_net_button.setText("¹Ø±ÕÍø¿Ú");
+				    	     data_process.g_tool_ui_all.Panel_load.tool_open_net_button.setText("å…³é—­ç½‘å£");
 				    	     Thread.sleep(30);
 								sendComm(data_process.send_cmd_config_request());
 								Thread.sleep(30);
@@ -143,7 +143,7 @@ public class tool_uart implements SerialPortEventListener {
     	    } catch (IOException e) {
     	    	  data_process.g_tool_ui_all.stop();
     	    		 data_process.g_tool_ui_all.Panel_load.connect = false;
-    	    	 JOptionPane.showMessageDialog(null, "Á¬½Ó³¬Ê±");
+    	    	 JOptionPane.showMessageDialog(null, "è¿æ¥è¶…æ—¶");
     	    	  
     	    }
 
@@ -155,39 +155,39 @@ public class tool_uart implements SerialPortEventListener {
     		
     		if(socket.isConnected()){
 			socket.close();
-			data_process.g_tool_ui_all.Panel_load.tool_open_net_button.setText("´ò¿ªÍø¿Ú");
+			data_process.g_tool_ui_all.Panel_load.tool_open_net_button.setText("æ‰“å¼€ç½‘å£");
     		}
 		} catch (IOException e) {
 			e.printStackTrace();
-			data_process.g_tool_ui_all.Panel_load.tool_open_net_button.setText("´ò¿ªÍø¿Ú");
+			data_process.g_tool_ui_all.Panel_load.tool_open_net_button.setText("æ‰“å¼€ç½‘å£");
 		}
     	}
     }
 
     /**
-     * ÊµÏÖ½Ó¿ÚSerialPortEventListenerÖĞµÄ·½·¨ ¶ÁÈ¡´Ó´®¿ÚÖĞ½ÓÊÕµÄÊı¾İ
+     * å®ç°æ¥å£SerialPortEventListenerä¸­çš„æ–¹æ³• è¯»å–ä»ä¸²å£ä¸­æ¥æ”¶çš„æ•°æ®
      */
     @SuppressWarnings("deprecation")
     @Override
     public void serialEvent(SerialPortEvent event) {
         switch (event.getEventType()) {
-            case SerialPortEvent.BI: // Í¨Ñ¶ÖĞ¶Ï
-            case SerialPortEvent.OE: // ÒçÎ»´íÎó
-            case SerialPortEvent.FE: // Ö¡´íÎó
-            case SerialPortEvent.PE: // ÆæÅ¼Ğ£Ñé´íÎó
-            case SerialPortEvent.CD: // ÔØ²¨¼ì²â
-            case SerialPortEvent.CTS: // Çå³ı·¢ËÍ
-            case SerialPortEvent.DSR: // Êı¾İÉè±¸×¼±¸ºÃ
-            case SerialPortEvent.RI: // ÏìÁåÕì²â
-            case SerialPortEvent.OUTPUT_BUFFER_EMPTY: // Êä³ö»º³åÇøÒÑÇå¿Õ
+            case SerialPortEvent.BI: // é€šè®¯ä¸­æ–­
+            case SerialPortEvent.OE: // æº¢ä½é”™è¯¯
+            case SerialPortEvent.FE: // å¸§é”™è¯¯
+            case SerialPortEvent.PE: // å¥‡å¶æ ¡éªŒé”™è¯¯
+            case SerialPortEvent.CD: // è½½æ³¢æ£€æµ‹
+            case SerialPortEvent.CTS: // æ¸…é™¤å‘é€
+            case SerialPortEvent.DSR: // æ•°æ®è®¾å¤‡å‡†å¤‡å¥½
+            case SerialPortEvent.RI: // å“é“ƒä¾¦æµ‹
+            case SerialPortEvent.OUTPUT_BUFFER_EMPTY: // è¾“å‡ºç¼“å†²åŒºå·²æ¸…ç©º
                 break;
-            case SerialPortEvent.DATA_AVAILABLE: // ÓĞÊı¾İµ½´ï
-                //µ÷ÓÃ¶ÁÈ¡Êı¾İµÄ·½·¨
+            case SerialPortEvent.DATA_AVAILABLE: // æœ‰æ•°æ®åˆ°è¾¾
+                //è°ƒç”¨è¯»å–æ•°æ®çš„æ–¹æ³•
                 try {
                     String read_buf = readComm();
                     data_process.data_input(read_buf);
                 } catch (Exception e) {
-                    System.out.println("´®¿Ú¶Á´íÎó£¡£¡");
+                    System.out.println("ä¸²å£è¯»é”™è¯¯ï¼ï¼");
                     e.printStackTrace();
                 }
                 break;
@@ -218,10 +218,10 @@ public class tool_uart implements SerialPortEventListener {
     }
 
     /**
-     * ¹Ø±Õ´®¿Ú
+     * å…³é—­ä¸²å£
      *
      * @throws
-     * @Description: ¹Ø±Õ´®¿Ú
+     * @Description: å…³é—­ä¸²å£
      * @param:
      * @return: void
      */
@@ -237,7 +237,7 @@ public class tool_uart implements SerialPortEventListener {
                     inputStream = null;
                 } catch (IOException e) {
                     ret = 0;
-                    JOptionPane.showMessageDialog(null, "²»Ö§³ÖµÄCOMM¶Ë¿Ú²Ù×÷Òì³££¡");
+                    JOptionPane.showMessageDialog(null, "ä¸æ”¯æŒçš„COMMç«¯å£æ“ä½œå¼‚å¸¸ï¼");
                 }
             }
             if (outputStream != null) {
@@ -246,7 +246,7 @@ public class tool_uart implements SerialPortEventListener {
                     outputStream = null;
                 } catch (IOException e) {
                     ret = 0;
-                    JOptionPane.showMessageDialog(null, "¹Ø±ÕÊä³öÁ÷Ê±·¢ÉúIOÒì³£");
+                    JOptionPane.showMessageDialog(null, "å…³é—­è¾“å‡ºæµæ—¶å‘ç”ŸIOå¼‚å¸¸");
                 }
             }
             serialPort.close();
@@ -256,7 +256,7 @@ public class tool_uart implements SerialPortEventListener {
     }
 
     /**
-     * ¶ÁÈ¡´®¿Ú·µ»ØĞÅÏ¢
+     * è¯»å–ä¸²å£è¿”å›ä¿¡æ¯
      *
      * @return: void
      */
@@ -264,9 +264,9 @@ public class tool_uart implements SerialPortEventListener {
         String data_read = "";
         try {
             inputStream = serialPort.getInputStream();
-            // Í¨¹ıÊäÈëÁ÷¶ÔÏóµÄavailable·½·¨»ñÈ¡Êı×é×Ö½Ú³¤¶È
+            // é€šè¿‡è¾“å…¥æµå¯¹è±¡çš„availableæ–¹æ³•è·å–æ•°ç»„å­—èŠ‚é•¿åº¦
             byte[] readBuffer = new byte[inputStream.available()];
-            // ´ÓÏßÂ·ÉÏ¶ÁÈ¡Êı¾İÁ÷
+            // ä»çº¿è·¯ä¸Šè¯»å–æ•°æ®æµ
             int len = 0;
 
             while ((len = inputStream.read(readBuffer)) != -1) {
@@ -277,20 +277,20 @@ public class tool_uart implements SerialPortEventListener {
             }
         } catch (IOException e) {
         	
-            int n = JOptionPane.showConfirmDialog(null, "¶ÁÈ¡ĞÅÏ¢Ê±·¢ÉúIOÒì³£,ÊÇ·ñ¹Ø±Õ´®¿Ú", "", JOptionPane.YES_NO_OPTION);
+            int n = JOptionPane.showConfirmDialog(null, "è¯»å–ä¿¡æ¯æ—¶å‘ç”ŸIOå¼‚å¸¸,æ˜¯å¦å…³é—­ä¸²å£", "", JOptionPane.YES_NO_OPTION);
             if (n == 0) {
-            	data_process.g_tool_ui_all.Panel_load.tool_open_uart_button.setText("´ò¿ª´®¿Ú");
+            	data_process.g_tool_ui_all.Panel_load.tool_open_uart_button.setText("æ‰“å¼€ä¸²å£");
             	 closeSerialPort();   	
             }
         
       
-         //  throw new Exception("·¢ËÍĞÅÏ¢µ½´®¿ÚÊ±·¢ÉúIOÒì³£");
+         //  throw new Exception("å‘é€ä¿¡æ¯åˆ°ä¸²å£æ—¶å‘ç”ŸIOå¼‚å¸¸");
         }
         return data_read;
     }
 
     /**
-     * ·¢ËÍĞÅÏ¢µ½´®¿Ú
+     * å‘é€ä¿¡æ¯åˆ°ä¸²å£
      *
      * @throws
      * @param: data
@@ -300,11 +300,11 @@ public class tool_uart implements SerialPortEventListener {
     	
         byte[] writerBuffer = null;
 
-        //×ªÎªHEX
+        //è½¬ä¸ºHEX
         try {
             writerBuffer = hexToByteArray(data);
         } catch (NumberFormatException e) {
-            throw new Exception("ÃüÁî¸ñÊ½´íÎó£¡");
+            throw new Exception("å‘½ä»¤æ ¼å¼é”™è¯¯ï¼");
         }
 
         byte[] send_buffer = new byte[5000];
@@ -355,16 +355,16 @@ public class tool_uart implements SerialPortEventListener {
             }
          
         } catch (NullPointerException e) {
-        	 JOptionPane.showMessageDialog(null, "ÇëÏÈÅäÖÃ´®¿Ú»òÍø¿Ú");
-           // throw new Exception("ÕÒ²»µ½´®¿Ú¡£");
+        	 JOptionPane.showMessageDialog(null, "è¯·å…ˆé…ç½®ä¸²å£æˆ–ç½‘å£");
+           // throw new Exception("æ‰¾ä¸åˆ°ä¸²å£ã€‚");
         } catch (IOException e) {
-       	 JOptionPane.showMessageDialog(null, "·¢ËÍĞÅÏ¢µ½´®¿ÚÊ±·¢ÉúIOÒì³£");
-          //  throw new Exception("·¢ËÍĞÅÏ¢µ½´®¿ÚÊ±·¢ÉúIOÒì³£");
+       	 JOptionPane.showMessageDialog(null, "å‘é€ä¿¡æ¯åˆ°ä¸²å£æ—¶å‘ç”ŸIOå¼‚å¸¸");
+          //  throw new Exception("å‘é€ä¿¡æ¯åˆ°ä¸²å£æ—¶å‘ç”ŸIOå¼‚å¸¸");
         }
     }
 
 
-    //Êı×éµÄÍ·ÊÇ5a 5a£¬Î²°ÍÊÇa5 a5£¬ÄÇÃ´ÖĞ¼äÒ²ÓĞ¿ÉÄÜ³öÏÖÕâÁ½¸öÊı¾İ£¬Ä¿Ç°µÄ´¦Àí°ì·¨ÊÇ½«5a£¬a5 £¬Ç°ºó¶¼²åÈë00£¬ÕâÑù±£ÕÏ²»»áÁ¬Ğø³öÏÖÕâÁ½¸ö±êÖ¾
+    //æ•°ç»„çš„å¤´æ˜¯5a 5aï¼Œå°¾å·´æ˜¯a5 a5ï¼Œé‚£ä¹ˆä¸­é—´ä¹Ÿæœ‰å¯èƒ½å‡ºç°è¿™ä¸¤ä¸ªæ•°æ®ï¼Œç›®å‰çš„å¤„ç†åŠæ³•æ˜¯å°†5aï¼Œa5 ï¼Œå‰åéƒ½æ’å…¥00ï¼Œè¿™æ ·ä¿éšœä¸ä¼šè¿ç»­å‡ºç°è¿™ä¸¤ä¸ªæ ‡å¿—
     public void sendCommByte(byte[] writerBuffer) throws Exception {
         byte[] send_buffer = new byte[5000];
         int j = 0;
@@ -400,40 +400,40 @@ public class tool_uart implements SerialPortEventListener {
             outputStream.write(send_buffer_2);
             outputStream.flush();
         } catch (NullPointerException e) {
-       	 JOptionPane.showMessageDialog(null, "ÕÒ²»µ½´®¿Ú");
-         // throw new Exception("ÕÒ²»µ½´®¿Ú¡£");
+       	 JOptionPane.showMessageDialog(null, "æ‰¾ä¸åˆ°ä¸²å£");
+         // throw new Exception("æ‰¾ä¸åˆ°ä¸²å£ã€‚");
       } catch (IOException e) {
-     	 JOptionPane.showMessageDialog(null, "·¢ËÍĞÅÏ¢µ½´®¿ÚÊ±·¢ÉúIOÒì³£");
-        //  throw new Exception("·¢ËÍĞÅÏ¢µ½´®¿ÚÊ±·¢ÉúIOÒì³£");
+     	 JOptionPane.showMessageDialog(null, "å‘é€ä¿¡æ¯åˆ°ä¸²å£æ—¶å‘ç”ŸIOå¼‚å¸¸");
+        //  throw new Exception("å‘é€ä¿¡æ¯åˆ°ä¸²å£æ—¶å‘ç”ŸIOå¼‚å¸¸");
       }
     }
 
     /**
-     * Hex×Ö·û´®×ªbyte
+     * Hexå­—ç¬¦ä¸²è½¬byte
      *
-     * @param inHex ´ı×ª»»µÄHex×Ö·û´®
-     * @return ×ª»»ºóµÄbyte
+     * @param inHex å¾…è½¬æ¢çš„Hexå­—ç¬¦ä¸²
+     * @return è½¬æ¢åçš„byte
      */
     public static byte hexToByte(String inHex) {
         return (byte) Integer.parseInt(inHex, 16);
     }
 
     /**
-     * hex×Ö·û´®×ªbyteÊı×é
+     * hexå­—ç¬¦ä¸²è½¬byteæ•°ç»„
      *
-     * @param inHex ´ı×ª»»µÄHex×Ö·û´®
-     * @return ×ª»»ºóµÄbyteÊı×é½á¹û
+     * @param inHex å¾…è½¬æ¢çš„Hexå­—ç¬¦ä¸²
+     * @return è½¬æ¢åçš„byteæ•°ç»„ç»“æœ
      */
     public static byte[] hexToByteArray(String inHex) {
         int hexlen = inHex.length();
         byte[] result;
         if (hexlen % 2 == 1) {
-            // ÆæÊı
+            // å¥‡æ•°
             hexlen++;
             result = new byte[(hexlen / 2)];
             inHex = "0" + inHex;
         } else {
-            // Å¼Êı
+            // å¶æ•°
             result = new byte[(hexlen / 2)];
         }
         int j = 0;
@@ -445,7 +445,7 @@ public class tool_uart implements SerialPortEventListener {
     }
 
     /**
-     * Êı×é×ª»»³ÉÊ®Áù½øÖÆ×Ö·û´®
+     * æ•°ç»„è½¬æ¢æˆåå…­è¿›åˆ¶å­—ç¬¦ä¸²
      *
      * @param byte[]
      * @return HexString

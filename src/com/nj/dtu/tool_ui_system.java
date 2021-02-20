@@ -14,24 +14,24 @@ import javax.swing.JTextField;
 
 public class tool_ui_system extends tool_ui_base {
 
-    //´®¿ÚÊµÀı
+    //ä¸²å£å®ä¾‹
     tool_uart serialPort;
-    //Êı¾İ½»»¥ÊµÀı
+    //æ•°æ®äº¤äº’å®ä¾‹
     tool_data_process g_data_process;
     tool_device_info g_device_info;
 
-    //°´Å¥
+    //æŒ‰é’®
     JButton tool_system_reboot_button;
     JTextField tool_text_field_update_file;
     JButton tool_button_select_update_file;
     JButton tool_button_upload_update_file;
     JFileChooser tool_file_chooser_select_update_file;
 
-    //ÅäÖÃÎÄ¼şµ¼³ö
+    //é…ç½®æ–‡ä»¶å¯¼å‡º
     JButton tool_button_get_config_file;
     JTextField tool_text_get_config_file_path;
     JFileChooser tool_file_chooser_select_config_save_file;
-    //ÅäÖÃÎÄ¼şÉÏ´«
+    //é…ç½®æ–‡ä»¶ä¸Šä¼ 
     JButton tool_button_upload_config_file;
     JTextField tool_text_upload_config_file_path;
     JFileChooser tool_file_chooser_select_config_upload_file;
@@ -52,17 +52,17 @@ public class tool_ui_system extends tool_ui_base {
 
     //
     public void tooi_ui_update_file_select() {
-        // Îª°´Å¥°ó¶¨¼àÌıÆ÷
+        // ä¸ºæŒ‰é’®ç»‘å®šç›‘å¬å™¨
         tool_button_select_update_file.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // ¶Ô»°¿ò
-                tool_file_chooser_select_update_file.setFileSelectionMode(0);//Éè¶¨Ö»ÄÜÑ¡Ôñµ½ÎÄ¼ş
-                int state = tool_file_chooser_select_update_file.showOpenDialog(null);//´Ë¾äÊÇ´ò¿ªÎÄ¼şÑ¡ÔñÆ÷½çÃæµÄ´¥·¢Óï¾ä
+                // å¯¹è¯æ¡†
+                tool_file_chooser_select_update_file.setFileSelectionMode(0);//è®¾å®šåªèƒ½é€‰æ‹©åˆ°æ–‡ä»¶
+                int state = tool_file_chooser_select_update_file.showOpenDialog(null);//æ­¤å¥æ˜¯æ‰“å¼€æ–‡ä»¶é€‰æ‹©å™¨ç•Œé¢çš„è§¦å‘è¯­å¥
                 if (state == 1) {
-                    return;//³·ÏúÔò·µ»Ø
+                    return;//æ’¤é”€åˆ™è¿”å›
                 } else {
-                    File f = tool_file_chooser_select_update_file.getSelectedFile();//fÎªÑ¡Ôñµ½µÄÄ¿Â¼
+                    File f = tool_file_chooser_select_update_file.getSelectedFile();//fä¸ºé€‰æ‹©åˆ°çš„ç›®å½•
                     tool_text_field_update_file.setText(f.getAbsolutePath());
                     int index =  f.getAbsolutePath().lastIndexOf("-");
                     update_zip_name = f.getAbsolutePath().substring(index+1,f.getAbsolutePath().length()-4);
@@ -75,14 +75,14 @@ public class tool_ui_system extends tool_ui_base {
     	g_data_process.g_tool_ui_all.stop();
     	if(data.contains(update_zip_name)){
     		updateSuccess = true;
-    		 JOptionPane.showMessageDialog(null, "Éı¼¶³É¹¦£¡");
+    		 JOptionPane.showMessageDialog(null, "å‡çº§æˆåŠŸï¼");
     	}else{
-    		JOptionPane.showMessageDialog(null, "Éı¼¶Ê§°Ü£¡");
+    		JOptionPane.showMessageDialog(null, "å‡çº§å¤±è´¥ï¼");
     	}
     	
     }
     public void cat_version(){
-        ///µ¥Æğ¸öÏß³Ì´¦ÀíÏÔÊ¾
+        ///å•èµ·ä¸ªçº¿ç¨‹å¤„ç†æ˜¾ç¤º
         Thread thread = new Thread(){
          @SuppressWarnings("static-access")
 		public void run()
@@ -114,18 +114,18 @@ public class tool_ui_system extends tool_ui_base {
 		}
     }
 
-    //ÉÏ´«Éı¼¶ÎÄ¼ş
+    //ä¸Šä¼ å‡çº§æ–‡ä»¶
     public void tooi_ui_update_file_upload() {
         tool_button_upload_update_file.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
             	if(tool_text_field_update_file.getText().toString().equals("")){
-            		JOptionPane.showMessageDialog(null, "ÇëÑ¡ÔñÎÄ¼ş");
+            		JOptionPane.showMessageDialog(null, "è¯·é€‰æ‹©æ–‡ä»¶");
             		return;
             	}
                     tool_button_select_update_file.enable(false);
-                    g_data_process.g_tool_ui_all.loading("ÕıÔÚÏÂ·¢ÎÄ¼ş...");
-                    ///µ¥Æğ¸öÏß³Ì´¦ÀíÏÔÊ¾
+                    g_data_process.g_tool_ui_all.loading("æ­£åœ¨ä¸‹å‘æ–‡ä»¶...");
+                    ///å•èµ·ä¸ªçº¿ç¨‹å¤„ç†æ˜¾ç¤º
                     Thread thread = new Thread(){
                      public void run()
                      {
@@ -133,21 +133,21 @@ public class tool_ui_system extends tool_ui_base {
                     		  int ret = g_data_process.send_cmd_upload_update_file(tool_text_field_update_file.getText(), serialPort);
                          
                          if (ret == 1) {
-                             //ÊÇ 0;·ñ 1
+                             //æ˜¯ 0;å¦ 1
                         	 g_data_process.g_tool_ui_all.stop();
-                             int n = JOptionPane.showConfirmDialog(null, "È·ÈÏÉı¼¶", "", JOptionPane.YES_NO_OPTION);
+                             int n = JOptionPane.showConfirmDialog(null, "ç¡®è®¤å‡çº§", "", JOptionPane.YES_NO_OPTION);
                              System.out.println("n " + n);
-                             //Éı¼¶ÏµÍ³£¬·¢ËÍÉı¼¶Ö¸Áî
+                             //å‡çº§ç³»ç»Ÿï¼Œå‘é€å‡çº§æŒ‡ä»¤
                              if (n == 0) {
                              	 updateSuccess = false;
-                             	g_data_process.g_tool_ui_all.loading("ÕıÔÚÉı¼¶...");
+                             	g_data_process.g_tool_ui_all.loading("æ­£åœ¨å‡çº§...");
                                  serialPort.sendComm(g_data_process.send_cmd_upgrade_system());
                                
                                  cat_version();
                              }
                          } else {
                         	 g_data_process.g_tool_ui_all.stop();
-                             JOptionPane.showMessageDialog(null, "ÏÂ·¢Éı¼¶ÎÄ¼şÊ§°Ü");
+                             JOptionPane.showMessageDialog(null, "ä¸‹å‘å‡çº§æ–‡ä»¶å¤±è´¥");
                          }
                          tool_button_select_update_file.enable(true);
                     	  } catch (NumberFormatException | IOException e1) {
@@ -170,7 +170,7 @@ public class tool_ui_system extends tool_ui_base {
     
     
 
-    //ÏÂÔØÅäÖÃÎÄ¼ş  µ¼³ö
+    //ä¸‹è½½é…ç½®æ–‡ä»¶  å¯¼å‡º
     public void tooi_ui_config_file_get() {
         tool_button_get_config_file.addActionListener(new ActionListener() {
             @Override
@@ -178,8 +178,8 @@ public class tool_ui_system extends tool_ui_base {
                 try {
                     int ret;
                     tool_button_get_config_file.enable(false);
-                    //ÊÇ 0;·ñ 1
-                    int n = JOptionPane.showConfirmDialog(null, "ÇëÑ¡Ôñ±£´æÂ·¾¶ºÍÎÄ¼şÃû", "", JOptionPane.YES_NO_OPTION);
+                    //æ˜¯ 0;å¦ 1
+                    int n = JOptionPane.showConfirmDialog(null, "è¯·é€‰æ‹©ä¿å­˜è·¯å¾„å’Œæ–‡ä»¶å", "", JOptionPane.YES_NO_OPTION);
                     if (n == 0) {
                         // default file.
                      
@@ -188,11 +188,11 @@ public class tool_ui_system extends tool_ui_base {
                         tool_file_chooser_select_config_save_file.setSelectedFile(new File("dtu_system_config.ini"));
                  	
                         
-                        int state = tool_file_chooser_select_config_save_file.showSaveDialog(new JPanel());//´Ë¾äÊÇ´ò¿ªÎÄ¼şÑ¡ÔñÆ÷½çÃæµÄ´¥·¢Óï¾ä
+                        int state = tool_file_chooser_select_config_save_file.showSaveDialog(new JPanel());//æ­¤å¥æ˜¯æ‰“å¼€æ–‡ä»¶é€‰æ‹©å™¨ç•Œé¢çš„è§¦å‘è¯­å¥
                         if (state == 1) {
-                            return;//³·ÏúÔò·µ»Ø
+                            return;//æ’¤é”€åˆ™è¿”å›
                         } else {
-                        	 File f = tool_file_chooser_select_config_save_file.getSelectedFile();// dirÎªÑ¡Ôñµ½µÄÄ¿Â¼ 
+                        	 File f = tool_file_chooser_select_config_save_file.getSelectedFile();// dirä¸ºé€‰æ‹©åˆ°çš„ç›®å½• 
                         	
                         
                             tool_text_get_config_file_path.setText(f.getAbsolutePath());
@@ -212,7 +212,7 @@ public class tool_ui_system extends tool_ui_base {
         });
     }
 
-    //ÉÏ´«ÅäÖÃÎÄ¼ş  µ¼Èë
+    //ä¸Šä¼ é…ç½®æ–‡ä»¶  å¯¼å…¥
     public void tooi_ui_config_file_upload() {
         tool_button_upload_config_file.addActionListener(new ActionListener() {
             @Override
@@ -220,23 +220,23 @@ public class tool_ui_system extends tool_ui_base {
                 try {
                     int ret;
                     tool_button_upload_config_file.enable(false);
-                    //ÊÇ 0;·ñ 1
-                    int n = JOptionPane.showConfirmDialog(null, "ÇëÑ¡ÔñÅäÖÃÎÄ¼ş", "", JOptionPane.YES_NO_OPTION);
+                    //æ˜¯ 0;å¦ 1
+                    int n = JOptionPane.showConfirmDialog(null, "è¯·é€‰æ‹©é…ç½®æ–‡ä»¶", "", JOptionPane.YES_NO_OPTION);
                     if (n == 0) {
-                        tool_file_chooser_select_config_upload_file.setFileSelectionMode(0);//Éè¶¨Ö»ÄÜÑ¡Ôñµ½ÎÄ¼ş
-                        int state = tool_file_chooser_select_config_upload_file.showOpenDialog(null);//´Ë¾äÊÇ´ò¿ªÎÄ¼şÑ¡ÔñÆ÷½çÃæµÄ´¥·¢Óï¾ä
+                        tool_file_chooser_select_config_upload_file.setFileSelectionMode(0);//è®¾å®šåªèƒ½é€‰æ‹©åˆ°æ–‡ä»¶
+                        int state = tool_file_chooser_select_config_upload_file.showOpenDialog(null);//æ­¤å¥æ˜¯æ‰“å¼€æ–‡ä»¶é€‰æ‹©å™¨ç•Œé¢çš„è§¦å‘è¯­å¥
                         if (state == 1) {
-                            return;//³·ÏúÔò·µ»Ø
+                            return;//æ’¤é”€åˆ™è¿”å›
                         } else {
                             File f = tool_file_chooser_select_config_upload_file.getSelectedFile();
                             tool_text_upload_config_file_path.setText(f.getAbsolutePath());
                             g_device_info.device_config_upload_config_file_path = f.getAbsolutePath();
                             serialPort.sendComm(g_data_process.data_frame_data_ini_file_upload());
-                            ///µ¥Æğ¸öÏß³Ì´¦ÀíÏÔÊ¾
+                            ///å•èµ·ä¸ªçº¿ç¨‹å¤„ç†æ˜¾ç¤º
                             Thread thread = new Thread(){
                              public void run()
                              {
-                            	 //»ñÈ¡Éè±¸²ÎÊı
+                            	 //è·å–è®¾å¤‡å‚æ•°
                                  try {
                                 	 Thread.sleep(1000); 
                                 	 serialPort.sendComm(g_data_process.send_cmd_run_shell_2(g_data_process.CMD_INI_IN,
@@ -266,7 +266,7 @@ public class tool_ui_system extends tool_ui_base {
         });
     }
 
-    //ÖØÆôÏµÍ³
+    //é‡å¯ç³»ç»Ÿ
     public void tooi_ui_reboot_system() {
         tool_system_reboot_button.addActionListener(new ActionListener() {
             @Override
@@ -286,41 +286,41 @@ public class tool_ui_system extends tool_ui_base {
     }
 
     public JPanel systemSetupPanel(JPanel systemSetupPanel) {
-        systemSetupPanel.setBorder(BorderFactory.createTitledBorder("ÏµÍ³ÉèÖÃ"));
+        systemSetupPanel.setBorder(BorderFactory.createTitledBorder("ç³»ç»Ÿè®¾ç½®"));
 
-        // ±êÇ©ÆğÊ¼Î»ÖÃ
+        // æ ‡ç­¾èµ·å§‹ä½ç½®
         int x_lable_location = 40;
         int y_lable_location = 40;
 
-        // ÎÄ±¾¿òÆğÊ¼Î»ÖÃ
+        // æ–‡æœ¬æ¡†èµ·å§‹ä½ç½®
         int x_text_location = 100;
         int y_text_location = 20;
 
-        // ²½³¤
+        // æ­¥é•¿
         int x_step = 10;
         int y_step = 30;
 
-        // ÎÄ±¾¿ò³¤¶ÈºÍ¿í¶È
+        // æ–‡æœ¬æ¡†é•¿åº¦å’Œå®½åº¦
         int x_text_length = 130;
         int y_text_heigth = 25;
         int text_columns = 20;
 
-        // ±êÇ©¿ò³¤¶ÈºÍ¿í¶È
+        // æ ‡ç­¾æ¡†é•¿åº¦å’Œå®½åº¦
         int x_lable_length = 80;
 
-        systemSetupPanel.add(buildJLabel("Éı¼¶:", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+        systemSetupPanel.add(buildJLabel("å‡çº§:", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
 
-        //Éı¼¶¹¦ÄÜ
+        //å‡çº§åŠŸèƒ½
         y_lable_location += y_step;
         y_text_location += y_step;
-        systemSetupPanel.add(buildJLabel("Éı¼¶ÎÄ¼ş", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+        systemSetupPanel.add(buildJLabel("å‡çº§æ–‡ä»¶", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
 
         x_lable_location = x_lable_location + x_lable_length - x_step / 2;
         tool_text_field_update_file = buildJTextField("", "updatefile", text_columns, x_lable_location, y_text_location, x_text_length * 2, y_text_heigth);
         systemSetupPanel.add(tool_text_field_update_file);
 
         x_lable_location = x_lable_location + x_text_length * 2 + x_step * 3;
-        tool_button_select_update_file = buildJButton("Ñ¡ÔñÎÄ¼ş", x_lable_location, y_lable_location, x_text_length, y_text_heigth);
+        tool_button_select_update_file = buildJButton("é€‰æ‹©æ–‡ä»¶", x_lable_location, y_lable_location, x_text_length, y_text_heigth);
         systemSetupPanel.add(tool_button_select_update_file);
         tool_file_chooser_select_update_file = new JFileChooser();
         tool_file_chooser_select_update_file.setCurrentDirectory(new File(""));
@@ -328,20 +328,20 @@ public class tool_ui_system extends tool_ui_base {
         tooi_ui_update_file_select();
 
         x_lable_location = x_lable_location + x_text_length + x_step;
-        tool_button_upload_update_file = buildJButton("ÉÏ´«ÎÄ¼ş", x_lable_location, y_lable_location, x_text_length, y_text_heigth);
+        tool_button_upload_update_file = buildJButton("ä¸Šä¼ æ–‡ä»¶", x_lable_location, y_lable_location, x_text_length, y_text_heigth);
         systemSetupPanel.add(tool_button_upload_update_file);
         tooi_ui_update_file_upload();
 
         y_lable_location = y_lable_location + y_text_heigth + y_step;
         x_lable_location = 20;
-        systemSetupPanel.add(buildJLabel("ÅäÖÃÎÄ¼şµ¼Èëµ¼³ö:", x_lable_location, y_lable_location, x_lable_length * 5, y_text_heigth));
+        systemSetupPanel.add(buildJLabel("é…ç½®æ–‡ä»¶å¯¼å…¥å¯¼å‡º:", x_lable_location, y_lable_location, x_lable_length * 5, y_text_heigth));
 
         y_lable_location = y_lable_location + y_text_heigth + x_step;
         x_text_length = x_text_length / 2;
-        tool_button_get_config_file = buildJButton("µ¼³ö", x_lable_location, y_lable_location, x_text_length, y_text_heigth);
+        tool_button_get_config_file = buildJButton("å¯¼å‡º", x_lable_location, y_lable_location, x_text_length, y_text_heigth);
         systemSetupPanel.add(tool_button_get_config_file);
         x_lable_location = x_lable_location + x_text_length + x_step;
-        tool_text_get_config_file_path = buildJTextField("", "±£´æÎÄ¼şÂ·¾¶", text_columns, x_lable_location, y_lable_location, x_text_length * 4, y_text_heigth);
+        tool_text_get_config_file_path = buildJTextField("", "ä¿å­˜æ–‡ä»¶è·¯å¾„", text_columns, x_lable_location, y_lable_location, x_text_length * 4, y_text_heigth);
         systemSetupPanel.add(tool_text_get_config_file_path);
         tool_file_chooser_select_config_save_file = new JFileChooser();
         tool_file_chooser_select_config_save_file.setCurrentDirectory(new File(""));
@@ -349,18 +349,18 @@ public class tool_ui_system extends tool_ui_base {
         tooi_ui_config_file_get();
 
         x_lable_location = x_lable_location + x_text_length * 4 + x_step * 3;
-        tool_button_upload_config_file = buildJButton("µ¼Èë", x_lable_location, y_lable_location, x_text_length, y_text_heigth);
+        tool_button_upload_config_file = buildJButton("å¯¼å…¥", x_lable_location, y_lable_location, x_text_length, y_text_heigth);
         systemSetupPanel.add(tool_button_upload_config_file);
         x_lable_location = x_lable_location + x_text_length + x_step;
-        tool_text_upload_config_file_path = buildJTextField("", "ÉÏ´«ÎÄ¼şÂ·¾¶", text_columns, x_lable_location, y_lable_location, x_text_length * 4, y_text_heigth);
+        tool_text_upload_config_file_path = buildJTextField("", "ä¸Šä¼ æ–‡ä»¶è·¯å¾„", text_columns, x_lable_location, y_lable_location, x_text_length * 4, y_text_heigth);
         systemSetupPanel.add(tool_text_upload_config_file_path);
         tool_file_chooser_select_config_upload_file = new JFileChooser();
         tool_file_chooser_select_config_upload_file.setCurrentDirectory(new File(""));
         systemSetupPanel.add(tool_file_chooser_select_config_upload_file);
         tooi_ui_config_file_upload();
 
-        //ÖØÆô
-        tool_system_reboot_button = buildJButton("ÏµÍ³ÖØÆô", 20, 180, 150, y_text_heigth);
+        //é‡å¯
+        tool_system_reboot_button = buildJButton("ç³»ç»Ÿé‡å¯", 20, 180, 150, y_text_heigth);
         systemSetupPanel.add(tool_system_reboot_button);
         tooi_ui_reboot_system();
 
@@ -374,33 +374,33 @@ public class tool_ui_system extends tool_ui_base {
     	deviceUpgradePanel = new JPanel();
     	deviceUpgradePanel.setPreferredSize(new Dimension(550, 300));
     	deviceUpgradePanel.setLayout(null);
-        deviceUpgradePanel.setBorder(BorderFactory.createTitledBorder("Éè±¸Éı¼¶"));
+        deviceUpgradePanel.setBorder(BorderFactory.createTitledBorder("è®¾å¤‡å‡çº§"));
 
-        // ±êÇ©ÆğÊ¼Î»ÖÃ
+        // æ ‡ç­¾èµ·å§‹ä½ç½®
         int x_lable_location = 20;
         int y_lable_location = 100;
 
-        // ÎÄ±¾¿òÆğÊ¼Î»ÖÃ
+        // æ–‡æœ¬æ¡†èµ·å§‹ä½ç½®
         int x_text_location = 100;
         int y_text_location = 20;
 
-        // ²½³¤
+        // æ­¥é•¿
         int x_step = 25;
         int y_step = 30;
 
-        // ÎÄ±¾¿ò³¤¶ÈºÍ¿í¶È
+        // æ–‡æœ¬æ¡†é•¿åº¦å’Œå®½åº¦
         int x_text_length = 130;
         int y_text_heigth = 25;
         int text_columns = 20;
 
-        // ±êÇ©¿ò³¤¶ÈºÍ¿í¶È
+        // æ ‡ç­¾æ¡†é•¿åº¦å’Œå®½åº¦
         int x_lable_length = 80;
 
-//        deviceUpgradePanel.add(buildJLabel("Éı¼¶:", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
-        //Éı¼¶¹¦ÄÜ
+//        deviceUpgradePanel.add(buildJLabel("å‡çº§:", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+        //å‡çº§åŠŸèƒ½
 //        y_lable_location += y_step;
         y_text_location += y_step;
-        deviceUpgradePanel.add(buildJLabel("Éı¼¶ÎÄ¼şÂ·¾¶£º", x_lable_location, y_lable_location, x_text_length, y_text_heigth));
+        deviceUpgradePanel.add(buildJLabel("å‡çº§æ–‡ä»¶è·¯å¾„ï¼š", x_lable_location, y_lable_location, x_text_length, y_text_heigth));
 
         x_lable_location = x_lable_location + x_lable_length + x_step;
         tool_text_field_update_file = buildJTextField("", "updatefile", text_columns, x_lable_location, y_lable_location, x_text_length * 3 + y_text_heigth , y_text_heigth);
@@ -408,7 +408,7 @@ public class tool_ui_system extends tool_ui_base {
 
         x_lable_location = x_lable_location + x_text_length + x_step;
         y_lable_location += y_step*2;
-        tool_button_select_update_file = buildJButton("Ñ¡ÔñÎÄ¼ş", x_lable_location, y_lable_location, x_text_length - y_step, y_text_heigth);
+        tool_button_select_update_file = buildJButton("é€‰æ‹©æ–‡ä»¶", x_lable_location, y_lable_location, x_text_length - y_step, y_text_heigth);
         deviceUpgradePanel.add(tool_button_select_update_file);
         tool_file_chooser_select_update_file = new JFileChooser();
         tool_file_chooser_select_update_file.setCurrentDirectory(new File(""));
@@ -416,7 +416,7 @@ public class tool_ui_system extends tool_ui_base {
         tooi_ui_update_file_select();
 
         x_lable_location = x_lable_location + x_text_length + x_step;
-        tool_button_upload_update_file = buildJButton("ÉÏ´«ÎÄ¼ş", x_lable_location, y_lable_location, x_text_length - y_step, y_text_heigth);
+        tool_button_upload_update_file = buildJButton("ä¸Šä¼ æ–‡ä»¶", x_lable_location, y_lable_location, x_text_length - y_step, y_text_heigth);
         deviceUpgradePanel.add(tool_button_upload_update_file);
         tooi_ui_update_file_upload();
 
@@ -430,34 +430,34 @@ public class tool_ui_system extends tool_ui_base {
     	configImportExportPanel = new JPanel();
   	    configImportExportPanel.setPreferredSize(new Dimension(550, 300));
      	configImportExportPanel.setLayout(null);
-        configImportExportPanel.setBorder(BorderFactory.createTitledBorder("ÅäÖÃµ¼Èëµ¼³ö"));
+        configImportExportPanel.setBorder(BorderFactory.createTitledBorder("é…ç½®å¯¼å…¥å¯¼å‡º"));
 
-        // ±êÇ©ÆğÊ¼Î»ÖÃ
+        // æ ‡ç­¾èµ·å§‹ä½ç½®
         int x_lable_location = 110;
         int y_lable_location = 110;
 
-        // ÎÄ±¾¿òÆğÊ¼Î»ÖÃ
+        // æ–‡æœ¬æ¡†èµ·å§‹ä½ç½®
         int x_text_location = 100;
         int y_text_location = 20;
 
-        // ²½³¤
+        // æ­¥é•¿
         int x_step = 10;
         int y_step = 50;
 
-        // ÎÄ±¾¿ò³¤¶ÈºÍ¿í¶È
+        // æ–‡æœ¬æ¡†é•¿åº¦å’Œå®½åº¦
         int x_text_length = 130;
         int y_text_heigth = 25;
         int text_columns = 20;
 
-        // ±êÇ©¿ò³¤¶ÈºÍ¿í¶È
+        // æ ‡ç­¾æ¡†é•¿åº¦å’Œå®½åº¦
         int x_lable_length = 80;
 
 //        y_lable_location = y_lable_location + y_text_heigth + x_step;
         x_text_length = x_text_length / 2;
-        tool_button_get_config_file = buildJButton("µ¼³ö", x_lable_location, y_lable_location, x_text_length, y_text_heigth);
+        tool_button_get_config_file = buildJButton("å¯¼å‡º", x_lable_location, y_lable_location, x_text_length, y_text_heigth);
         configImportExportPanel.add(tool_button_get_config_file);
         x_lable_location = x_lable_location + x_text_length + x_step;
-        tool_text_get_config_file_path = buildJTextField("", "±£´æÎÄ¼şÂ·¾¶", text_columns, x_lable_location, y_lable_location, x_text_length * 4, y_text_heigth);
+        tool_text_get_config_file_path = buildJTextField("", "ä¿å­˜æ–‡ä»¶è·¯å¾„", text_columns, x_lable_location, y_lable_location, x_text_length * 4, y_text_heigth);
         configImportExportPanel.add(tool_text_get_config_file_path);
         tool_file_chooser_select_config_save_file = new JFileChooser();
         tool_file_chooser_select_config_save_file.setCurrentDirectory(new File(""));
@@ -466,10 +466,10 @@ public class tool_ui_system extends tool_ui_base {
 
         y_lable_location += y_step;
         x_lable_location = x_lable_location - x_text_length - x_step;
-        tool_button_upload_config_file = buildJButton("µ¼Èë", x_lable_location, y_lable_location, x_text_length, y_text_heigth);
+        tool_button_upload_config_file = buildJButton("å¯¼å…¥", x_lable_location, y_lable_location, x_text_length, y_text_heigth);
         configImportExportPanel.add(tool_button_upload_config_file);
         x_lable_location = x_lable_location + x_text_length + x_step;
-        tool_text_upload_config_file_path = buildJTextField("", "ÉÏ´«ÎÄ¼şÂ·¾¶", text_columns, x_lable_location, y_lable_location, x_text_length * 4, y_text_heigth);
+        tool_text_upload_config_file_path = buildJTextField("", "ä¸Šä¼ æ–‡ä»¶è·¯å¾„", text_columns, x_lable_location, y_lable_location, x_text_length * 4, y_text_heigth);
         configImportExportPanel.add(tool_text_upload_config_file_path);
         tool_file_chooser_select_config_upload_file = new JFileChooser();
         tool_file_chooser_select_config_upload_file.setCurrentDirectory(new File(""));

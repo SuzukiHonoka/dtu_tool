@@ -158,7 +158,7 @@ public class OpSqliteDB {
          }
     }
     
-    // ´´½¨SqliteÊı¾İ¿âÁ¬½Ó
+    // åˆ›å»ºSqliteæ•°æ®åº“è¿æ¥
     public static Connection createConnection() throws SQLException, ClassNotFoundException {
         Class.forName(Class_Name);
         return DriverManager.getConnection(DB_URL);

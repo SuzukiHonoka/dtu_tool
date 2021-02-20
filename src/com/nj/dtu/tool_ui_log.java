@@ -11,16 +11,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class tool_ui_log extends tool_ui_base {
-    //×´Ì¬²éÑ¯Ãæ°å
+    //çŠ¶æ€æŸ¥è¯¢é¢æ¿
     JPanel panel_log = new JPanel();
 
-    //´®¿ÚÊµÀı
+    //ä¸²å£å®ä¾‹
     tool_uart serialPort;
-    //Êı¾İ½»»¥ÊµÀı
+    //æ•°æ®äº¤äº’å®ä¾‹
     tool_data_process g_data_process;
     tool_device_info g_device_info;
 
-    //»ñÈ¡log
+    //è·å–log
     JTextArea text_field_device_log;
     JScrollPane scroll_device_log;
     JButton tool_button_get_log;
@@ -36,26 +36,26 @@ public class tool_ui_log extends tool_ui_base {
         systemLogPanel = new JPanel();
         systemLogPanel.setPreferredSize(new Dimension(990, 300));
         systemLogPanel.setLayout(null);
-        systemLogPanel.setBorder(BorderFactory.createTitledBorder("ÏµÍ³ÈÕÖ¾"));
+        systemLogPanel.setBorder(BorderFactory.createTitledBorder("ç³»ç»Ÿæ—¥å¿—"));
 
-        // ±êÇ©ÆğÊ¼Î»ÖÃ
+        // æ ‡ç­¾èµ·å§‹ä½ç½®
         int x_lable_location = 20;
         int y_lable_location = 20;
 
-        // ÎÄ±¾¿òÆğÊ¼Î»ÖÃ
+        // æ–‡æœ¬æ¡†èµ·å§‹ä½ç½®
         int x_text_location = 100;
         int y_text_location = 10;
 
-        // ²½³¤
+        // æ­¥é•¿
         int x_step = 10;
         int y_step = 30;
 
-        // ÎÄ±¾¿ò³¤¶ÈºÍ¿í¶È
+        // æ–‡æœ¬æ¡†é•¿åº¦å’Œå®½åº¦
         int x_text_length = 850;
         int y_text_heigth = 250;
         int text_columns = 20;
 
-        // ±êÇ©¿ò³¤¶ÈºÍ¿í¶È
+        // æ ‡ç­¾æ¡†é•¿åº¦å’Œå®½åº¦
         int x_lable_length = 80;
 
         text_field_device_log = buildJJTextArea(3, 50, x_lable_location, y_lable_location, x_text_length, y_text_heigth);
@@ -69,11 +69,11 @@ public class tool_ui_log extends tool_ui_base {
         x_lable_location = x_lable_location + x_text_length + x_step;
         x_text_length = 100;
         y_text_heigth = 25;
-        tool_button_get_log = buildJButton("ÊÕ¼¯log", x_lable_location, y_lable_location, x_text_length, y_text_heigth);
+        tool_button_get_log = buildJButton("æ”¶é›†log", x_lable_location, y_lable_location, x_text_length, y_text_heigth);
         systemLogPanel.add(tool_button_get_log);
 
         y_lable_location = y_lable_location + y_step;
-        tool_button_clear_log = buildJButton("Çå³ı", x_lable_location, y_lable_location, x_text_length, y_text_heigth);
+        tool_button_clear_log = buildJButton("æ¸…é™¤", x_lable_location, y_lable_location, x_text_length, y_text_heigth);
         systemLogPanel.add(tool_button_clear_log);
 
         tool_button_get_log_listener();
@@ -82,13 +82,13 @@ public class tool_ui_log extends tool_ui_base {
         return systemLogPanel;
     }
 
-    //ÊÕ¼¯log
+    //æ”¶é›†log
     public void tool_button_get_log_listener() throws Exception {
         tool_button_get_log.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    //ÊÕ¼¯log
+                    //æ”¶é›†log
                     text_field_device_log.setText(text_field_device_log.getText() + "\n\n\n\n  ############################################################################################################    \n\n\n\n ");
                     serialPort.sendComm(g_data_process.send_cmd_get_log());
                 } catch (Exception e1) {
@@ -98,13 +98,13 @@ public class tool_ui_log extends tool_ui_base {
         });
     }
 
-    //Çå³ı text log
+    //æ¸…é™¤ text log
     public void tool_button_clear_log_listener() throws Exception {
         tool_button_clear_log.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    System.out.println("Çå¿ÕÈÕÖ¾  ");
+                    System.out.println("æ¸…ç©ºæ—¥å¿—  ");
                     text_field_device_log.setText("");
                 } catch (Exception e1) {
                     e1.printStackTrace();

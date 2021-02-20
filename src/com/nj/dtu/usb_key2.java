@@ -14,7 +14,7 @@ public interface usb_key2 extends Library {
 	int epass_login(String pass,int length);
 	
 	
-	//Ìí¼ÓÃØÔ¿¶Ô
+	//æ·»åŠ ç§˜é’¥å¯¹
 	
 	
     public static void main(String[] args) {

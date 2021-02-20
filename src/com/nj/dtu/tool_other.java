@@ -22,9 +22,9 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class tool_other extends tool_ui_base {
-	// ´®¿ÚÊµÀı
+	// ä¸²å£å®ä¾‹
 	tool_uart serialPort;
-	// Êı¾İ½»»¥ÊµÀı
+	// æ•°æ®äº¤äº’å®ä¾‹
 	tool_data_process g_data_process;
 	tool_device_info g_device_info;
 	JCheckBox jCheckBox;
@@ -47,20 +47,20 @@ public class tool_other extends tool_ui_base {
 		otherPanel = new JPanel();
 		otherPanel.setPreferredSize(new Dimension(550, 300));
 		otherPanel.setLayout(null);
-		otherPanel.setBorder(BorderFactory.createTitledBorder("ÆäËû"));
+		otherPanel.setBorder(BorderFactory.createTitledBorder("å…¶ä»–"));
 
-		// ±êÇ©ÆğÊ¼Î»ÖÃ
+		// æ ‡ç­¾èµ·å§‹ä½ç½®
 		int x_lable_location = 40;
 		int y_lable_location = 40;
 
-		tool_set_button = buildJButton("ÉèÖÃÏµÍ³Ê±¼ä", x_lable_location, y_lable_location, 150, 25);
+		tool_set_button = buildJButton("è®¾ç½®ç³»ç»Ÿæ—¶é—´", x_lable_location, y_lable_location, 150, 25);
 		otherPanel.add(tool_set_button);
-		// »ñµÃÊ±¼äÈÕÆÚÄ£ĞÍ
+		// è·å¾—æ—¶é—´æ—¥æœŸæ¨¡å‹
 		SpinnerDateModel model = new SpinnerDateModel();
-		// »ñµÃJSPinner¶ÔÏó
+		// è·å¾—JSPinnerå¯¹è±¡
 		year = new JSpinner(model);
 		year.setValue(new Date());
-		// ÉèÖÃÊ±¼ä¸ñÊ½
+		// è®¾ç½®æ—¶é—´æ ¼å¼
 		JSpinner.DateEditor editor = new JSpinner.DateEditor(year, "yyyy-MM-dd HH:mm:ss");
 		year.setEditor(editor);
 		x_lable_location += 160;
@@ -82,7 +82,7 @@ public class tool_other extends tool_ui_base {
 		 				serialPort.sendComm(g_data_process.send_cmd_run_shell_2(g_data_process.CMD_SET_LOG,
 		 						"/zr_bin/ini_config set LOG:logon 0 "));
 		 			}
-		 			text_log_type.setText(jCheckBox.isSelected()?"ÒÑ´ò¿ª":"ÒÑ¹Ø±Õ");
+		 			text_log_type.setText(jCheckBox.isSelected()?"å·²æ‰“å¼€":"å·²å…³é—­");
 		 		} catch (Exception e1) {
 		 			// TODO Auto-generated catch block
 		 			e1.printStackTrace();
@@ -96,7 +96,7 @@ public class tool_other extends tool_ui_base {
 
 	}
 	
-    //»ñÈ¡Éè±¸ÅäÖÃ²ÎÊı
+    //è·å–è®¾å¤‡é…ç½®å‚æ•°
     public void tool_set_button_listener()  {
     	tool_set_button.addActionListener(new ActionListener() {
             @Override

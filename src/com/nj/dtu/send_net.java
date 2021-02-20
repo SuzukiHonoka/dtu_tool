@@ -36,9 +36,9 @@ public class send_net implements Runnable {
 			socket.getOutputStream().write(send_buffer);
 			socket.getOutputStream().flush();
 			 String data_read = "";
-			  // Í¨¹ıÊäÈëÁ÷¶ÔÏóµÄavailable·½·¨»ñÈ¡Êı×é×Ö½Ú³¤¶È
+			  // é€šè¿‡è¾“å…¥æµå¯¹è±¡çš„availableæ–¹æ³•è·å–æ•°ç»„å­—èŠ‚é•¿åº¦
             byte[] readBuffer = new byte[2048];
-            // ´ÓÏßÂ·ÉÏ¶ÁÈ¡Êı¾İÁ÷
+            // ä»çº¿è·¯ä¸Šè¯»å–æ•°æ®æµ
           
             while ((socket.getInputStream().read(readBuffer)) != -1) {
                 data_read = new String(bytesToHexString(readBuffer).getBytes(), "gb2312");       
@@ -65,7 +65,7 @@ public class send_net implements Runnable {
 
 	}
     /**
-     * Êı×é×ª»»³ÉÊ®Áù½øÖÆ×Ö·û´®
+     * æ•°ç»„è½¬æ¢æˆåå…­è¿›åˆ¶å­—ç¬¦ä¸²
      *
      * @param byte[]
      * @return HexString

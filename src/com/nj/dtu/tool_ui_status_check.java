@@ -7,16 +7,16 @@ import javax.swing.*;
 
 public class tool_ui_status_check extends tool_ui_base {
 
-    //»ñÈ¡RX TX
+    //è·å–RX TX
     JTextField text_field_device_wan_rx;
     JTextField text_field_device_wan_tx;
     JTextField text_field_device_system_runtime;
     JButton tool_status_updata_button;
 
-    //°æ±¾ĞÅÏ¢
+    //ç‰ˆæœ¬ä¿¡æ¯
     JTextField text_field_device_version;
 
-    //»ñÈ¡ping
+    //è·å–ping
     JTextArea text_field_device_ping;
     JScrollPane scroll_device_ping;
     JButton tool_status_ping_button;
@@ -24,9 +24,9 @@ public class tool_ui_status_check extends tool_ui_base {
     JTextField text_field_device_ping_addr;
     JLabel tool_result_ping_label;
 
-    //´®¿ÚÊµÀı
+    //ä¸²å£å®ä¾‹
     tool_uart serialPort;
-    //Êı¾İ½»»¥ÊµÀı
+    //æ•°æ®äº¤äº’å®ä¾‹
     tool_data_process g_data_process;
     tool_device_info g_device_info;
     
@@ -49,60 +49,60 @@ public class tool_ui_status_check extends tool_ui_base {
          checkStatusPanel = new JPanel();
          checkStatusPanel.setPreferredSize(new Dimension(550, 300));
          checkStatusPanel.setLayout(null);
-        checkStatusPanel.setBorder(BorderFactory.createTitledBorder("×´Ì¬²éÑ¯"));
+        checkStatusPanel.setBorder(BorderFactory.createTitledBorder("çŠ¶æ€æŸ¥è¯¢"));
 
-        // ±êÇ©ÆğÊ¼Î»ÖÃ
+        // æ ‡ç­¾èµ·å§‹ä½ç½®
         int x_lable_location = 40;
         int y_lable_location = 40;
 
-        // ÎÄ±¾¿òÆğÊ¼Î»ÖÃ
+        // æ–‡æœ¬æ¡†èµ·å§‹ä½ç½®
         int x_text_location = 120;
         int y_text_location = 40;
 
-        // ²½³¤
+        // æ­¥é•¿
         int x_step = 20;
         int y_step = 50;
 
-        // ÎÄ±¾¿ò³¤¶ÈºÍ¿í¶È
+        // æ–‡æœ¬æ¡†é•¿åº¦å’Œå®½åº¦
         int x_text_length = 185;
         int y_text_heigth = 25;
         int text_columns = 20;
 
-        // ±êÇ©¿ò³¤¶ÈºÍ¿í¶È
+        // æ ‡ç­¾æ¡†é•¿åº¦å’Œå®½åº¦
         int x_lable_length = 80;
 
-        //   *************  Éè±¸»ù±¾ĞÅÏ¢    **********************
-        checkStatusPanel.add(buildJLabel("ÉÏĞĞÁ÷Á¿", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+        //   *************  è®¾å¤‡åŸºæœ¬ä¿¡æ¯    **********************
+        checkStatusPanel.add(buildJLabel("ä¸Šè¡Œæµé‡", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
         text_field_device_wan_tx = buildJTextField("", "text_field_device_wan_tx", text_columns, x_text_location, y_text_location, x_text_length, y_text_heigth);
         checkStatusPanel.add(text_field_device_wan_tx);
         text_field_device_wan_tx.setEditable(false);
 
         y_lable_location += y_step;
         y_text_location += y_step;
-        checkStatusPanel.add(buildJLabel("ÏÂĞĞÁ÷Á¿", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+        checkStatusPanel.add(buildJLabel("ä¸‹è¡Œæµé‡", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
         text_field_device_wan_rx = buildJTextField("", "text_field_device_wan_rx", text_columns, x_text_location, y_text_location, x_text_length, y_text_heigth);
         checkStatusPanel.add(text_field_device_wan_rx);
         text_field_device_wan_rx.setEditable(false);
 
         y_lable_location += y_step;
         y_text_location += y_step;
-        checkStatusPanel.add(buildJLabel("ÔËĞĞÊ±¼ä", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+        checkStatusPanel.add(buildJLabel("è¿è¡Œæ—¶é—´", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
         text_field_device_system_runtime = buildJTextField("", "text_field_device_wan_rx", text_columns, x_text_location, y_text_location, x_text_length, y_text_heigth);
         checkStatusPanel.add(text_field_device_system_runtime);
         text_field_device_system_runtime.setEditable(false);
 
         y_lable_location += y_step;
         y_text_location += y_step;
-        checkStatusPanel.add(buildJLabel("°æ±¾ĞÅÏ¢", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+        checkStatusPanel.add(buildJLabel("ç‰ˆæœ¬ä¿¡æ¯", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
         text_field_device_version = buildJTextField("", "text_field_device_version", text_columns, x_text_location, y_text_location, x_text_length, y_text_heigth);
         checkStatusPanel.add(text_field_device_version);
         text_field_device_version.setEditable(false);
 
-        //Ìí¼Ó°´Å¥
+        //æ·»åŠ æŒ‰é’®
         y_text_location += y_step;
-        tool_status_updata_button = super.buildJButton("»ñÈ¡×´Ì¬", x_lable_location, y_text_location, 150, 25);
+        tool_status_updata_button = super.buildJButton("è·å–çŠ¶æ€", x_lable_location, y_text_location, 150, 25);
         
-        //Ìí¼Ó¼àÌıÊÂ¼ş
+        //æ·»åŠ ç›‘å¬äº‹ä»¶
         try {
             tool_status_updata_button_listener();
         } catch (Exception e) {
@@ -111,7 +111,7 @@ public class tool_ui_status_check extends tool_ui_base {
         }
         checkStatusPanel.add(tool_status_updata_button);
         text_send = buildJTextField("/zr_bin/atc at+csq", "text_send", text_columns, 330, 100, x_text_length, y_text_heigth);
-        button_send = buildJButton("·¢ËÍ", 350, 140,150, 30);
+        button_send = buildJButton("å‘é€", 350, 140,150, 30);
         button_send.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -135,28 +135,28 @@ public class tool_ui_status_check extends tool_ui_base {
     	 communicationTestPanel = new JPanel();
         communicationTestPanel.setPreferredSize(new Dimension(550, 300));
         communicationTestPanel.setLayout(null);
-        communicationTestPanel.setBorder(BorderFactory.createTitledBorder("Í¨ĞÅ²âÊÔ"));
-        // ±êÇ©ÆğÊ¼Î»ÖÃ
+        communicationTestPanel.setBorder(BorderFactory.createTitledBorder("é€šä¿¡æµ‹è¯•"));
+        // æ ‡ç­¾èµ·å§‹ä½ç½®
         int x_lable_location = 20;
         int y_lable_location = 80;
 
-        // ÎÄ±¾¿òÆğÊ¼Î»ÖÃ
+        // æ–‡æœ¬æ¡†èµ·å§‹ä½ç½®
         int x_text_location = 20;
         int y_text_location = 40;
 
-        // ²½³¤
+        // æ­¥é•¿
         int x_step = 10;
         int y_step = 30;
 
-        // ÎÄ±¾¿ò³¤¶ÈºÍ¿í¶È
+        // æ–‡æœ¬æ¡†é•¿åº¦å’Œå®½åº¦
         int x_text_length = 100;
         int y_text_heigth = 25;
         int text_columns = 20;
 
-        // ±êÇ©¿ò³¤¶ÈºÍ¿í¶È
+        // æ ‡ç­¾æ¡†é•¿åº¦å’Œå®½åº¦
         int x_lable_length = 80;
 
-        communicationTestPanel.add(buildJLabel("IPµØÖ·:", x_text_location, y_text_location, x_text_length, y_text_heigth));
+        communicationTestPanel.add(buildJLabel("IPåœ°å€:", x_text_location, y_text_location, x_text_length, y_text_heigth));
         x_text_location = x_text_location + x_text_length - x_step * 4;
         text_field_device_ping_addr = buildJTextField("", "text_field_device_ping_addr", text_columns, x_text_location, y_text_location, (x_text_length - y_step) * 2, y_text_heigth);
         communicationTestPanel.add(text_field_device_ping_addr);
@@ -166,10 +166,10 @@ public class tool_ui_status_check extends tool_ui_base {
         communicationTestPanel.add(tool_status_ping_button);
 
         x_text_location = x_text_location + x_text_length + x_step;
-        tool_status_ping__clear_button = super.buildJButton("Çå³ı", x_text_location - x_step, y_text_location, x_text_length - x_step * 2, y_text_heigth);
+        tool_status_ping__clear_button = super.buildJButton("æ¸…é™¤", x_text_location - x_step, y_text_location, x_text_length - x_step * 2, y_text_heigth);
         communicationTestPanel.add(tool_status_ping__clear_button);
 
-        tool_result_ping_label = super.buildJLabel("»ØÏÔ½á¹û:", x_lable_location, y_lable_location, x_text_length, y_text_heigth);
+        tool_result_ping_label = super.buildJLabel("å›æ˜¾ç»“æœ:", x_lable_location, y_lable_location, x_text_length, y_text_heigth);
         communicationTestPanel.add(tool_result_ping_label);
 
         y_lable_location = y_lable_location + y_step;
@@ -200,18 +200,18 @@ public class tool_ui_status_check extends tool_ui_base {
     }
 
     /**
-     * ·µ»ØÈÕÊ±·ÖÃë
+     * è¿”å›æ—¥æ—¶åˆ†ç§’
      *
      * @param second
      * @return
      */
     public String secondToTime(long second) {
-        long days = second / 86400;//×ª»»ÌìÊı
-        second = second % 86400;//Ê£ÓàÃëÊı
-        long hours = second / 3600;//×ª»»Ğ¡Ê±Êı
-        second = second % 3600;//Ê£ÓàÃëÊı
-        long minutes = second / 60;//×ª»»·ÖÖÓ
-        second = second % 60;//Ê£ÓàÃëÊı
+        long days = second / 86400;//è½¬æ¢å¤©æ•°
+        second = second % 86400;//å‰©ä½™ç§’æ•°
+        long hours = second / 3600;//è½¬æ¢å°æ—¶æ•°
+        second = second % 3600;//å‰©ä½™ç§’æ•°
+        long minutes = second / 60;//è½¬æ¢åˆ†é’Ÿ
+        second = second % 60;//å‰©ä½™ç§’æ•°
         if (0 < days) {
             return days + "D-" + hours + "H-" + minutes + "M-" + second + "S";
         } else {
@@ -233,13 +233,13 @@ public class tool_ui_status_check extends tool_ui_base {
         text_field_device_ping.setText(g_device_info.ping_info);
     }
 
-    //»ñÈ¡Éè±¸ÅäÖÃ²ÎÊı
+    //è·å–è®¾å¤‡é…ç½®å‚æ•°
     public void tool_status_updata_button_listener() throws Exception {
         tool_status_updata_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    //»ñÈ¡Éè±¸²ÎÊı
+                    //è·å–è®¾å¤‡å‚æ•°
                     serialPort.sendComm(g_data_process.send_cmd_status_rx_tx_runtime());
                 } catch (Exception e1) {
                     e1.printStackTrace();
@@ -248,7 +248,7 @@ public class tool_ui_status_check extends tool_ui_base {
         });
     }
 
-    //ping ¼ì²â°´Å¥
+    //ping æ£€æµ‹æŒ‰é’®
     public void tool_status_ping_button_listener() throws Exception {
         tool_status_ping_button.addActionListener(new ActionListener() {
             @Override
@@ -264,8 +264,8 @@ public class tool_ui_status_check extends tool_ui_base {
                         serialPort.sendComm(g_data_process.send_cmd_ping(ping_url));
                         return;
                     }
-                    //ipµØÖ·ºÍurlµØÖ·¼ì²â´íÎó
-                    JOptionPane.showMessageDialog(null, "ÇëÊäÈëÕıÈ·µÄIPµØÖ·»òÕßÊÇurl", "¾¯   ¸æ  £¡£¡£¡", 1);
+                    //ipåœ°å€å’Œurlåœ°å€æ£€æµ‹é”™è¯¯
+                    JOptionPane.showMessageDialog(null, "è¯·è¾“å…¥æ­£ç¡®çš„IPåœ°å€æˆ–è€…æ˜¯url", "è­¦   å‘Š  ï¼ï¼ï¼", 1);
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -273,13 +273,13 @@ public class tool_ui_status_check extends tool_ui_base {
         });
     }
 
-    //ping Çå³ı
+    //ping æ¸…é™¤
     public void tool_status_ping__clear_button_listener() throws Exception {
         tool_status_ping__clear_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    //»ñÈ¡Éè±¸²ÎÊı
+                    //è·å–è®¾å¤‡å‚æ•°
                     text_field_device_ping.setText("");
                     g_device_info.tool_device_ping_info_clear();
                 } catch (Exception e1) {

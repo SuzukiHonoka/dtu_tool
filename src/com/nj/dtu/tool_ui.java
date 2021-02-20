@@ -26,9 +26,9 @@ public class tool_ui extends tool_ui_base {
     tool_other Panel_other;
     tool_ui_login Panel_login;
     tool_ui_set_user Panel_set;
-    //´®¿ÚÊµÀı
+    //ä¸²å£å®ä¾‹
     tool_uart serialPort;
-    //Êı¾İ½»»¥ÊµÀı
+    //æ•°æ®äº¤äº’å®ä¾‹
     tool_data_process g_data_process;
     tool_device_info g_device_info;
     LoadingPanel glasspane = new LoadingPanel();
@@ -36,12 +36,12 @@ public class tool_ui extends tool_ui_base {
     public tool_ui(tool_uart serialPort, tool_data_process data_process, tool_device_info device_info) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            frame.setTitle("TOOLÅäÖÃ¹¤¾ß");
+            frame.setTitle("TOOLé…ç½®å·¥å…·");
             Image logo = new ImageIcon(tool_ui.class.getResource("logo.png")).getImage();  
             frame.setIconImage(logo);
             frame.setSize(1000, 720);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //¹Ø±ÕºóÍË³ö
-            frame.setLocationRelativeTo(null);//´°¿ÚÔÚÆÁÄ»ÖĞ¼äÏÔÊ¾
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //å…³é—­åé€€å‡º
+            frame.setLocationRelativeTo(null);//çª—å£åœ¨å±å¹•ä¸­é—´æ˜¾ç¤º
             this.serialPort = serialPort;
             this.g_data_process = data_process;
             g_device_info = device_info;
@@ -58,7 +58,7 @@ public class tool_ui extends tool_ui_base {
             Panel_set = new tool_ui_set_user(this);
             centerPanel = new JPanel();
             Panel_set.tool_ui_login_init();
-            //´´½¨Ê÷ĞÎ²Ëµ¥
+            //åˆ›å»ºæ ‘å½¢èœå•
             this.createTreeMenu();
 
             centerPanel.setPreferredSize(new Dimension(600, 300));
@@ -131,26 +131,26 @@ public class tool_ui extends tool_ui_base {
     	glasspane.stop();
     }
     private void createTreeMenu() {
-        //ÒÔ¼°²Ëµ¥
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode("¹¦ÄÜµ¼º½");
-        DefaultMutableTreeNode paramConfig = new DefaultMutableTreeNode("²ÎÊıÅäÖÃ");
-        DefaultMutableTreeNode searchStatus = new DefaultMutableTreeNode("×´Ì¬²éÑ¯");
-//        DefaultMutableTreeNode sysSetup = new DefaultMutableTreeNode("ÏµÍ³ÉèÖÃ");
-       // DefaultMutableTreeNode certConfig = new DefaultMutableTreeNode("Ö¤ÊéÅäÖÃ");
-        DefaultMutableTreeNode certConfig2 = new DefaultMutableTreeNode("Ö¤ÊéÅäÖÃ");
-        DefaultMutableTreeNode communicationTest = new DefaultMutableTreeNode("Í¨ĞÅ²âÊÔ");
-        DefaultMutableTreeNode deivceUpgrade = new DefaultMutableTreeNode("Éè±¸Éı¼¶");
-        DefaultMutableTreeNode configImportExport = new DefaultMutableTreeNode("ÅäÖÃµ¼Èëµ¼³ö");
-        DefaultMutableTreeNode other = new DefaultMutableTreeNode("ÆäËû");
+        //ä»¥åŠèœå•
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode("åŠŸèƒ½å¯¼èˆª");
+        DefaultMutableTreeNode paramConfig = new DefaultMutableTreeNode("å‚æ•°é…ç½®");
+        DefaultMutableTreeNode searchStatus = new DefaultMutableTreeNode("çŠ¶æ€æŸ¥è¯¢");
+//        DefaultMutableTreeNode sysSetup = new DefaultMutableTreeNode("ç³»ç»Ÿè®¾ç½®");
+       // DefaultMutableTreeNode certConfig = new DefaultMutableTreeNode("è¯ä¹¦é…ç½®");
+        DefaultMutableTreeNode certConfig2 = new DefaultMutableTreeNode("è¯ä¹¦é…ç½®");
+        DefaultMutableTreeNode communicationTest = new DefaultMutableTreeNode("é€šä¿¡æµ‹è¯•");
+        DefaultMutableTreeNode deivceUpgrade = new DefaultMutableTreeNode("è®¾å¤‡å‡çº§");
+        DefaultMutableTreeNode configImportExport = new DefaultMutableTreeNode("é…ç½®å¯¼å…¥å¯¼å‡º");
+        DefaultMutableTreeNode other = new DefaultMutableTreeNode("å…¶ä»–");
 
-        // ¶ş¼¶²Ëµ¥
-        DefaultMutableTreeNode deviceInfo = new DefaultMutableTreeNode("Éè±¸ĞÅÏ¢");
-        DefaultMutableTreeNode principalCardDial = new DefaultMutableTreeNode("Ö÷¿¨²¦ºÅ");
-        DefaultMutableTreeNode viceCardDial = new DefaultMutableTreeNode("¸±¿¨²¦ºÅ");
-        DefaultMutableTreeNode tunnelParam = new DefaultMutableTreeNode("ËíµÀ²ÎÊı");
-        DefaultMutableTreeNode internetAccessParam = new DefaultMutableTreeNode("Íø¿Ú²ÎÊı");
-        DefaultMutableTreeNode businessCom = new DefaultMutableTreeNode("ÒµÎñ´®¿Ú");
-        DefaultMutableTreeNode tcp = new DefaultMutableTreeNode("TCP²ÎÊı");
+        // äºŒçº§èœå•
+        DefaultMutableTreeNode deviceInfo = new DefaultMutableTreeNode("è®¾å¤‡ä¿¡æ¯");
+        DefaultMutableTreeNode principalCardDial = new DefaultMutableTreeNode("ä¸»å¡æ‹¨å·");
+        DefaultMutableTreeNode viceCardDial = new DefaultMutableTreeNode("å‰¯å¡æ‹¨å·");
+        DefaultMutableTreeNode tunnelParam = new DefaultMutableTreeNode("éš§é“å‚æ•°");
+        DefaultMutableTreeNode internetAccessParam = new DefaultMutableTreeNode("ç½‘å£å‚æ•°");
+        DefaultMutableTreeNode businessCom = new DefaultMutableTreeNode("ä¸šåŠ¡ä¸²å£");
+        DefaultMutableTreeNode tcp = new DefaultMutableTreeNode("TCPå‚æ•°");
         
         root.add(paramConfig);
         root.add(searchStatus);
@@ -177,12 +177,12 @@ public class tool_ui extends tool_ui_base {
         tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.setBorder(BorderFactory.createEmptyBorder(15, 20, 0, 0));
        
-        // Ä¬ÈÏÕ¹¿ªÊ÷
+        // é»˜è®¤å±•å¼€æ ‘
         expandTree(tree, new TreePath(root));
         tree.setSelectionPath(new TreePath(deviceInfo));
         treePanel = new JPanel();
         treePanel.add(tree);
-        treePanel.setBorder(BorderFactory.createTitledBorder("¹¦ÄÜµ¼º½"));
+        treePanel.setBorder(BorderFactory.createTitledBorder("åŠŸèƒ½å¯¼èˆª"));
         treePanel.setPreferredSize(new Dimension(300, 300));
         treePanel.setLayout(new GridLayout(0, 1));
         //JScrollPane scrollPane = new JScrollPane(treePanel);
@@ -196,34 +196,34 @@ public class tool_ui extends tool_ui_base {
                     DefaultMutableTreeNode selectionNode = (DefaultMutableTreeNode) tree
                             .getLastSelectedPathComponent();
                     centerPanel.removeAll();
-                    if ("Ö÷¿¨²¦ºÅ".equals(selectionNode.toString())) {
+                    if ("ä¸»å¡æ‹¨å·".equals(selectionNode.toString())) {
                         centerPanel.add(Panel_every.principalCardDial( serialPort, g_data_process));
-                    } else if ("ËíµÀ²ÎÊı".equals(selectionNode.toString())) {
+                    } else if ("éš§é“å‚æ•°".equals(selectionNode.toString())) {
                         centerPanel .add(Panel_every.tunnelParamPanel( serialPort, g_data_process));
-                    } else if ("Íø¿Ú²ÎÊı".equals(selectionNode.toString())) {
+                    } else if ("ç½‘å£å‚æ•°".equals(selectionNode.toString())) {
                         centerPanel .add(Panel_every.internetAccessPanel( serialPort, g_data_process));
-                    } else if ("¸±¿¨²¦ºÅ".equals(selectionNode.toString())) {
+                    } else if ("å‰¯å¡æ‹¨å·".equals(selectionNode.toString())) {
                         centerPanel.add(Panel_every.viceCardDialPanel(serialPort, g_data_process));
-                    } else if ("ÒµÎñ´®¿Ú".equals(selectionNode.toString())) {
+                    } else if ("ä¸šåŠ¡ä¸²å£".equals(selectionNode.toString())) {
                         centerPanel .add( Panel_every.businessSerialPortPanel( serialPort, g_data_process));
-                    } else if ("TCP²ÎÊı".equals(selectionNode.toString())) {
+                    } else if ("TCPå‚æ•°".equals(selectionNode.toString())) {
                         centerPanel .add(Panel_every.otherPanel( serialPort, g_data_process));
-                    } else if ("×´Ì¬²éÑ¯".equals(selectionNode.toString())) {
+                    } else if ("çŠ¶æ€æŸ¥è¯¢".equals(selectionNode.toString())) {
                         centerPanel .add(Panel_status_check.checkStatusPanel());
                     }
-//                    else if ("Ö¤ÊéÅäÖÃ".equals(selectionNode.toString())) {
+//                    else if ("è¯ä¹¦é…ç½®".equals(selectionNode.toString())) {
 //                        centerPanel.add(Panel_x509.certConfigPanel());
 //                    }
-                    else if ("Ö¤ÊéÅäÖÃ".equals(selectionNode.toString())) {
+                    else if ("è¯ä¹¦é…ç½®".equals(selectionNode.toString())) {
                         centerPanel.add(Panel_certificate.certConfigPanel());
                     }  
-                    else if ("Í¨ĞÅ²âÊÔ".equals(selectionNode.toString())) {
+                    else if ("é€šä¿¡æµ‹è¯•".equals(selectionNode.toString())) {
                         centerPanel.add(Panel_status_check.communicationTestPanel());
-                    } else if ("Éè±¸Éı¼¶".equals(selectionNode.toString())) {
+                    } else if ("è®¾å¤‡å‡çº§".equals(selectionNode.toString())) {
                         centerPanel.add(Panel_system.deviceUpgradePanel());
-                    } else if ("ÅäÖÃµ¼Èëµ¼³ö".equals(selectionNode.toString())) {
+                    } else if ("é…ç½®å¯¼å…¥å¯¼å‡º".equals(selectionNode.toString())) {
                         centerPanel.add(Panel_system.configImportExportPanel());
-                    }else if ("ÆäËû".equals(selectionNode.toString())) {
+                    }else if ("å…¶ä»–".equals(selectionNode.toString())) {
                         centerPanel.add(Panel_other.otherPanel());
                     }else{
                     	 centerPanel.add( Panel_every.deviceInfoPanelInit(serialPort, g_data_process));
@@ -233,11 +233,11 @@ public class tool_ui extends tool_ui_base {
                 }
             }
         });
-      ///µ¥Æğ¸öÏß³Ì´¦ÀíÏÔÊ¾  Ô¤¼ÓÔØ 
+      ///å•èµ·ä¸ªçº¿ç¨‹å¤„ç†æ˜¾ç¤º  é¢„åŠ è½½ 
         Thread thread = new Thread(){
          public void run()
          {
-        	 //»ñÈ¡Éè±¸²ÎÊı
+        	 //è·å–è®¾å¤‡å‚æ•°
              try {
             	  Panel_every.principalCardDial( serialPort, g_data_process);
                   Panel_every.tunnelParamPanel( serialPort, g_data_process);
@@ -270,10 +270,10 @@ public class tool_ui extends tool_ui_base {
             for (Enumeration<?> e = node.children(); e.hasMoreElements(); ) {
                 TreeNode n = (TreeNode) e.nextElement();
                 TreePath path = parent.pathByAddingChild(n);
-                expandTree(tree, path);//Õ¹¿ª½Úµãµİ¹é
+                expandTree(tree, path);//å±•å¼€èŠ‚ç‚¹é€’å½’
             }
         }
-        tree.expandPath(parent);//Õ¹¿ª¸Ã¸¸½ÚµãÏÂÃæµÄ×Ó½Úµã
+        tree.expandPath(parent);//å±•å¼€è¯¥çˆ¶èŠ‚ç‚¹ä¸‹é¢çš„å­èŠ‚ç‚¹
     }
 
 }

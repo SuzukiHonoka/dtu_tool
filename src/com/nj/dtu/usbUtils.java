@@ -18,13 +18,13 @@ public class usbUtils {
 
 
 
-    //Êı×Ö
+    //æ•°å­—
     public static final String REG_NUMBER = ".*\\d+.*";
-    //Ğ¡Ğ´×ÖÄ¸
+    //å°å†™å­—æ¯
     public static final String REG_UPPERCASE = ".*[A-Z]+.*";
-    //´óĞ´×ÖÄ¸
+    //å¤§å†™å­—æ¯
     public static final String REG_LOWERCASE = ".*[a-z]+.*";
-    //ÌØÊâ·ûºÅ
+    //ç‰¹æ®Šç¬¦å·
     public static final String REG_SYMBOL = ".*[~!@#$%^&*()_+|<>,.?/:;'\\[\\]{}\"]+.*";
  
     public static boolean checkPasswordRule(String password){

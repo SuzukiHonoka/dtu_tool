@@ -15,21 +15,21 @@ import net.sf.json.JSONObject;
 
 public class tool_ui_x509 extends tool_ui_base {
 
-    //´®¿ÚÊµÀı
+    //ä¸²å£å®ä¾‹
     tool_uart serialPort;
-    //Êı¾İ½»»¥ÊµÀı
+    //æ•°æ®äº¤äº’å®ä¾‹
     tool_data_process g_data_process;
     tool_device_info g_device_info;
 
-    JTextField text_field_x509_contry; //¹ú¼Ò(C)
-    JTextField text_field_x509_province; //Ê¡·İ(S)
-    JTextField text_field_x509_location; //³ÇÊĞ(L)
-    JTextField text_field_x509_organization; //¹«Ë¾(O)
-    JTextField text_field_x509_organizationalUnit; //×éÖ¯(OU)
-    JTextField text_field_x509_cn; //ÓµÓĞÕß(CN)
+    JTextField text_field_x509_contry; //å›½å®¶(C)
+    JTextField text_field_x509_province; //çœä»½(S)
+    JTextField text_field_x509_location; //åŸå¸‚(L)
+    JTextField text_field_x509_organization; //å…¬å¸(O)
+    JTextField text_field_x509_organizationalUnit; //ç»„ç»‡(OU)
+    JTextField text_field_x509_cn; //æ‹¥æœ‰è€…(CN)
 
-    //°´Å¥
-    JButton tool_button_upload_csr; //µ¼³öÇëÇóÖ¤Êé
+    //æŒ‰é’®
+    JButton tool_button_upload_csr; //å¯¼å‡ºè¯·æ±‚è¯ä¹¦
     JFileChooser tool_file_chooser_select_req_save_file;
     String tool_text_x509req_save_file;
     JButton tool_button_get_csr;
@@ -51,71 +51,71 @@ public class tool_ui_x509 extends tool_ui_base {
     	certConfigPanel = new JPanel();
        certConfigPanel.setPreferredSize(new Dimension(550, 300));
        certConfigPanel.setLayout(null);
-        certConfigPanel.setBorder(BorderFactory.createTitledBorder("Ö¤ÊéÅäÖÃ"));
+        certConfigPanel.setBorder(BorderFactory.createTitledBorder("è¯ä¹¦é…ç½®"));
 
-        // ±êÇ©ÆğÊ¼Î»ÖÃ
+        // æ ‡ç­¾èµ·å§‹ä½ç½®
         int x_lable_location = 40;
         int y_lable_location = 30;
-        // ÎÄ±¾¿òÆğÊ¼Î»ÖÃ
+        // æ–‡æœ¬æ¡†èµ·å§‹ä½ç½®
         int x_text_location = 120;
         int y_text_location = 50;
 
-        // ²½³¤
+        // æ­¥é•¿
         int x_step = 10;
         int y_step = 30;
 
-        // ÎÄ±¾¿ò³¤¶ÈºÍ¿í¶È
+        // æ–‡æœ¬æ¡†é•¿åº¦å’Œå®½åº¦
         int x_text_length = 220;
         int y_text_heigth = 25;
         int text_columns = 20;
 
-        // ±êÇ©¿ò³¤¶ÈºÍ¿í¶È
+        // æ ‡ç­¾æ¡†é•¿åº¦å’Œå®½åº¦
         int x_lable_length = 80;
 
-        //   *************  µ¼³öÇëÇóÖ¤Êé    **********************
-//        certConfigPanel.add(super.buildJLabel("ÇëÇóÖ¤ÊéÅäÖÃ:", x_lable_location, y_lable_location, x_lable_length * 2, y_text_heigth));
+        //   *************  å¯¼å‡ºè¯·æ±‚è¯ä¹¦    **********************
+//        certConfigPanel.add(super.buildJLabel("è¯·æ±‚è¯ä¹¦é…ç½®:", x_lable_location, y_lable_location, x_lable_length * 2, y_text_heigth));
 //        y_lable_location += y_step;
-        certConfigPanel.add(buildJLabel("¹ú¼Ò(C)", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+        certConfigPanel.add(buildJLabel("å›½å®¶(C)", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
         text_field_x509_contry = buildJTextField("", "contry", text_columns, x_text_location, y_lable_location, x_text_length, y_text_heigth);
         certConfigPanel.add(text_field_x509_contry);
 
         y_lable_location += y_step;
         y_text_location += y_step;
-        certConfigPanel.add(buildJLabel("Ê¡·İ(S)", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+        certConfigPanel.add(buildJLabel("çœä»½(S)", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
         text_field_x509_province = buildJTextField("", "province", text_columns, x_text_location, y_lable_location, x_text_length, y_text_heigth);
         certConfigPanel.add(text_field_x509_province);
 
         y_lable_location += y_step;
         y_text_location += y_step;
-        certConfigPanel.add(buildJLabel("³ÇÊĞ(L)", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+        certConfigPanel.add(buildJLabel("åŸå¸‚(L)", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
         text_field_x509_location = buildJTextField("", "location", text_columns, x_text_location, y_lable_location, x_text_length, y_text_heigth);
         certConfigPanel.add(text_field_x509_location);
 
         y_lable_location += y_step;
         y_text_location += y_step;
-        certConfigPanel.add(buildJLabel("²¿ÃÅ(OU)", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+        certConfigPanel.add(buildJLabel("éƒ¨é—¨(OU)", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
         text_field_x509_organizationalUnit = buildJTextField("", "organizationalUnit", text_columns, x_text_location, y_lable_location, x_text_length, y_text_heigth);
         certConfigPanel.add(text_field_x509_organizationalUnit);
 
         y_lable_location += y_step;
         y_text_location += y_step;
-        certConfigPanel.add(buildJLabel("×éÖ¯(O)", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+        certConfigPanel.add(buildJLabel("ç»„ç»‡(O)", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
         text_field_x509_organization = buildJTextField("", "organization", text_columns, x_text_location, y_lable_location, x_text_length, y_text_heigth);
         certConfigPanel.add(text_field_x509_organization);
 
         y_lable_location += y_step;
         y_text_location += y_step;
-        certConfigPanel.add(buildJLabel("ÓµÓĞÕß(CN)", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+        certConfigPanel.add(buildJLabel("æ‹¥æœ‰è€…(CN)", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
         text_field_x509_cn = buildJTextField("", "cn", text_columns, x_text_location, y_lable_location, x_text_length, y_text_heigth);
         certConfigPanel.add(text_field_x509_cn);
 
         y_lable_location += y_step;
         y_text_location += y_step;
-        tool_button_get_csr = super.buildJButton("»ñÈ¡Ö¤ÊéÅäÖÃ", x_lable_location, y_lable_location, x_lable_length * 2 - x_step, y_text_heigth);
+        tool_button_get_csr = super.buildJButton("è·å–è¯ä¹¦é…ç½®", x_lable_location, y_lable_location, x_lable_length * 2 - x_step, y_text_heigth);
         certConfigPanel.add(tool_button_get_csr);
 
         x_lable_location = x_lable_location + x_lable_length * 2;
-        tool_button_upload_csr = super.buildJButton("µ¼³öÇëÇóÖ¤Êé", x_lable_location, y_lable_location, x_lable_length * 2 - x_step, y_text_heigth);
+        tool_button_upload_csr = super.buildJButton("å¯¼å‡ºè¯·æ±‚è¯ä¹¦", x_lable_location, y_lable_location, x_lable_length * 2 - x_step, y_text_heigth);
         certConfigPanel.add(tool_button_upload_csr);
         tool_file_chooser_select_req_save_file = new JFileChooser();
         tool_file_chooser_select_req_save_file.setCurrentDirectory(new File(""));
@@ -125,16 +125,16 @@ public class tool_ui_x509 extends tool_ui_base {
         y_lable_location += y_step;
         y_text_location += y_step;
         x_lable_location = 40;
-        tool_button_set_csr = super.buildJButton("ÅäÖÃÖ¤Êé", x_lable_location, y_lable_location, x_lable_length * 2 - x_step, y_text_heigth);
+        tool_button_set_csr = super.buildJButton("é…ç½®è¯ä¹¦", x_lable_location, y_lable_location, x_lable_length * 2 - x_step, y_text_heigth);
         certConfigPanel.add(tool_button_set_csr);
 
         x_lable_location = x_lable_location + x_lable_length * 2;
-        tool_button_upload_crt = super.buildJButton("µ¼ÈëÇ©·¢Ö¤Êé", x_lable_location, y_lable_location, x_lable_length * 2 - x_step, y_text_heigth);
+        tool_button_upload_crt = super.buildJButton("å¯¼å…¥ç­¾å‘è¯ä¹¦", x_lable_location, y_lable_location, x_lable_length * 2 - x_step, y_text_heigth);
         certConfigPanel.add(tool_button_upload_crt);
         tool_file_chooser_select_csr_file = new JFileChooser();
         tool_file_chooser_select_csr_file.setCurrentDirectory(new File(""));
         certConfigPanel.add(tool_file_chooser_select_csr_file);
-        //Ìí¼Ó¼àÌıÊÂ¼ş
+        //æ·»åŠ ç›‘å¬äº‹ä»¶
         try {
             get_csr_info_button_listener();
         } catch (Exception e) {
@@ -142,7 +142,7 @@ public class tool_ui_x509 extends tool_ui_base {
             e.printStackTrace();
         }
 
-        //Ìí¼Ó¼àÌıÊÂ¼ş
+        //æ·»åŠ ç›‘å¬äº‹ä»¶
         try {
             get_csr_upload_button_listener();
         } catch (Exception e) {
@@ -150,14 +150,14 @@ public class tool_ui_x509 extends tool_ui_base {
             e.printStackTrace();
         }
 
-        //Ìí¼Ó¼àÌıÊÂ¼ş
+        //æ·»åŠ ç›‘å¬äº‹ä»¶
         try {
             get_csr_set_button_listener();
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        //Ìí¼Ó¼àÌıÊÂ¼ş
+        //æ·»åŠ ç›‘å¬äº‹ä»¶
         try {
             get_crt_upload_button_listener();
         } catch (Exception e) {
@@ -191,42 +191,42 @@ public class tool_ui_x509 extends tool_ui_base {
 //                	serialPort.sendComm(g_data_process.send_cmd_status_rx_tx_runtime());
                     JSONObject subj = new JSONObject();
                     if (text_field_x509_contry.getText().length() != 2) {
-                        JOptionPane.showMessageDialog(null, "¹ú¼ÒÂë ÅäÖÃ´íÎó");
+                        JOptionPane.showMessageDialog(null, "å›½å®¶ç  é…ç½®é”™è¯¯");
                         return;
                     } else {
                         subj.put("country", text_field_x509_contry.getText());
                     }
 
                     if (text_field_x509_province.getText().length() == 0) {
-                        JOptionPane.showMessageDialog(null, "Ê¡·İ(S) ÅäÖÃ´íÎó");
+                        JOptionPane.showMessageDialog(null, "çœä»½(S) é…ç½®é”™è¯¯");
                         return;
                     } else {
                         subj.put("province", text_field_x509_province.getText());
                     }
 
                     if (text_field_x509_location.getText().length() == 0) {
-                        JOptionPane.showMessageDialog(null, "³ÇÊĞ(L) ÅäÖÃ´íÎó");
+                        JOptionPane.showMessageDialog(null, "åŸå¸‚(L) é…ç½®é”™è¯¯");
                         return;
                     } else {
                         subj.put("location", text_field_x509_location.getText());
                     }
 
                     if (text_field_x509_organization.getText().length() == 0) {
-                        JOptionPane.showMessageDialog(null, "¹«Ë¾(O) ÅäÖÃ´íÎó");
+                        JOptionPane.showMessageDialog(null, "å…¬å¸(O) é…ç½®é”™è¯¯");
                         return;
                     } else {
                         subj.put("organization", text_field_x509_organization.getText());
                     }
 
                     if (text_field_x509_organizationalUnit.getText().length() == 0) {
-                        JOptionPane.showMessageDialog(null, "×éÖ¯(OU) ÅäÖÃ´íÎó");
+                        JOptionPane.showMessageDialog(null, "ç»„ç»‡(OU) é…ç½®é”™è¯¯");
                         return;
                     } else {
                         subj.put("organizationalUnit", text_field_x509_organizationalUnit.getText());
                     }
 
                     if (text_field_x509_cn.getText().length() == 0) {
-                        JOptionPane.showMessageDialog(null, "ÓµÓĞÕß(CN) ÅäÖÃ´íÎó");
+                        JOptionPane.showMessageDialog(null, "æ‹¥æœ‰è€…(CN) é…ç½®é”™è¯¯");
                         return;
                     } else {
                         subj.put("cn", text_field_x509_cn.getText());
@@ -241,7 +241,7 @@ public class tool_ui_x509 extends tool_ui_base {
         });
     }
 
-    //µ¼³öÇëÇóÖ¤Êé
+    //å¯¼å‡ºè¯·æ±‚è¯ä¹¦
     public void get_csr_upload_button_listener() throws Exception {
         tool_button_upload_csr.addActionListener(new ActionListener() {
             @Override
@@ -251,17 +251,17 @@ public class tool_ui_x509 extends tool_ui_base {
 
                     subj.put("mode", "get");
 
-                    //ÊÇ 0;·ñ 1
-                    int n = JOptionPane.showConfirmDialog(null, "ÇëÑ¡Ôñ±£´æÂ·¾¶ºÍÎÄ¼şÃû", "", JOptionPane.YES_NO_OPTION);
+                    //æ˜¯ 0;å¦ 1
+                    int n = JOptionPane.showConfirmDialog(null, "è¯·é€‰æ‹©ä¿å­˜è·¯å¾„å’Œæ–‡ä»¶å", "", JOptionPane.YES_NO_OPTION);
                     if (n == 0) {
                       
                         tool_file_chooser_select_req_save_file.setCurrentDirectory(new File("."));         
-                        tool_file_chooser_select_req_save_file.setFileSelectionMode(1);//Éè¶¨Ö»ÄÜÑ¡Ôñµ½ÎÄ¼ş¼Ğ
-                        int state = tool_file_chooser_select_req_save_file.showOpenDialog(null);//´Ë¾äÊÇ´ò¿ªÎÄ¼şÑ¡ÔñÆ÷½çÃæµÄ´¥·¢Óï¾ä
+                        tool_file_chooser_select_req_save_file.setFileSelectionMode(1);//è®¾å®šåªèƒ½é€‰æ‹©åˆ°æ–‡ä»¶å¤¹
+                        int state = tool_file_chooser_select_req_save_file.showOpenDialog(null);//æ­¤å¥æ˜¯æ‰“å¼€æ–‡ä»¶é€‰æ‹©å™¨ç•Œé¢çš„è§¦å‘è¯­å¥
                         if (state == 1) {
-                            return;//³·ÏúÔò·µ»Ø
+                            return;//æ’¤é”€åˆ™è¿”å›
                         } else {
-                        	 File dir = tool_file_chooser_select_req_save_file.getSelectedFile();// dirÎªÑ¡Ôñµ½µÄÄ¿Â¼ 
+                        	 File dir = tool_file_chooser_select_req_save_file.getSelectedFile();// dirä¸ºé€‰æ‹©åˆ°çš„ç›®å½• 
                         	 String name  = "//"+ g_device_info.device_name+"_"+System.currentTimeMillis()+"_site.req";
                         	 File f = new File(dir.getAbsoluteFile()+name);
                             tool_text_x509req_save_file = f.getAbsolutePath();
@@ -277,20 +277,20 @@ public class tool_ui_x509 extends tool_ui_base {
         });
     }
 
-    //µ¼ÈëÇ©·¢Ö¤Êé
+    //å¯¼å…¥ç­¾å‘è¯ä¹¦
     public void get_crt_upload_button_listener() throws Exception {
         tool_button_upload_crt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    //ÊÇ 0;·ñ 1
-                    int n = JOptionPane.showConfirmDialog(null, "ÇëÑ¡ÔñÇ©·¢Ö¤Êé", "", JOptionPane.YES_NO_OPTION);
+                    //æ˜¯ 0;å¦ 1
+                    int n = JOptionPane.showConfirmDialog(null, "è¯·é€‰æ‹©ç­¾å‘è¯ä¹¦", "", JOptionPane.YES_NO_OPTION);
                     if (n == 0) {
                         tool_file_chooser_select_csr_file.setCurrentDirectory(new File("."));
-                        tool_file_chooser_select_csr_file.setFileSelectionMode(0);//Éè¶¨Ö»ÄÜÑ¡Ôñµ½ÎÄ¼ş
-                        int state = tool_file_chooser_select_csr_file.showOpenDialog(null);//´Ë¾äÊÇ´ò¿ªÎÄ¼şÑ¡ÔñÆ÷½çÃæµÄ´¥·¢Óï¾ä
+                        tool_file_chooser_select_csr_file.setFileSelectionMode(0);//è®¾å®šåªèƒ½é€‰æ‹©åˆ°æ–‡ä»¶
+                        int state = tool_file_chooser_select_csr_file.showOpenDialog(null);//æ­¤å¥æ˜¯æ‰“å¼€æ–‡ä»¶é€‰æ‹©å™¨ç•Œé¢çš„è§¦å‘è¯­å¥
                         if (state == 1) {
-                            return;//³·ÏúÔò·µ»Ø
+                            return;//æ’¤é”€åˆ™è¿”å›
                         } else {
                             File f = tool_file_chooser_select_csr_file.getSelectedFile();
                             g_device_info.device_x509_crt_file_path = f.getAbsolutePath();
@@ -320,7 +320,7 @@ public class tool_ui_x509 extends tool_ui_base {
         		text_field_x509_organization.getText().toString().equals("")&&
         		text_field_x509_organizationalUnit.getText().toString().equals("")&&
         		text_field_x509_cn.getText().toString().equals("")){
-        	 JOptionPane.showMessageDialog(null, "ÔİÎŞÖ¤Êé£¬ÇëÏÈÅäÖÃÖ¤Êé");
+        	 JOptionPane.showMessageDialog(null, "æš‚æ— è¯ä¹¦ï¼Œè¯·å…ˆé…ç½®è¯ä¹¦");
         }
     }
 }

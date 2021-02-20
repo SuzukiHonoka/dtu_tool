@@ -7,7 +7,7 @@ import java.lang.*;
 
 public class tool_ui_config_every extends tool_ui_base {
 
-	// Éè±¸»ù±¾ĞÅÏ¢
+	// è®¾å¤‡åŸºæœ¬ä¿¡æ¯
 	JTextField text_field_device_name;
 	// JTextField text_field_device_type;
 	JTextField text_field_device_location;
@@ -32,30 +32,30 @@ public class tool_ui_config_every extends tool_ui_base {
 	JTextField text_field_device_name1;
 	JTextField text_field_device_pwd1;
 	JTextField text_field_device_pin1;
-	// ËíµÀ²ÎÊı
+	// éš§é“å‚æ•°
 	JComboBox box_device_isenc1;
 	JTextField text_field_device_protect_dtuip1;
 	JTextField text_field_device_mainip1;
 	JTextField text_field_device_protect_mainip1;
-	// ÒµÎñ´®¿Ú
+	// ä¸šåŠ¡ä¸²å£
 	JComboBox box_device_rate;
 	JComboBox box_device_databit;
 	JComboBox box_device_verifybit;
 	JComboBox box_device_stopbit;
 	JComboBox box_device_conbit;
-	// ÆäËû
+	// å…¶ä»–
 	// tcp101
 	JTextField text_field_device_tcp101_servers;
 	JComboBox box_device_tcp101_localserver;
 
-	// °´Å¥
+	// æŒ‰é’®
 	JButton tool_every_updata_button;
 	JButton tool_every_save_button;
 	JButton tool_system_reboot_button;
 
-	// ´®¿ÚÊµÀı
+	// ä¸²å£å®ä¾‹
 	tool_uart serialPort;
-	// Êı¾İ½»»¥ÊµÀı
+	// æ•°æ®äº¤äº’å®ä¾‹
 	tool_data_process g_data_process;
 
 	JPanel devicePanel;
@@ -70,7 +70,7 @@ public class tool_ui_config_every extends tool_ui_base {
 	Boolean isChangeNet = false;
 
 	/**
-	 * Éè±¸ĞÅÏ¢Ä£¿é
+	 * è®¾å¤‡ä¿¡æ¯æ¨¡å—
 	 *
 	 * @param devicePanel
 	 * @param serialPort_p
@@ -86,41 +86,41 @@ public class tool_ui_config_every extends tool_ui_base {
 		devicePanel = new JPanel();
 		devicePanel.setPreferredSize(new Dimension(550, 300));
 		devicePanel.setLayout(null);
-		devicePanel.setBorder(BorderFactory.createTitledBorder("Éè±¸ĞÅÏ¢"));
+		devicePanel.setBorder(BorderFactory.createTitledBorder("è®¾å¤‡ä¿¡æ¯"));
 
-		// ±êÇ©ÆğÊ¼Î»ÖÃ
+		// æ ‡ç­¾èµ·å§‹ä½ç½®
 		int x_lable_location = 40;
 		int y_lable_location = 40;
-		// ÎÄ±¾¿òÆğÊ¼Î»ÖÃ
+		// æ–‡æœ¬æ¡†èµ·å§‹ä½ç½®
 		int x_text_location = 120;
 		int y_text_location = 70;
 
-		// ²½³¤
+		// æ­¥é•¿
 		int x_step = 20;
 		int y_step = 50;
 
-		// ÎÄ±¾¿ò³¤¶ÈºÍ¿í¶È
+		// æ–‡æœ¬æ¡†é•¿åº¦å’Œå®½åº¦
 		int x_text_length = 185;
 		int y_text_heigth = 25;
 		int text_columns = 20;
 
-		// ±êÇ©¿ò³¤¶ÈºÍ¿í¶È
+		// æ ‡ç­¾æ¡†é•¿åº¦å’Œå®½åº¦
 		int x_lable_length = 80;
 
-		// ************* Éè±¸»ù±¾ĞÅÏ¢ **********************
-		// devicePanel.add(super.buildJLabel("Éè±¸ĞÅÏ¢:", x_lable_location,
+		// ************* è®¾å¤‡åŸºæœ¬ä¿¡æ¯ **********************
+		// devicePanel.add(super.buildJLabel("è®¾å¤‡ä¿¡æ¯:", x_lable_location,
 		// y_lable_location, x_lable_length * 2, y_text_heigth));
 
 		// y_lable_location += y_step;
-		devicePanel.add(buildJLabel("Éè±¸Ãû³Æ", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		devicePanel.add(buildJLabel("è®¾å¤‡åç§°", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
 		text_field_device_name = buildJTextField("", "device_name", text_columns, x_text_location, y_lable_location,
 				x_text_length, y_text_heigth);
 		devicePanel.add(text_field_device_name);
 
 		y_lable_location += y_step;
 		y_text_location += y_step;
-		devicePanel.add(buildJLabel("Éè±¸ÀàĞÍ", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
-		String isenc1[] = { "Î´Öª", "ÎŞÏß-´®¿ÚĞÍ", "ÓĞÏß-´®¿ÚĞÍ", "ÎŞÏß-Íø¿ÚĞÍ", "ÓĞÏß-Íø¿ÚĞÍ" };
+		devicePanel.add(buildJLabel("è®¾å¤‡ç±»å‹", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		String isenc1[] = { "æœªçŸ¥", "æ— çº¿-ä¸²å£å‹", "æœ‰çº¿-ä¸²å£å‹", "æ— çº¿-ç½‘å£å‹", "æœ‰çº¿-ç½‘å£å‹" };
 		box_device_work_mode = buildJComboBox("", "device_type", isenc1, text_columns, x_text_location,
 				y_lable_location, x_text_length, y_text_heigth);
 		devicePanel.add(box_device_work_mode);
@@ -128,14 +128,14 @@ public class tool_ui_config_every extends tool_ui_base {
 
 		y_lable_location += y_step;
 		y_text_location += y_step;
-		devicePanel.add(buildJLabel("°²×°Î»ÖÃ", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		devicePanel.add(buildJLabel("å®‰è£…ä½ç½®", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
 		text_field_device_location = buildJTextField("", "device_location", text_columns, x_text_location,
 				y_lable_location, x_text_length, y_text_heigth);
 		devicePanel.add(text_field_device_location);
 
 		y_lable_location += y_step;
 		y_text_location += y_step;
-		devicePanel.add(buildJLabel("Èí¼ş°æ±¾", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		devicePanel.add(buildJLabel("è½¯ä»¶ç‰ˆæœ¬", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
 		text_field_device_software_version = buildJTextField("", "device_software_version", text_columns,
 				x_text_location, y_lable_location, x_text_length, y_text_heigth);
 		devicePanel.add(text_field_device_software_version);
@@ -144,7 +144,7 @@ public class tool_ui_config_every extends tool_ui_base {
 	}
 
 	/**
-	 * Ö÷¿¨²¦ºÅÄ£¿é
+	 * ä¸»å¡æ‹¨å·æ¨¡å—
 	 *
 	 * @param pcdPanel
 	 * @param serialPort_p
@@ -160,28 +160,28 @@ public class tool_ui_config_every extends tool_ui_base {
 		pcdPanel = new JPanel();
 		pcdPanel.setPreferredSize(new Dimension(550, 300));
 		pcdPanel.setLayout(null);
-		pcdPanel.setBorder(BorderFactory.createTitledBorder("Ö÷¿¨²¦ºÅ"));
+		pcdPanel.setBorder(BorderFactory.createTitledBorder("ä¸»å¡æ‹¨å·"));
 
-		// ±êÇ©ÆğÊ¼Î»ÖÃ
+		// æ ‡ç­¾èµ·å§‹ä½ç½®
 		int x_lable_location = 40;
 		int y_lable_location = 40;
-		// ÎÄ±¾¿òÆğÊ¼Î»ÖÃ
+		// æ–‡æœ¬æ¡†èµ·å§‹ä½ç½®
 		int x_text_location = 120;
 		int y_text_location = 70;
 
-		// ²½³¤
+		// æ­¥é•¿
 		int x_step = 20;
 		int y_step = 50;
 
-		// ÎÄ±¾¿ò³¤¶ÈºÍ¿í¶È
+		// æ–‡æœ¬æ¡†é•¿åº¦å’Œå®½åº¦
 		int x_text_length = 185;
 		int y_text_heigth = 25;
 		int text_columns = 20;
 
-		// ±êÇ©¿ò³¤¶ÈºÍ¿í¶È
+		// æ ‡ç­¾æ¡†é•¿åº¦å’Œå®½åº¦
 		int x_lable_length = 80;
 
-		// pcdPanel.add(buildJLabel("Ö÷¿¨²¦ºÅ£º", x_lable_location, y_lable_location,
+		// pcdPanel.add(buildJLabel("ä¸»å¡æ‹¨å·ï¼š", x_lable_location, y_lable_location,
 		// x_lable_length * 2, y_text_heigth));
 
 		// y_lable_location += y_step;
@@ -192,36 +192,36 @@ public class tool_ui_config_every extends tool_ui_base {
 
 		y_lable_location += y_step;
 		y_text_location += y_step;
-		pcdPanel.add(buildJLabel("ÓÃ»§Ãû", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
-		text_field_device_name0 = buildJTextField("", "ÓÃ»§Ãû", text_columns, x_text_location, y_lable_location,
+		pcdPanel.add(buildJLabel("ç”¨æˆ·å", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		text_field_device_name0 = buildJTextField("", "ç”¨æˆ·å", text_columns, x_text_location, y_lable_location,
 				x_text_length, y_text_heigth);
 		pcdPanel.add(text_field_device_name0);
 
 		y_lable_location += y_step;
 		y_text_location += y_step;
-		pcdPanel.add(buildJLabel("ÃÜÂë", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
-		text_field_device_pwd0 = buildJTextField("", "ÃÜÂë", text_columns, x_text_location, y_lable_location,
+		pcdPanel.add(buildJLabel("å¯†ç ", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		text_field_device_pwd0 = buildJTextField("", "å¯†ç ", text_columns, x_text_location, y_lable_location,
 				x_text_length, y_text_heigth);
 		pcdPanel.add(text_field_device_pwd0);
 
 		y_lable_location += y_step;
 		y_text_location += y_step;
-		pcdPanel.add(buildJLabel("PINÂë", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
-		text_field_device_pin0 = buildJTextField("", "pinÂë", text_columns, x_text_location, y_lable_location,
+		pcdPanel.add(buildJLabel("PINç ", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		text_field_device_pin0 = buildJTextField("", "pinç ", text_columns, x_text_location, y_lable_location,
 				x_text_length, y_text_heigth);
 		pcdPanel.add(text_field_device_pin0);
 
 		y_lable_location += y_step;
 		y_text_location += y_step;
-		pcdPanel.add(buildJLabel("ÍøÂçÖÆÊ½", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
-		text_field_device_code0 = buildJTextField("", "ÍøÂçÖÆÊ½", text_columns, x_text_location, y_lable_location,
+		pcdPanel.add(buildJLabel("ç½‘ç»œåˆ¶å¼", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		text_field_device_code0 = buildJTextField("", "ç½‘ç»œåˆ¶å¼", text_columns, x_text_location, y_lable_location,
 				x_text_length, y_text_heigth);
 		pcdPanel.add(text_field_device_code0);
 		return pcdPanel;
 	}
 
 	/**
-	 * ËíµÀ²ÎÊıÄ£¿é
+	 * éš§é“å‚æ•°æ¨¡å—
 	 *
 	 * @param tunnelParamPanel
 	 * @param serialPort_p
@@ -237,33 +237,33 @@ public class tool_ui_config_every extends tool_ui_base {
 		tunnelParamPanel = new JPanel();
 		tunnelParamPanel.setPreferredSize(new Dimension(550, 300));
 		tunnelParamPanel.setLayout(null);
-		tunnelParamPanel.setBorder(BorderFactory.createTitledBorder("ËíµÀ²ÎÊı"));
+		tunnelParamPanel.setBorder(BorderFactory.createTitledBorder("éš§é“å‚æ•°"));
 
-		// ±êÇ©ÆğÊ¼Î»ÖÃ
+		// æ ‡ç­¾èµ·å§‹ä½ç½®
 		int x_lable_location = 40;
 		int y_lable_location = 40;
-		// ÎÄ±¾¿òÆğÊ¼Î»ÖÃ
+		// æ–‡æœ¬æ¡†èµ·å§‹ä½ç½®
 		int x_text_location = 160;
 		int y_text_location = 70;
 
-		// ²½³¤
+		// æ­¥é•¿
 		int x_step = 20;
 		int y_step = 50;
 
-		// ÎÄ±¾¿ò³¤¶ÈºÍ¿í¶È
+		// æ–‡æœ¬æ¡†é•¿åº¦å’Œå®½åº¦
 		int x_text_length = 185;
 		int y_text_heigth = 25;
 		int text_columns = 20;
 
-		// ±êÇ©¿ò³¤¶ÈºÍ¿í¶È
+		// æ ‡ç­¾æ¡†é•¿åº¦å’Œå®½åº¦
 		int x_lable_length = 120;
 
-		// tunnelParamPanel.add(buildJLabel("ËíµÀ²ÎÊı:", x_lable_location,
+		// tunnelParamPanel.add(buildJLabel("éš§é“å‚æ•°:", x_lable_location,
 		// y_lable_location, x_lable_length * 2, y_text_heigth));
 
 		// y_lable_location += y_step;
-		tunnelParamPanel.add(buildJLabel("ÊÇ·ñ¼ÓÃÜ", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
-		String isenc1[] = { "Î´Öª", "ÊÇ", "·ñ" };
+		tunnelParamPanel.add(buildJLabel("æ˜¯å¦åŠ å¯†", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		String isenc1[] = { "æœªçŸ¥", "æ˜¯", "å¦" };
 		box_device_isenc1 = buildJComboBox("", "moshi", isenc1, text_columns, x_text_location, y_lable_location,
 				x_text_length, y_text_heigth);
 		tunnelParamPanel.add(box_device_isenc1);
@@ -271,23 +271,23 @@ public class tool_ui_config_every extends tool_ui_base {
 		y_lable_location += y_step;
 		y_text_location += y_step;
 		tunnelParamPanel
-				.add(buildJLabel("ÊÜ±£»¤µÄÖÕ¶ËIP", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
-		text_field_device_protect_dtuip1 = buildJTextField("", "±£»¤µÄÖÕ¶ËIP", text_columns, x_text_location,
+				.add(buildJLabel("å—ä¿æŠ¤çš„ç»ˆç«¯IP", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		text_field_device_protect_dtuip1 = buildJTextField("", "ä¿æŠ¤çš„ç»ˆç«¯IP", text_columns, x_text_location,
 				y_lable_location, x_text_length, y_text_heigth);
 		tunnelParamPanel.add(text_field_device_protect_dtuip1);
 
 		y_lable_location += y_step;
 		y_text_location += y_step;
-		tunnelParamPanel.add(buildJLabel("Ö÷Õ¾IP", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
-		text_field_device_mainip1 = buildJTextField("", "Ö÷Õ¾IP", text_columns, x_text_location, y_lable_location,
+		tunnelParamPanel.add(buildJLabel("ä¸»ç«™IP", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		text_field_device_mainip1 = buildJTextField("", "ä¸»ç«™IP", text_columns, x_text_location, y_lable_location,
 				x_text_length, y_text_heigth);
 		tunnelParamPanel.add(text_field_device_mainip1);
 
 		y_lable_location += y_step;
 		y_text_location += y_step;
 		tunnelParamPanel
-				.add(buildJLabel("ÊÜ±£»¤µÄÖ÷Õ¾IP", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
-		text_field_device_protect_mainip1 = buildJTextField("", "±£»¤µÄ", text_columns, x_text_location, y_lable_location,
+				.add(buildJLabel("å—ä¿æŠ¤çš„ä¸»ç«™IP", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		text_field_device_protect_mainip1 = buildJTextField("", "ä¿æŠ¤çš„", text_columns, x_text_location, y_lable_location,
 				x_text_length, y_text_heigth);
 		tunnelParamPanel.add(text_field_device_protect_mainip1);
 
@@ -295,7 +295,7 @@ public class tool_ui_config_every extends tool_ui_base {
 	}
 
 	/**
-	 * Íø¿Ú²ÎÊıÄ£¿é
+	 * ç½‘å£å‚æ•°æ¨¡å—
 	 *
 	 * @param internetAccessPanel
 	 * @param serialPort_p
@@ -311,66 +311,66 @@ public class tool_ui_config_every extends tool_ui_base {
 		internetAccessPanel = new JPanel();
 		internetAccessPanel.setPreferredSize(new Dimension(550, 300));
 		internetAccessPanel.setLayout(null);
-		internetAccessPanel.setBorder(BorderFactory.createTitledBorder("Íø¿Ú²ÎÊı"));
+		internetAccessPanel.setBorder(BorderFactory.createTitledBorder("ç½‘å£å‚æ•°"));
 
-		// ±êÇ©ÆğÊ¼Î»ÖÃ
+		// æ ‡ç­¾èµ·å§‹ä½ç½®
 		int x_lable_location = 40;
 		int y_lable_location = 40;
-		// ÎÄ±¾¿òÆğÊ¼Î»ÖÃ
+		// æ–‡æœ¬æ¡†èµ·å§‹ä½ç½®
 		int x_text_location = 120;
 		int y_text_location = 70;
 
-		// ²½³¤
+		// æ­¥é•¿
 		int x_step = 20;
 		int y_step = 50;
 
-		// ÎÄ±¾¿ò³¤¶ÈºÍ¿í¶È
+		// æ–‡æœ¬æ¡†é•¿åº¦å’Œå®½åº¦
 		int x_text_length = 185;
 		int y_text_heigth = 25;
 		int text_columns = 20;
 
-		// ±êÇ©¿ò³¤¶ÈºÍ¿í¶È
+		// æ ‡ç­¾æ¡†é•¿åº¦å’Œå®½åº¦
 		int x_lable_length = 80;
 
-		// internetAccessPanel.add(buildJLabel("Íø¿Ú²ÎÊı: ", x_lable_location,
+		// internetAccessPanel.add(buildJLabel("ç½‘å£å‚æ•°: ", x_lable_location,
 		// y_lable_location, x_lable_length * 2, y_text_heigth));
 		// y_lable_location += y_step;
-		internetAccessPanel.add(buildJLabel("ÍâÍøIP", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		internetAccessPanel.add(buildJLabel("å¤–ç½‘IP", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
 		text_field_device_wan_ipadd = buildJTextField("", "device_wan_ipadd", text_columns, x_text_location,
 				y_lable_location, x_text_length, y_text_heigth);
 		internetAccessPanel.add(text_field_device_wan_ipadd);
 
 		y_lable_location += y_step;
 		y_text_location += y_step;
-		internetAccessPanel.add(buildJLabel("ÍâÍøÑÚÂë", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		internetAccessPanel.add(buildJLabel("å¤–ç½‘æ©ç ", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
 		text_field_device_wan_netmask = buildJTextField("", "device_wan_netmask", text_columns, x_text_location,
 				y_lable_location, x_text_length, y_text_heigth);
 		internetAccessPanel.add(text_field_device_wan_netmask);
 
 		y_lable_location += y_step;
 		y_text_location += y_step;
-		internetAccessPanel.add(buildJLabel("ÍâÍøÍø¹Ø", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		internetAccessPanel.add(buildJLabel("å¤–ç½‘ç½‘å…³", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
 		text_field_device_wan_gateway = buildJTextField("", "device_wan_gateway", text_columns, x_text_location,
 				y_lable_location, x_text_length, y_text_heigth);
 		internetAccessPanel.add(text_field_device_wan_gateway);
 
 		y_lable_location += y_step;
 		y_text_location += y_step;
-		internetAccessPanel.add(buildJLabel("ÄÚÍøIP", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		internetAccessPanel.add(buildJLabel("å†…ç½‘IP", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
 		text_field_device_lan_ipadd = buildJTextField("", "device_lan_ipadd", text_columns, x_text_location,
 				y_lable_location, x_text_length, y_text_heigth);
 		internetAccessPanel.add(text_field_device_lan_ipadd);
 
 		y_lable_location += y_step;
 		y_text_location += y_step;
-		internetAccessPanel.add(buildJLabel("ÄÚÍøÑÚÂë", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		internetAccessPanel.add(buildJLabel("å†…ç½‘æ©ç ", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
 		text_field_device_lan_netmask = buildJTextField("", "device_lan_netmask", text_columns, x_text_location,
 				y_lable_location, x_text_length, y_text_heigth);
 		internetAccessPanel.add(text_field_device_lan_netmask);
 
 		// y_lable_location += y_step;
 		// y_text_location += y_step;
-		// internetAccessPanel.add(buildJLabel("ÄÚÍøÍø¹Ø", x_lable_location,
+		// internetAccessPanel.add(buildJLabel("å†…ç½‘ç½‘å…³", x_lable_location,
 		// y_lable_location, x_lable_length, y_text_heigth));
 		// text_field_device_lan_gateway = buildJTextField("",
 		// "device_lan_gateway", text_columns, x_text_location,
@@ -381,7 +381,7 @@ public class tool_ui_config_every extends tool_ui_base {
 	}
 
 	/**
-	 * ¸±¿¨²¦ºÅÄ£¿é
+	 * å‰¯å¡æ‹¨å·æ¨¡å—
 	 *
 	 * @param viceCardDialPanel
 	 * @param serialPort_p
@@ -397,28 +397,28 @@ public class tool_ui_config_every extends tool_ui_base {
 		viceCardDialPanel = new JPanel();
 		viceCardDialPanel.setPreferredSize(new Dimension(550, 300));
 		viceCardDialPanel.setLayout(null);
-		viceCardDialPanel.setBorder(BorderFactory.createTitledBorder("¸±¿¨²¦ºÅ"));
+		viceCardDialPanel.setBorder(BorderFactory.createTitledBorder("å‰¯å¡æ‹¨å·"));
 
-		// ±êÇ©ÆğÊ¼Î»ÖÃ
+		// æ ‡ç­¾èµ·å§‹ä½ç½®
 		int x_lable_location = 40;
 		int y_lable_location = 40;
-		// ÎÄ±¾¿òÆğÊ¼Î»ÖÃ
+		// æ–‡æœ¬æ¡†èµ·å§‹ä½ç½®
 		int x_text_location = 120;
 		int y_text_location = 70;
 
-		// ²½³¤
+		// æ­¥é•¿
 		int x_step = 20;
 		int y_step = 50;
 
-		// ÎÄ±¾¿ò³¤¶ÈºÍ¿í¶È
+		// æ–‡æœ¬æ¡†é•¿åº¦å’Œå®½åº¦
 		int x_text_length = 185;
 		int y_text_heigth = 25;
 		int text_columns = 20;
 
-		// ±êÇ©¿ò³¤¶ÈºÍ¿í¶È
+		// æ ‡ç­¾æ¡†é•¿åº¦å’Œå®½åº¦
 		int x_lable_length = 80;
 
-		// viceCardDialPanel.add(buildJLabel("¸±¿¨²¦ºÅ:", x_lable_location,
+		// viceCardDialPanel.add(buildJLabel("å‰¯å¡æ‹¨å·:", x_lable_location,
 		// y_lable_location, x_lable_length * 2, y_text_heigth));
 
 		// y_lable_location += y_step;
@@ -429,29 +429,29 @@ public class tool_ui_config_every extends tool_ui_base {
 
 		y_lable_location += y_step;
 		y_text_location += y_step;
-		viceCardDialPanel.add(buildJLabel("ÓÃ»§Ãû", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
-		text_field_device_name1 = buildJTextField("", "ÓÃ»§Ãû", text_columns, x_text_location, y_lable_location,
+		viceCardDialPanel.add(buildJLabel("ç”¨æˆ·å", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		text_field_device_name1 = buildJTextField("", "ç”¨æˆ·å", text_columns, x_text_location, y_lable_location,
 				x_text_length, y_text_heigth);
 		viceCardDialPanel.add(text_field_device_name1);
 
 		y_lable_location += y_step;
 		y_text_location += y_step;
-		viceCardDialPanel.add(buildJLabel("ÃÜÂë", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
-		text_field_device_pwd1 = buildJTextField("", "ÃÜÂë", text_columns, x_text_location, y_lable_location,
+		viceCardDialPanel.add(buildJLabel("å¯†ç ", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		text_field_device_pwd1 = buildJTextField("", "å¯†ç ", text_columns, x_text_location, y_lable_location,
 				x_text_length, y_text_heigth);
 		viceCardDialPanel.add(text_field_device_pwd1);
 
 		y_lable_location += y_step;
 		y_text_location += y_step;
-		viceCardDialPanel.add(buildJLabel("PINÂë", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
-		text_field_device_pin1 = buildJTextField("", "pinÂë", text_columns, x_text_location, y_lable_location,
+		viceCardDialPanel.add(buildJLabel("PINç ", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		text_field_device_pin1 = buildJTextField("", "pinç ", text_columns, x_text_location, y_lable_location,
 				x_text_length, y_text_heigth);
 		viceCardDialPanel.add(text_field_device_pin1);
 
 		y_lable_location += y_step;
 		y_text_location += y_step;
-		viceCardDialPanel.add(buildJLabel("ÍøÂçÖÆÊ½", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
-		text_field_device_code1 = buildJTextField("", "ÍøÂçÖÆÊ½", text_columns, x_text_location, y_lable_location,
+		viceCardDialPanel.add(buildJLabel("ç½‘ç»œåˆ¶å¼", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		text_field_device_code1 = buildJTextField("", "ç½‘ç»œåˆ¶å¼", text_columns, x_text_location, y_lable_location,
 				x_text_length, y_text_heigth);
 		viceCardDialPanel.add(text_field_device_code1);
 
@@ -459,7 +459,7 @@ public class tool_ui_config_every extends tool_ui_base {
 	}
 
 	/**
-	 * ÒµÎñ´®¿Ú
+	 * ä¸šåŠ¡ä¸²å£
 	 *
 	 * @param businessSerialPortPanel
 	 * @param serialPort_p
@@ -475,34 +475,34 @@ public class tool_ui_config_every extends tool_ui_base {
 		businessSerialPortPanel = new JPanel();
 		businessSerialPortPanel.setPreferredSize(new Dimension(550, 300));
 		businessSerialPortPanel.setLayout(null);
-		businessSerialPortPanel.setBorder(BorderFactory.createTitledBorder("ÒµÎñ´®¿Ú"));
+		businessSerialPortPanel.setBorder(BorderFactory.createTitledBorder("ä¸šåŠ¡ä¸²å£"));
 
-		// ±êÇ©ÆğÊ¼Î»ÖÃ
+		// æ ‡ç­¾èµ·å§‹ä½ç½®
 		int x_lable_location = 40;
 		int y_lable_location = 40;
-		// ÎÄ±¾¿òÆğÊ¼Î»ÖÃ
+		// æ–‡æœ¬æ¡†èµ·å§‹ä½ç½®
 		int x_text_location = 120;
 		int y_text_location = 70;
 
-		// ²½³¤
+		// æ­¥é•¿
 		int x_step = 20;
 		int y_step = 50;
 
-		// ÎÄ±¾¿ò³¤¶ÈºÍ¿í¶È
+		// æ–‡æœ¬æ¡†é•¿åº¦å’Œå®½åº¦
 		int x_text_length = 185;
 		int y_text_heigth = 25;
 		int text_columns = 20;
 
-		// ±êÇ©¿ò³¤¶ÈºÍ¿í¶È
+		// æ ‡ç­¾æ¡†é•¿åº¦å’Œå®½åº¦
 		int x_lable_length = 80;
 
-		// businessSerialPortPanel.add(buildJLabel("ÒµÎñ´®¿Ú:", x_lable_location,
+		// businessSerialPortPanel.add(buildJLabel("ä¸šåŠ¡ä¸²å£:", x_lable_location,
 		// y_lable_location, x_lable_length * 2, y_text_heigth));
 
 		// y_lable_location += y_step;
 		businessSerialPortPanel
-				.add(buildJLabel("²¨ÌØÂÊ", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
-		String rate[] = { "Î´Öª", "1200", "4800", "9600", "19200", "38400", "57600", "115200" };
+				.add(buildJLabel("æ³¢ç‰¹ç‡", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		String rate[] = { "æœªçŸ¥", "1200", "4800", "9600", "19200", "38400", "57600", "115200" };
 		box_device_rate = buildJComboBox("", "rate", rate, text_columns, x_text_location, y_lable_location,
 				x_text_length, y_text_heigth);
 		businessSerialPortPanel.add(box_device_rate);
@@ -510,8 +510,8 @@ public class tool_ui_config_every extends tool_ui_base {
 		y_lable_location += y_step;
 		y_text_location += y_step;
 		businessSerialPortPanel
-				.add(buildJLabel("Êı¾İÎ»", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
-		String data_bit[] = { "Î´Öª", "7", "8" };
+				.add(buildJLabel("æ•°æ®ä½", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		String data_bit[] = { "æœªçŸ¥", "7", "8" };
 		box_device_databit = buildJComboBox("", "data_bit", data_bit, text_columns, x_text_location, y_lable_location,
 				x_text_length, y_text_heigth);
 		businessSerialPortPanel.add(box_device_databit);
@@ -519,8 +519,8 @@ public class tool_ui_config_every extends tool_ui_base {
 		y_lable_location += y_step;
 		y_text_location += y_step;
 		businessSerialPortPanel
-				.add(buildJLabel("Ğ£ÑéÎ»", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
-		String verfy_bit[] = { "Î´Öª", "ÆæĞ£Ñé", "Å¼Ğ£Ñé", "ÎŞĞ£Ñé" };
+				.add(buildJLabel("æ ¡éªŒä½", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		String verfy_bit[] = { "æœªçŸ¥", "å¥‡æ ¡éªŒ", "å¶æ ¡éªŒ", "æ— æ ¡éªŒ" };
 		box_device_verifybit = buildJComboBox("", "data_bit", verfy_bit, text_columns, x_text_location,
 				y_lable_location, x_text_length, y_text_heigth);
 		businessSerialPortPanel.add(box_device_verifybit);
@@ -528,8 +528,8 @@ public class tool_ui_config_every extends tool_ui_base {
 		y_lable_location += y_step;
 		y_text_location += y_step;
 		businessSerialPortPanel
-				.add(buildJLabel("Í£Ö¹Î»", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
-		String stop_bit[] = { "Î´Öª", "1", "2" };
+				.add(buildJLabel("åœæ­¢ä½", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		String stop_bit[] = { "æœªçŸ¥", "1", "2" };
 		box_device_stopbit = buildJComboBox("", "stop_bit", stop_bit, text_columns, x_text_location, y_lable_location,
 				x_text_length, y_text_heigth);
 		businessSerialPortPanel.add(box_device_stopbit);
@@ -537,8 +537,8 @@ public class tool_ui_config_every extends tool_ui_base {
 		y_lable_location += y_step;
 		y_text_location += y_step;
 		businessSerialPortPanel
-				.add(buildJLabel("Á÷¿ØÎ»", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
-		String con_bit[] = { "Î´Öª", "Ó²Á÷¿Ø", "ÎŞÁ÷¿Ø" };
+				.add(buildJLabel("æµæ§ä½", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		String con_bit[] = { "æœªçŸ¥", "ç¡¬æµæ§", "æ— æµæ§" };
 		box_device_conbit = buildJComboBox("", "con_bit", con_bit, text_columns, x_text_location, y_lable_location,
 				x_text_length, y_text_heigth);
 		businessSerialPortPanel.add(box_device_conbit);
@@ -547,7 +547,7 @@ public class tool_ui_config_every extends tool_ui_base {
 	}
 
 	/**
-	 * ÆäËû
+	 * å…¶ä»–
 	 *
 	 * @param otherPanel
 	 * @param serialPort_p
@@ -563,39 +563,39 @@ public class tool_ui_config_every extends tool_ui_base {
 		otherPanel = new JPanel();
 		otherPanel.setPreferredSize(new Dimension(550, 300));
 		otherPanel.setLayout(null);
-		otherPanel.setBorder(BorderFactory.createTitledBorder("ÆäËû"));
+		otherPanel.setBorder(BorderFactory.createTitledBorder("å…¶ä»–"));
 
-		// ±êÇ©ÆğÊ¼Î»ÖÃ
+		// æ ‡ç­¾èµ·å§‹ä½ç½®
 		int x_lable_location = 40;
 		int y_lable_location = 40;
-		// ÎÄ±¾¿òÆğÊ¼Î»ÖÃ
+		// æ–‡æœ¬æ¡†èµ·å§‹ä½ç½®
 		int x_text_location = 140;
 		int y_text_location = 70;
 
-		// ²½³¤
+		// æ­¥é•¿
 		int x_step = 20;
 		int y_step = 50;
 
-		// ÎÄ±¾¿ò³¤¶ÈºÍ¿í¶È
+		// æ–‡æœ¬æ¡†é•¿åº¦å’Œå®½åº¦
 		int x_text_length = 185;
 		int y_text_heigth = 25;
 		int text_columns = 20;
 
-		// ±êÇ©¿ò³¤¶ÈºÍ¿í¶È
+		// æ ‡ç­¾æ¡†é•¿åº¦å’Œå®½åº¦
 		int x_lable_length = 80;
 
-		// otherPanel.add(buildJLabel("ÆäËû:", x_lable_location, y_lable_location,
+		// otherPanel.add(buildJLabel("å…¶ä»–:", x_lable_location, y_lable_location,
 		// x_lable_length * 2, y_text_heigth));
 		// y_lable_location += y_step;
-		otherPanel.add(buildJLabel("101·şÎñÆ÷", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		otherPanel.add(buildJLabel("101æœåŠ¡å™¨", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
 		text_field_device_tcp101_servers = buildJTextField("", "text_field_device_tcp101_servers", text_columns,
 				x_text_location, y_lable_location, x_text_length, y_text_heigth);
 		otherPanel.add(text_field_device_tcp101_servers);
 
 		y_lable_location += y_step;
 		y_text_location += y_step;
-		otherPanel.add(buildJLabel("±¾µØ·şÎñÆ÷", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
-		String tcp_101_local[] = { "Î´Öª", "ÊÇ", "·ñ" };
+		otherPanel.add(buildJLabel("æœ¬åœ°æœåŠ¡å™¨", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		String tcp_101_local[] = { "æœªçŸ¥", "æ˜¯", "å¦" };
 		box_device_tcp101_localserver = buildJComboBox("", "tcp_101_local", tcp_101_local, text_columns,
 				x_text_location, y_lable_location, x_text_length, y_text_heigth);
 		otherPanel.add(box_device_tcp101_localserver);
@@ -609,13 +609,13 @@ public class tool_ui_config_every extends tool_ui_base {
 		globalBtnPanel.setLayout(null);
 		// globalBtnPanel.setBorder(BorderFactory.createTitledBorder(""));
 
-		// Ìí¼Ó°´Å¥
-		tool_every_updata_button = super.buildJButton("»ñÈ¡ÅäÖÃ", 10, 10, 100, 30);
-		tool_every_save_button = super.buildJButton("ÅäÖÃÏÂ·¢", 10, 80, 100, 30);
-		// ÖØÆô
-		tool_system_reboot_button = super.buildJButton("ÏµÍ³ÖØÆô", 10, 170, 100, 30);
+		// æ·»åŠ æŒ‰é’®
+		tool_every_updata_button = super.buildJButton("è·å–é…ç½®", 10, 10, 100, 30);
+		tool_every_save_button = super.buildJButton("é…ç½®ä¸‹å‘", 10, 80, 100, 30);
+		// é‡å¯
+		tool_system_reboot_button = super.buildJButton("ç³»ç»Ÿé‡å¯", 10, 170, 100, 30);
 
-		// Ìí¼Ó¼àÌıÊÂ¼ş
+		// æ·»åŠ ç›‘å¬äº‹ä»¶
 		tool_every_updata_button_listener();
 		tool_every_save_button_listener();
 		tooi_ui_reboot_system();
@@ -626,31 +626,31 @@ public class tool_ui_config_every extends tool_ui_base {
 		return globalBtnPanel;
 	}
 
-	// ±£´ætextµÄÉèÖÃµ½iniÎÄ¼ş
+	// ä¿å­˜textçš„è®¾ç½®åˆ°iniæ–‡ä»¶
 	public int tool_every_save_to_ini() {
 		int ret = 1;
 		try {
-			// »ñÈ¡Éè±¸²ÎÊı
+			// è·å–è®¾å¤‡å‚æ•°
 			IniEditor device_config = new IniEditor();
 			device_config.load(file_ini_name);
 
-			// »ù±¾ĞÅÏ¢
+			// åŸºæœ¬ä¿¡æ¯
 			device_config.set("device", "name_device", text_field_device_name.getText());
 			// device_config.set("device","type_device",text_field_device_type.getText());
 			String type = (String) box_device_work_mode.getSelectedItem();
-			if (type.equals("Î´Öª")) {
-				JOptionPane.showMessageDialog(null, "ÇëÑ¡ÔñÉè±¸¹¤×÷Ä£Ê½");
+			if (type.equals("æœªçŸ¥")) {
+				JOptionPane.showMessageDialog(null, "è¯·é€‰æ‹©è®¾å¤‡å·¥ä½œæ¨¡å¼");
 				ret = 0;
 				return ret;
 			} else {
 
-				if (type.equals("ÎŞÏß-´®¿ÚĞÍ")) {
+				if (type.equals("æ— çº¿-ä¸²å£å‹")) {
 					type = "wireless-uart";
-				} else if (type.equals("ÓĞÏß-´®¿ÚĞÍ")) {
+				} else if (type.equals("æœ‰çº¿-ä¸²å£å‹")) {
 					type = "wire-uart";
-				} else if (type.equals("ÎŞÏß-Íø¿ÚĞÍ")) {
+				} else if (type.equals("æ— çº¿-ç½‘å£å‹")) {
 					type = "wireless-wire";
-				} else if (type.equals("ÓĞÏß-Íø¿ÚĞÍ")) {
+				} else if (type.equals("æœ‰çº¿-ç½‘å£å‹")) {
 					type = "wire-wire";
 				}
 
@@ -661,41 +661,41 @@ public class tool_ui_config_every extends tool_ui_base {
 			device_config.set("device", "version_device", text_field_device_software_version.getText());
 
 			if (ipCheck(text_field_device_wan_ipadd.getText()) == false) {
-				JOptionPane.showMessageDialog(null, "ÍâÍøIP¸ñÊ½´íÎó");
+				JOptionPane.showMessageDialog(null, "å¤–ç½‘IPæ ¼å¼é”™è¯¯");
 				ret = 0;
 				return ret;
 			}
 			if (ipCheck(text_field_device_wan_netmask.getText()) == false) {
-				JOptionPane.showMessageDialog(null, "ÍâÍøÑÚÂë¸ñÊ½´íÎó");
+				JOptionPane.showMessageDialog(null, "å¤–ç½‘æ©ç æ ¼å¼é”™è¯¯");
 				ret = 0;
 				return ret;
 			}
-			// Â·ÓÉÀàĞÍ
+			// è·¯ç”±ç±»å‹
 			if (text_field_device_wan_gateway.getText().equals("")) {
 				if (type.equals("wire-uart") || type.equals("wire-wire")) {
-					JOptionPane.showMessageDialog(null, "ÇëÉèÖÃÍâÍø¿ÚÂ·ÓÉ");
+					JOptionPane.showMessageDialog(null, "è¯·è®¾ç½®å¤–ç½‘å£è·¯ç”±");
 					ret = 0;
 					return ret;
 				}
 			} else {
 				if (type.equals("wireless-uart") || type.equals("wireless-wire")) {
-					JOptionPane.showMessageDialog(null, "ÇëÎğÉèÖÃÍâÍø¿ÚÂ·ÓÉ");
+					JOptionPane.showMessageDialog(null, "è¯·å‹¿è®¾ç½®å¤–ç½‘å£è·¯ç”±");
 					ret = 0;
 					return ret;
 				}
 				if (ipCheck(text_field_device_wan_gateway.getText()) == false) {
-					JOptionPane.showMessageDialog(null, "ÍâÍøÍø¹Ø¸ñÊ½´íÎó");
+					JOptionPane.showMessageDialog(null, "å¤–ç½‘ç½‘å…³æ ¼å¼é”™è¯¯");
 					ret = 0;
 					return ret;
 				}
 			}
 			if (ipCheck(text_field_device_lan_ipadd.getText()) == false) {
-				JOptionPane.showMessageDialog(null, "ÄÚÍøIP¸ñÊ½´íÎó");
+				JOptionPane.showMessageDialog(null, "å†…ç½‘IPæ ¼å¼é”™è¯¯");
 				ret = 0;
 				return ret;
 			}
 			if (ipCheck(text_field_device_lan_netmask.getText()) == false) {
-				JOptionPane.showMessageDialog(null, "ÄÚÍøÑÚÂë¸ñÊ½´íÎó");
+				JOptionPane.showMessageDialog(null, "å†…ç½‘æ©ç æ ¼å¼é”™è¯¯");
 				ret = 0;
 				return ret;
 			}
@@ -709,7 +709,7 @@ public class tool_ui_config_every extends tool_ui_base {
 				isChangeNet = false;
 			}
 
-			// Íø¿Ú
+			// ç½‘å£
 			device_config.set("NET0", "devip0", text_field_device_wan_ipadd.getText());
 			device_config.set("NET0", "netmask0", text_field_device_wan_netmask.getText());
 			device_config.set("NET0", "defaultgw0", text_field_device_wan_gateway.getText());
@@ -732,10 +732,10 @@ public class tool_ui_config_every extends tool_ui_base {
 			device_config.set("DIAL1", "pwd1", text_field_device_pwd1.getText());
 			device_config.set("DIAL1", "pin1", text_field_device_pin1.getText());
 
-			// ËíµÀ²ÎÊı
-			if (box_device_isenc1.getSelectedItem() == "ÊÇ") {
+			// éš§é“å‚æ•°
+			if (box_device_isenc1.getSelectedItem() == "æ˜¯") {
 				device_config.set("policy1", "isenc1", "1");
-			} else if (box_device_isenc1.getSelectedItem() == "·ñ") {
+			} else if (box_device_isenc1.getSelectedItem() == "å¦") {
 				device_config.set("policy1", "isenc1", "0");
 			} else {
 				device_config.set("policy1", "isenc1", "0");
@@ -744,54 +744,54 @@ public class tool_ui_config_every extends tool_ui_base {
 			device_config.set("policy1", "mainip1", text_field_device_mainip1.getText());
 			device_config.set("policy1", "protect_mainip1", text_field_device_protect_mainip1.getText());
 
-			// ÒµÎñ´®¿Ú
-			if (box_device_rate.getSelectedItem() == "Î´Öª") {
+			// ä¸šåŠ¡ä¸²å£
+			if (box_device_rate.getSelectedItem() == "æœªçŸ¥") {
 				device_config.set("serial", "rate", "9600");
 			} else {
 				device_config.set("serial", "rate", (String) box_device_rate.getSelectedItem());
 			}
 
-			if (box_device_databit.getSelectedItem() == "Î´Öª") {
+			if (box_device_databit.getSelectedItem() == "æœªçŸ¥") {
 				device_config.set("serial", "databit", "8");
 			} else {
 				device_config.set("serial", "databit", (String) box_device_databit.getSelectedItem());
 			}
 
-			if (box_device_verifybit.getSelectedItem() == "Î´Öª") {
+			if (box_device_verifybit.getSelectedItem() == "æœªçŸ¥") {
 				device_config.set("serial", "verifybit", "N");
-			} else if (box_device_verifybit.getSelectedItem() == "Å¼Ğ£Ñé") {
+			} else if (box_device_verifybit.getSelectedItem() == "å¶æ ¡éªŒ") {
 				device_config.set("serial", "verifybit", "E");
-			} else if (box_device_verifybit.getSelectedItem() == "ÆæĞ£Ñé") {
+			} else if (box_device_verifybit.getSelectedItem() == "å¥‡æ ¡éªŒ") {
 				device_config.set("serial", "verifybit", "O");
 			}
 
-			if (box_device_stopbit.getSelectedItem() == "Î´Öª") {
+			if (box_device_stopbit.getSelectedItem() == "æœªçŸ¥") {
 				device_config.set("serial", "stopbit", "1");
 			} else {
 				device_config.set("serial", "stopbit", (String) box_device_stopbit.getSelectedItem());
 			}
 
-			if (box_device_conbit.getSelectedItem() == "Î´Öª") {
+			if (box_device_conbit.getSelectedItem() == "æœªçŸ¥") {
 				device_config.set("serial", "conbit", "Xoff");
-			} else if (box_device_conbit.getSelectedItem() == "ÎŞÁ÷¿Ø") {
+			} else if (box_device_conbit.getSelectedItem() == "æ— æµæ§") {
 				device_config.set("serial", "conbit", "Xoff");
-			} else if (box_device_conbit.getSelectedItem() == "Ó²Á÷¿Ø") {
+			} else if (box_device_conbit.getSelectedItem() == "ç¡¬æµæ§") {
 				device_config.set("serial", "conbit", "Xon");
 			}
 
 			// 101
 			device_config.set("101tcp", "servers", text_field_device_tcp101_servers.getText());
-			if (box_device_tcp101_localserver.getSelectedItem() == "Î´Öª") {
+			if (box_device_tcp101_localserver.getSelectedItem() == "æœªçŸ¥") {
 				device_config.set("101tcp", "localserver", "0");
-			} else if (box_device_tcp101_localserver.getSelectedItem() == "ÊÇ") {
+			} else if (box_device_tcp101_localserver.getSelectedItem() == "æ˜¯") {
 				device_config.set("101tcp", "localserver", "1");
-			} else if (box_device_tcp101_localserver.getSelectedItem() == "·ñ") {
+			} else if (box_device_tcp101_localserver.getSelectedItem() == "å¦") {
 				device_config.set("101tcp", "localserver", "0");
 			}
 
-			// ±£´æÎÄ¼ş
+			// ä¿å­˜æ–‡ä»¶
 			device_config.save(file_ini_name);
-			JOptionPane.showMessageDialog(null, "ÅäÖÃ±£´æ³É¹¦£¡");
+			JOptionPane.showMessageDialog(null, "é…ç½®ä¿å­˜æˆåŠŸï¼");
 
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -799,26 +799,26 @@ public class tool_ui_config_every extends tool_ui_base {
 		return ret;
 	}
 
-	// Ìá½»ÅäÖÃ
+	// æäº¤é…ç½®
 	public void tool_every_save_button_listener() throws Exception {
 		tool_every_save_button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					// ±£´æµ½PCµÄini
+					// ä¿å­˜åˆ°PCçš„ini
 					if (tool_every_save_to_ini() == 0) {
 						return;
 					}
-					// ¶ÁÈ¡PCµÄiniÎÄ¼şµ½Éè±¸
+					// è¯»å–PCçš„iniæ–‡ä»¶åˆ°è®¾å¤‡
 					serialPort.sendComm(g_data_process.send_cmd_config_upload());
 					if(isChangeNet){
-						 int n = JOptionPane.showConfirmDialog(null, "ÍøÂç²ÎÊı·¢Éú±ä»¯£¬ÖØÆôÉè±¸£¿", "", JOptionPane.YES_NO_OPTION);
+						 int n = JOptionPane.showConfirmDialog(null, "ç½‘ç»œå‚æ•°å‘ç”Ÿå˜åŒ–ï¼Œé‡å¯è®¾å¤‡ï¼Ÿ", "", JOptionPane.YES_NO_OPTION);
 						 if (n == 0) {
 							 serialPort.sendComm(g_data_process.send_cmd_run_shell("reboot"));
-							/// µ¥Æğ¸öÏß³Ì´¦ÀíÏÔÊ¾
+							/// å•èµ·ä¸ªçº¿ç¨‹å¤„ç†æ˜¾ç¤º
 								Thread thread = new Thread() {
 									public void run() {
-										// »ñÈ¡Éè±¸²ÎÊı
+										// è·å–è®¾å¤‡å‚æ•°
 										try {
 				
 											Thread.sleep(100);
@@ -844,13 +844,13 @@ public class tool_ui_config_every extends tool_ui_base {
 		});
 	}
 
-	// »ñÈ¡Éè±¸ÅäÖÃ²ÎÊı
+	// è·å–è®¾å¤‡é…ç½®å‚æ•°
 	public void tool_every_updata_button_listener() throws Exception {
 		tool_every_updata_button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					// »ñÈ¡Éè±¸²ÎÊı
+					// è·å–è®¾å¤‡å‚æ•°
 					serialPort.sendComm(g_data_process.send_cmd_config_request());
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -859,17 +859,17 @@ public class tool_ui_config_every extends tool_ui_base {
 		});
 	}
 
-	// ÖØÆôÏµÍ³
+	// é‡å¯ç³»ç»Ÿ
 	public void tooi_ui_reboot_system() {
 		tool_system_reboot_button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					// ÊÇ 0;·ñ 1
-					int n = JOptionPane.showConfirmDialog(null, "È·ÈÏÖØÆôÏµÍ³£¿", "", JOptionPane.YES_NO_OPTION);
+					// æ˜¯ 0;å¦ 1
+					int n = JOptionPane.showConfirmDialog(null, "ç¡®è®¤é‡å¯ç³»ç»Ÿï¼Ÿ", "", JOptionPane.YES_NO_OPTION);
 					if (n == 0) {
 						rebootSuccess = false;
-						g_data_process.g_tool_ui_all.loading("ÕıÔÚÖØÆô");
+						g_data_process.g_tool_ui_all.loading("æ­£åœ¨é‡å¯");
 						cat_version();
 					}
 
@@ -885,7 +885,7 @@ public class tool_ui_config_every extends tool_ui_base {
 	}
 
 	public void cat_version() {
-		/// µ¥Æğ¸öÏß³Ì´¦ÀíÏÔÊ¾
+		/// å•èµ·ä¸ªçº¿ç¨‹å¤„ç†æ˜¾ç¤º
 		Thread thread = new Thread() {
 			@SuppressWarnings("static-access")
 			public void run() {
@@ -916,16 +916,16 @@ public class tool_ui_config_every extends tool_ui_base {
 		}
 	}
 
-	// ¸üĞÂĞÅÏ¢£¬ÏÔÊ¾ÔÚ½çÃæ
+	// æ›´æ–°ä¿¡æ¯ï¼Œæ˜¾ç¤ºåœ¨ç•Œé¢
 	public void tool_ui_panel_every_text_update(tool_device_info device_config) {
 		new Thread(new Runnable() {
 			public void run() {
-				// Éè±¸»ù±¾ĞÅÏ¢
+				// è®¾å¤‡åŸºæœ¬ä¿¡æ¯
 				text_field_device_name.setText(device_config.device_name);
 				// text_field_device_type.setText(device_config.device_type);
 				text_field_device_location.setText(device_config.device_location);
 				text_field_device_software_version.setText(device_config.device_software_vesion);
-				// {"","´®¿Ú-´®¿Ú", "´®¿Ú-Íø¿Ú","Íø¿Ú-Íø¿Ú","Íø¿Ú-´®¿Ú"};
+				// {"","ä¸²å£-ä¸²å£", "ä¸²å£-ç½‘å£","ç½‘å£-ç½‘å£","ç½‘å£-ä¸²å£"};
 				if (device_config.device_type.equals("wireless-uart")) {
 					box_device_work_mode.setSelectedIndex(1);
 				} else if (device_config.device_type.equals("wire-uart")) {
@@ -960,7 +960,7 @@ public class tool_ui_config_every extends tool_ui_base {
 				text_field_device_pwd1.setText(device_config.device_pwd1);
 				text_field_device_pin1.setText(device_config.device_pin1);
 
-				// ËíµÀ²ÎÊı
+				// éš§é“å‚æ•°
 				if (device_config.device_isenc1.equals("1")) {
 					box_device_isenc1.setSelectedIndex(1);
 				} else if (device_config.device_isenc1.equals("0")) {
@@ -985,11 +985,11 @@ public class tool_ui_config_every extends tool_ui_base {
 					box_device_tcp101_localserver.setSelectedIndex(2);
 				}
 
-				// ÒµÎñ´®¿Ú
-				// String rate[] = {"Î´Öª","1200", "4800", "9600", "19200",
+				// ä¸šåŠ¡ä¸²å£
+				// String rate[] = {"æœªçŸ¥","1200", "4800", "9600", "19200",
 				// "38400", "57600", "115200"};
 				// 1 2 3 4 5 6 7
-				System.out.println("ÒµÎñ´®¿Ú");
+				System.out.println("ä¸šåŠ¡ä¸²å£");
 				if (device_config.device_rate.equals("1200")) {
 					box_device_rate.setSelectedIndex(1);
 				} else if (device_config.device_rate.equals("4800")) {
@@ -1047,8 +1047,8 @@ public class tool_ui_config_every extends tool_ui_base {
 				} else {
 					box_device_conbit.setSelectedIndex(2);
 				}
-				g_data_process.g_tool_ui_all.Panel_log.tool_log_set("ÅäÖÃĞÅÏ¢ÒÑË¢ĞÂ");
-				// ÒµÎñ´®¿Ú end
+				g_data_process.g_tool_ui_all.Panel_log.tool_log_set("é…ç½®ä¿¡æ¯å·²åˆ·æ–°");
+				// ä¸šåŠ¡ä¸²å£ end
 			}
 
 			public Runnable start() {

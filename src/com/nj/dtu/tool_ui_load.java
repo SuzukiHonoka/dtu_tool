@@ -17,9 +17,9 @@ public class tool_ui_load extends tool_ui_base {
 	JTextField text_ip;
 	JButton tool_open_net_button;
 
-	// ´®¿ÚÊµÀı
+	// ä¸²å£å®ä¾‹
 	tool_uart serialPort;
-	// Êı¾İ½»»¥ÊµÀı
+	// æ•°æ®äº¤äº’å®ä¾‹
 	tool_data_process g_data_process;
 	JPanel connectPanel;
 	Thread dateThread;
@@ -37,7 +37,7 @@ public class tool_ui_load extends tool_ui_base {
 
 	private void open() {
 
-		// ´®¿Ú²ÎÊı
+		// ä¸²å£å‚æ•°
 		String uart_name = (String) tool_uart_name_list_box.getSelectedItem();
 		int uart_baud_rate = Integer.parseInt((String) tool_baud_rate_box.getSelectedItem());
 		int uart_data_bit = Integer.parseInt((String) tool_data_bit_box.getSelectedItem());
@@ -45,30 +45,30 @@ public class tool_ui_load extends tool_ui_base {
 
 		int uart_check_bit = 0;
 		String tip = (String) tool_check_bit_box.getSelectedItem();
-		if (tip.equals("ÆæĞ£Ñé")) {
+		if (tip.equals("å¥‡æ ¡éªŒ")) {
 			uart_check_bit = 1;
-		} else if (tip.equals("Å¼Ğ£Ñé")) {
+		} else if (tip.equals("å¶æ ¡éªŒ")) {
 			uart_check_bit = 2;
 		}
 
 		if (uart_name == null || uart_name.equals("")) {
-			JOptionPane.showMessageDialog(null, "ÇëÑ¡ÔñÓĞĞ§µÄ´®¿Ú");
+			JOptionPane.showMessageDialog(null, "è¯·é€‰æ‹©æœ‰æ•ˆçš„ä¸²å£");
 			return;
 		}
 
-		// ´®¿Ú²ÎÊı³õÊ¼»¯
+		// ä¸²å£å‚æ•°åˆå§‹åŒ–
 		ParamConfig paramConfig = new ParamConfig(uart_name, uart_baud_rate, uart_check_bit, uart_data_bit,
 				uart_stop_bit);
 
 		System.out.println("uart_button_open_listener");
 		try {
 			if (serialPort.init(paramConfig) == 1) {
-				tool_open_uart_button.setText("¹Ø±Õ´®¿Ú");
+				tool_open_uart_button.setText("å…³é—­ä¸²å£");
 
-				/// µ¥Æğ¸öÏß³Ì´¦ÀíÏÔÊ¾
+				/// å•èµ·ä¸ªçº¿ç¨‹å¤„ç†æ˜¾ç¤º
 				Thread thread = new Thread() {
 					public void run() {
-						// »ñÈ¡Éè±¸²ÎÊı
+						// è·å–è®¾å¤‡å‚æ•°
 						try {
 							Thread.sleep(10);
 							serialPort.sendComm(g_data_process.send_cmd_run_shell_2(g_data_process.CMD_GET_MD5,
@@ -96,7 +96,7 @@ public class tool_ui_load extends tool_ui_base {
 				thread.start();
 			//	runDate();
 
-				JOptionPane.showMessageDialog(null, "´®¿Ú´ò¿ª³É¹¦£¡");
+				JOptionPane.showMessageDialog(null, "ä¸²å£æ‰“å¼€æˆåŠŸï¼");
 				connect = true;
 			}
 		} catch (Exception e1) {
@@ -108,10 +108,10 @@ public class tool_ui_load extends tool_ui_base {
 		System.out.println("uart_button_close_listener");
 		try {
 			if (serialPort.closeSerialPort() == 1) {
-				JOptionPane.showMessageDialog(null, "´®¿Ú¹Ø±Õ³É¹¦£¡");
+				JOptionPane.showMessageDialog(null, "ä¸²å£å…³é—­æˆåŠŸï¼");
 				connect = false;
 				//stopDate();
-				tool_open_uart_button.setText("´ò¿ª´®¿Ú");
+				tool_open_uart_button.setText("æ‰“å¼€ä¸²å£");
 			}
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
@@ -125,7 +125,7 @@ public class tool_ui_load extends tool_ui_base {
 				@SuppressWarnings("static-access")
 				public void run() {
 					while(true){
-					// »ñÈ¡Éè±¸²ÎÊı
+					// è·å–è®¾å¤‡å‚æ•°
 					try {
 						Thread.sleep(5000);
 						if(canRun)
@@ -183,9 +183,9 @@ public class tool_ui_load extends tool_ui_base {
 		connectPanel = new JPanel();
 		connectPanel.setPreferredSize(new Dimension(990, 85));
 		connectPanel.setLayout(null);
-		connectPanel.setBorder(BorderFactory.createTitledBorder("Á¬½Ó"));
+		connectPanel.setBorder(BorderFactory.createTitledBorder("è¿æ¥"));
 
-		connectPanel.add(buildJLabel("´®¿ÚºÅ", 10, 25, 80, 20));
+		connectPanel.add(buildJLabel("ä¸²å£å·", 10, 25, 80, 20));
 		String tool_uart_list[] = this.serialPort.getComName();
 		tool_uart_name_list_box = super.buildJComboBox("", "chuankouhaolv", tool_uart_list, 20, 63, 25, 80, 20);
 		connectPanel.add(tool_uart_name_list_box);
@@ -223,48 +223,48 @@ public class tool_ui_load extends tool_ui_base {
 			}
 		});
 
-		connectPanel.add(buildJLabel("²¨ÌØÂÊ", 180, 25, 80, 20));
+		connectPanel.add(buildJLabel("æ³¢ç‰¹ç‡", 180, 25, 80, 20));
 		String tool_baud_rate_list[] = { "9600", "19200", "115200" };
 		tool_baud_rate_box = super.buildJComboBox("115200", "botelv", tool_baud_rate_list, 20, 235, 25, 80, 20);
 		tool_baud_rate_box.setSelectedIndex(2);
 		connectPanel.add(tool_baud_rate_box);
 
-		connectPanel.add(buildJLabel("Êı¾İÎ»", 345, 25, 80, 20));
+		connectPanel.add(buildJLabel("æ•°æ®ä½", 345, 25, 80, 20));
 		String data_bit[] = { "7", "8" };
 		tool_data_bit_box = buildJComboBox("8", "data_bit", data_bit, 20, 400, 25, 80, 20);
 		connectPanel.add(tool_data_bit_box);
 
-		connectPanel.add(buildJLabel("Ğ£ÑéÎ»", 510, 25, 80, 20));
-		String verfy_bit[] = { "ÆæĞ£Ñé", "Å¼Ğ£Ñé", "ÎŞĞ£Ñé" };
-		tool_check_bit_box = buildJComboBox("ÎŞĞ£Ñé", "data_bit", verfy_bit, 20, 565, 25, 80, 20);
+		connectPanel.add(buildJLabel("æ ¡éªŒä½", 510, 25, 80, 20));
+		String verfy_bit[] = { "å¥‡æ ¡éªŒ", "å¶æ ¡éªŒ", "æ— æ ¡éªŒ" };
+		tool_check_bit_box = buildJComboBox("æ— æ ¡éªŒ", "data_bit", verfy_bit, 20, 565, 25, 80, 20);
 		connectPanel.add(tool_check_bit_box);
 
-		connectPanel.add(buildJLabel("Í£Ö¹Î»", 675, 25, 80, 20));
+		connectPanel.add(buildJLabel("åœæ­¢ä½", 675, 25, 80, 20));
 		String stop_bit[] = { "1", "2" };
 		tool_stop_bit_box = buildJComboBox("", "stop_bit", stop_bit, 20, 733, 25, 80, 20);
 		connectPanel.add(tool_stop_bit_box);
 
-		tool_open_uart_button = buildJButton("´ò¿ª´®¿Ú", 850, 25, 120, 20);
+		tool_open_uart_button = buildJButton("æ‰“å¼€ä¸²å£", 850, 25, 120, 20);
 
-		connectPanel.add(buildJLabel("ipµØÖ·", 10, 55, 80, 20));
+		connectPanel.add(buildJLabel("ipåœ°å€", 10, 55, 80, 20));
 		text_ip  = buildJTextField("192.168.1.30", "IP ADDRESS", 20, 63, 55, 185, 25);
-		tool_open_net_button =  buildJButton("´ò¿ªÍø¿Ú", 280, 55, 120, 25);
+		tool_open_net_button =  buildJButton("æ‰“å¼€ç½‘å£", 280, 55, 120, 25);
 	//	tool_open_net_button.addActionListener();
 		connectPanel.add(text_ip);
 		connectPanel.add(tool_open_net_button);
-		// Ìí¼Ó¼àÌıÊÂ¼ş
+		// æ·»åŠ ç›‘å¬äº‹ä»¶
 		uart_button_open_listener();
 		net_button_open_listener();
 		connectPanel.add(tool_open_uart_button);
 
 		return connectPanel;
 	}
-	// ´®¿Ú´ò¿ª°´Å¥µÄ¼àÌıº¯Êı
+	// ä¸²å£æ‰“å¼€æŒ‰é’®çš„ç›‘å¬å‡½æ•°
 	public void uart_button_open_listener() throws Exception {
 		tool_open_uart_button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (tool_open_uart_button.getText().toString().equals("´ò¿ª´®¿Ú")) {
+				if (tool_open_uart_button.getText().toString().equals("æ‰“å¼€ä¸²å£")) {
 					open();
 				} else {
 					close();
@@ -273,26 +273,26 @@ public class tool_ui_load extends tool_ui_base {
 			}
 		});
 	}
-	// Íø¿Ú´ò¿ª°´Å¥µÄ¼àÌıº¯Êı
+	// ç½‘å£æ‰“å¼€æŒ‰é’®çš„ç›‘å¬å‡½æ•°
 	public void net_button_open_listener() throws Exception {
 		tool_open_net_button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (tool_open_net_button.getText().toString().equals("´ò¿ªÍø¿Ú")) {
+				if (tool_open_net_button.getText().toString().equals("æ‰“å¼€ç½‘å£")) {
 					
 					new Thread(new Runnable() {
 						
 						@Override
 						public void run() {
 							// TODO Auto-generated method stub
-							g_data_process.g_tool_ui_all.loading("ÕıÔÚÁ¬½Ó");
+							g_data_process.g_tool_ui_all.loading("æ­£åœ¨è¿æ¥");
 							serialPort.initNet(text_ip.getText(), 8000);
 						}
 					}).start();
 				} else {
 					serialPort.closeNet();
 					connect = false;
-					tool_open_net_button.setText("´ò¿ªÍø¿Ú");
+					tool_open_net_button.setText("æ‰“å¼€ç½‘å£");
 				}
 			
 				

@@ -2,6 +2,7 @@
 *.log
 *_s11/
 *bin/
+*.db
 
 # VS
 .vs/

@@ -271,10 +271,10 @@ public class LoadingPanel extends JComponent implements MouseListener {
         glasspane.setBounds(100, 100, (dimension.width) / 2, (dimension.height) / 2);
         frame.setGlassPane(glasspane);
         glasspane.setText("Loading data, Please wait ...");
-        glasspane.start();//¿ªÊ¼¶¯»­¼ÓÔØĞ§¹û
+        glasspane.start();//å¼€å§‹åŠ¨ç”»åŠ è½½æ•ˆæœ
         frame.setVisible(true);
 
-        // Later, to disable,ÔÚºÏÊÊµÄµØ·½¹Ø±Õ¶¯»­Ğ§¹û
+        // Later, to disable,åœ¨åˆé€‚çš„åœ°æ–¹å…³é—­åŠ¨ç”»æ•ˆæœ
 //      glasspane.stop();
     }
 }

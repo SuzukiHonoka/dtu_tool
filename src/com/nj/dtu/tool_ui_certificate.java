@@ -22,9 +22,9 @@ import javax.swing.JTextField;
 import net.sf.json.JSONObject;
 
 public class tool_ui_certificate extends tool_ui_base {
-	// ´®¿ÚÊµÀı
+	// ä¸²å£å®ä¾‹
 	tool_uart serialPort;
-	// Êı¾İ½»»¥ÊµÀı
+	// æ•°æ®äº¤äº’å®ä¾‹
 	tool_data_process g_data_process;
 	tool_device_info g_device_info;
 
@@ -34,9 +34,9 @@ public class tool_ui_certificate extends tool_ui_base {
 	JScrollPane scroll_encry;
 	JTextArea text_field_cer;
 	JScrollPane scroll_cer;
-	JTabbedPane jTabbedpane = new JTabbedPane();// ´æ·ÅÑ¡Ïî¿¨µÄ×é¼ş
+	JTabbedPane jTabbedpane = new JTabbedPane();// å­˜æ”¾é€‰é¡¹å¡çš„ç»„ä»¶
 
-	// °´Å¥
+	// æŒ‰é’®
 	JButton tool_cer_out_button;
 	JButton tool_pio_out_button;
 	JButton tool_cer_in_button;
@@ -60,44 +60,44 @@ public class tool_ui_certificate extends tool_ui_base {
 		certConfigPanel = new JPanel();
 		certConfigPanel.setPreferredSize(new Dimension(550, 300));
 		certConfigPanel.setLayout(null);
-		certConfigPanel.setBorder(BorderFactory.createTitledBorder("Ö¤ÊéÅäÖÃ"));
+		certConfigPanel.setBorder(BorderFactory.createTitledBorder("è¯ä¹¦é…ç½®"));
 
-		// ±êÇ©ÆğÊ¼Î»ÖÃ
+		// æ ‡ç­¾èµ·å§‹ä½ç½®
 		int x_lable_location = 20;
 		int y_lable_location = 25;
-		// ÎÄ±¾¿òÆğÊ¼Î»ÖÃ
+		// æ–‡æœ¬æ¡†èµ·å§‹ä½ç½®
 		int x_text_location = 100;
 		int y_text_location = 50;
 
-		// ²½³¤
+		// æ­¥é•¿
 		int x_step = 30;
 		int y_step = 30;
 
-		// ÎÄ±¾¿ò³¤¶ÈºÍ¿í¶È
+		// æ–‡æœ¬æ¡†é•¿åº¦å’Œå®½åº¦
 		int x_text_length = 100;
 		int y_text_heigth = 25;
 		int text_columns = 20;
 
-		// ±êÇ©¿ò³¤¶ÈºÍ¿í¶È
+		// æ ‡ç­¾æ¡†é•¿åº¦å’Œå®½åº¦
 		int x_lable_length = 80;
 
-		certConfigPanel.add(buildJLabel("ËíµÀ±àºÅ:", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
-		String isenc1[] = { "ËíµÀ1", "ËíµÀ2" };
+		certConfigPanel.add(buildJLabel("éš§é“ç¼–å·:", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		String isenc1[] = { "éš§é“1", "éš§é“2" };
 		box_device_tunnel = buildJComboBox("", "device_tunnel", isenc1, text_columns, x_text_location, y_lable_location,
 				x_text_length, y_text_heigth);
 		certConfigPanel.add(box_device_tunnel);
 
 		x_lable_location += x_step * 8;
 		x_text_location = x_lable_location + x_lable_length - 15;
-		certConfigPanel.add(buildJLabel("Ê¹ÓÃÕß:", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
+		certConfigPanel.add(buildJLabel("ä½¿ç”¨è€…:", x_lable_location, y_lable_location, x_lable_length, y_text_heigth));
 		text_field_user = buildJTextField("", "user", text_columns, x_text_location, y_lable_location, 200,
 				y_text_heigth);
 		certConfigPanel.add(text_field_user);
 
 		JPanel jpanelFirst = new JPanel();
-		jTabbedpane.addTab("¼ÓÃÜÖ¤ÊéĞÅÏ¢", null, jpanelFirst, "first");
+		jTabbedpane.addTab("åŠ å¯†è¯ä¹¦ä¿¡æ¯", null, jpanelFirst, "first");
 		JPanel jpanelSecond = new JPanel();
-		jTabbedpane.addTab("Ç©ÃûÖ¤ÊéĞÅÏ¢", null, jpanelSecond, "second");
+		jTabbedpane.addTab("ç­¾åè¯ä¹¦ä¿¡æ¯", null, jpanelSecond, "second");
 		jTabbedpane.setBounds(20, 55, 550, 210);
 
 		text_field_encry = buildJJTextArea(9, 69, 0, 0, 550, 220);
@@ -115,10 +115,10 @@ public class tool_ui_certificate extends tool_ui_base {
 		text_field_cer.setEditable(false);
 		certConfigPanel.add(jTabbedpane);
 
-		tool_cer_out_button = buildJButtonSmall("Éú³ÉÇëÇóÎÄ¼ş", 20, 270, 120, 25);
-		tool_pio_out_button = buildJButtonSmall("µ¼³öP10ÇëÇóÎÄ¼ş", 153, 270, 120, 25);
-		tool_cer_in_button = buildJButtonSmall("µ¼ÈëÇ©·¢Ö¤Êé", 286, 270, 120, 25);
-		tool_cer_info_button = buildJButtonSmall("»ñÈ¡Ö¤ÊéĞÅÏ¢", 420, 270, 120, 25);
+		tool_cer_out_button = buildJButtonSmall("ç”Ÿæˆè¯·æ±‚æ–‡ä»¶", 20, 270, 120, 25);
+		tool_pio_out_button = buildJButtonSmall("å¯¼å‡ºP10è¯·æ±‚æ–‡ä»¶", 153, 270, 120, 25);
+		tool_cer_in_button = buildJButtonSmall("å¯¼å…¥ç­¾å‘è¯ä¹¦", 286, 270, 120, 25);
+		tool_cer_info_button = buildJButtonSmall("è·å–è¯ä¹¦ä¿¡æ¯", 420, 270, 120, 25);
 
 	//	tool_cer_out_button
 		certConfigPanel.add(tool_cer_out_button);
@@ -133,14 +133,14 @@ public class tool_ui_certificate extends tool_ui_base {
 		return certConfigPanel;
 	}
 
-	// »ñÈ¡Ö¤ÊéĞÅÏ¢
+	// è·å–è¯ä¹¦ä¿¡æ¯
 	public void info_button_listener() {
 		tool_cer_info_button.addActionListener(new ActionListener() {
 			@SuppressWarnings("static-access")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(serialPort.serialPort==null){
-					JOptionPane.showMessageDialog(null, "ÇëÏÈ´ò¿ª´®¿Ú£¡");
+					JOptionPane.showMessageDialog(null, "è¯·å…ˆæ‰“å¼€ä¸²å£ï¼");
 					return;
 				}
 				if(isSend)
@@ -182,34 +182,34 @@ public class tool_ui_certificate extends tool_ui_base {
 		});
 	}
 
-	// µ¼ÈëÇ©·¢Ö¤Êé
+	// å¯¼å…¥ç­¾å‘è¯ä¹¦
 	public void get_crt_upload_button_listener() {
 		tool_cer_in_button.addActionListener(new ActionListener() {
 			@SuppressWarnings("static-access")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(serialPort.serialPort==null){
-					JOptionPane.showMessageDialog(null, "ÇëÏÈ´ò¿ª´®¿Ú£¡");
+					JOptionPane.showMessageDialog(null, "è¯·å…ˆæ‰“å¼€ä¸²å£ï¼");
 					return;
 				}
 					
 				try {
-					// ÊÇ 0;·ñ 1
-					int n = JOptionPane.showConfirmDialog(null, "ÇëÑ¡ÔñÇ©·¢Ö¤Êé", "", JOptionPane.YES_NO_OPTION);
+					// æ˜¯ 0;å¦ 1
+					int n = JOptionPane.showConfirmDialog(null, "è¯·é€‰æ‹©ç­¾å‘è¯ä¹¦", "", JOptionPane.YES_NO_OPTION);
 					if (n == 0) {
 						JFileChooser tool_file_chooser_select_csr_file = new JFileChooser();
 						tool_file_chooser_select_csr_file.setCurrentDirectory(new File("."));
 						tool_file_chooser_select_csr_file.setFileSelectionMode(0);
 						int state = tool_file_chooser_select_csr_file.showOpenDialog(null);
 						if (state == 1) {
-							return;// ³·ÏúÔò·µ»Ø
+							return;// æ’¤é”€åˆ™è¿”å›
 						} else {
 							File f = tool_file_chooser_select_csr_file.getSelectedFile();
 							g_device_info.device_x509_crt_file_path = f.getAbsolutePath();
 							System.out.println("g_device_info.device_x509_crt_file_path :"
 									+ g_device_info.device_x509_crt_file_path);
 							
-										 g_data_process.g_tool_ui_all.loading("ÕıÔÚµ¼Èë");							
+										 g_data_process.g_tool_ui_all.loading("æ­£åœ¨å¯¼å…¥");							
 							
 							new Thread() {	
 								public void run() {
@@ -239,20 +239,20 @@ public class tool_ui_certificate extends tool_ui_base {
 			}
 		});
 	}
-    //Éú³ÉÖ¤Êé
+    //ç”Ÿæˆè¯ä¹¦
     public void set_button_listener() {
     	tool_cer_out_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                	  //ÊÇ 0;·ñ 1
-                    int n = JOptionPane.showConfirmDialog(null, "È·ÈÏÉú³É?", "", JOptionPane.YES_NO_OPTION);
+                	  //æ˜¯ 0;å¦ 1
+                    int n = JOptionPane.showConfirmDialog(null, "ç¡®è®¤ç”Ÿæˆ?", "", JOptionPane.YES_NO_OPTION);
                     if (n == 0) {
                     JSONObject subj = new JSONObject();
                     subj.put("mode", "set");
                     subj.put("country", "11");
                     g_device_info.device_x509_req_file_path = "";
-                    g_data_process.g_tool_ui_all.loading("ÕıÔÚÉú³É...");
+                    g_data_process.g_tool_ui_all.loading("æ­£åœ¨ç”Ÿæˆ...");
 					new Thread() {
 						@SuppressWarnings("static-access")
 						public void run() {
@@ -273,21 +273,21 @@ public class tool_ui_certificate extends tool_ui_base {
         });
     }
 
-    //µ¼³öÇëÇóÖ¤Êé1
+    //å¯¼å‡ºè¯·æ±‚è¯ä¹¦1
     public void get_csr_upload_button_listener() {
     	tool_pio_out_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
             	if(serialPort.serialPort==null){
-					JOptionPane.showMessageDialog(null, "ÇëÏÈ´ò¿ª´®¿Ú£¡");
+					JOptionPane.showMessageDialog(null, "è¯·å…ˆæ‰“å¼€ä¸²å£ï¼");
 					return;
 				}
                 try {
                     JSONObject subj = new JSONObject();
                     subj.put("mode", "get");
 
-                    //ÊÇ 0;·ñ 1
-                    int n = JOptionPane.showConfirmDialog(null, "ÇëÑ¡Ôñ±£´æÂ·¾¶ºÍÎÄ¼şÃû", "", JOptionPane.YES_NO_OPTION);
+                    //æ˜¯ 0;å¦ 1
+                    int n = JOptionPane.showConfirmDialog(null, "è¯·é€‰æ‹©ä¿å­˜è·¯å¾„å’Œæ–‡ä»¶å", "", JOptionPane.YES_NO_OPTION);
                     Long timestamp = System.currentTimeMillis();
                     String name  ="dtu_"+g_device_info.device_name+"_"+new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date(timestamp))+"_site.p10";
                     if (n == 0) {
@@ -295,15 +295,15 @@ public class tool_ui_certificate extends tool_ui_base {
                     	choose.setCurrentDirectory(new File("."));      
                     	choose.setSelectedFile(new File(name));
                  	
-                        int state = choose.showSaveDialog(new JPanel());//´Ë¾äÊÇ´ò¿ªÎÄ¼şÑ¡ÔñÆ÷½çÃæµÄ´¥·¢Óï¾ä
+                        int state = choose.showSaveDialog(new JPanel());//æ­¤å¥æ˜¯æ‰“å¼€æ–‡ä»¶é€‰æ‹©å™¨ç•Œé¢çš„è§¦å‘è¯­å¥
                         if (state == 1) {
-                            return;//³·ÏúÔò·µ»Ø
+                            return;//æ’¤é”€åˆ™è¿”å›
                         } else {
-                        	 File f = choose.getSelectedFile();// dirÎªÑ¡Ôñµ½µÄÄ¿Â¼ 
+                        	 File f = choose.getSelectedFile();// dirä¸ºé€‰æ‹©åˆ°çš„ç›®å½• 
                       
                             g_device_info.device_x509_req_file_path = f.getAbsolutePath();
                             System.out.println("g_dtu_device_info.device_x509_req_file_path " + g_device_info.device_x509_req_file_path);
-                            g_data_process.g_tool_ui_all.loading("ÕıÔÚµ¼³ö...");
+                            g_data_process.g_tool_ui_all.loading("æ­£åœ¨å¯¼å‡º...");
         					new Thread() {
         						@SuppressWarnings("static-access")
         						public void run() {

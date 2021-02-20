@@ -25,15 +25,15 @@ public class tool_main {
 
 
 	public static void show() {
-		// È«¾ÖµÄÉè±¸ĞÅÏ¢
+		// å…¨å±€çš„è®¾å¤‡ä¿¡æ¯
 		tool_device_info dtu_device_info = new tool_device_info();
 
-		// Êı¾İ´¦ÀíÀà
+		// æ•°æ®å¤„ç†ç±»
 		tool_data_process dtu_tool_data_process = new tool_data_process();
 
-		// ´®¿ÚÀà£¬°üº¬½ÓÊÕÊı¾İÏìÓ¦
+		// ä¸²å£ç±»ï¼ŒåŒ…å«æ¥æ”¶æ•°æ®å“åº”
 		tool_uart dtu_tool_uart = new tool_uart(dtu_tool_data_process);
-		// È«¾Öui
+		// å…¨å±€ui
 		tool_ui dtu_tool_ui = new tool_ui(dtu_tool_uart, dtu_tool_data_process, dtu_device_info);
 
 		dtu_tool_data_process.data_init(dtu_tool_uart, dtu_device_info, dtu_tool_ui);
@@ -45,9 +45,9 @@ public class tool_main {
 					while (true){
 						usbUtils.isExits();
 						if(usbUtils.usbExit&&!usbUtils.usbExitLastTime)
-							  JOptionPane.showMessageDialog(null, "ÃÜÔ¿²åÈë");
+							  JOptionPane.showMessageDialog(null, "å¯†é’¥æ’å…¥");
 						if(!usbUtils.usbExit&&usbUtils.usbExitLastTime){
-							  JOptionPane.showMessageDialog(null, "ÃÜÔ¿°Î³ö");
+							  JOptionPane.showMessageDialog(null, "å¯†é’¥æ‹”å‡º");
 						      System.exit(0);
 						}
 						      
@@ -65,9 +65,9 @@ public class tool_main {
 	}
 
 	public static void setUi() {
-		Font font = new Font("Á¥Êé", Font.PLAIN, 20);
-		Font font2 = new Font("·ÂËÎ", Font.PLAIN, 16);
-		Font font3 = new Font("·ÂËÎ", Font.PLAIN, 14);
+		Font font = new Font("éš¶ä¹¦", Font.PLAIN, 20);
+		Font font2 = new Font("ä»¿å®‹", Font.PLAIN, 16);
+		Font font3 = new Font("ä»¿å®‹", Font.PLAIN, 14);
 		UIManager.put("TitledBorder.font", font);
 		UIManager.put("Label.font", font2);
 		UIManager.put("ComboBox.font", font2);

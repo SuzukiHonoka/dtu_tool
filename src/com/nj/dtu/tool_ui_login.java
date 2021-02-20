@@ -40,28 +40,28 @@ public class tool_ui_login extends tool_ui_base {
 		loginPanel = new JPanel();
 		loginPanel.setPreferredSize(new Dimension(990, 100));
 		loginPanel.setLayout(null);
-		loginPanel.setBorder(BorderFactory.createTitledBorder("µÇÂ¼"));
+		loginPanel.setBorder(BorderFactory.createTitledBorder("ç™»å½•"));
 		
-		loginPanel.add(buildJLabel("ÓÃ»§Ãû", 360, 60, 50, 20));
+		loginPanel.add(buildJLabel("ç”¨æˆ·å", 360, 60, 50, 20));
 		textName  = buildJTextField("", "", 20, 420, 60, 185, 25);
 		loginPanel.add(textName);
-		loginPanel.add(buildJLabel("ÃÜ  Âë", 360, 110, 50, 20));
+		loginPanel.add(buildJLabel("å¯†  ç ", 360, 110, 50, 20));
 		textPass = new JPasswordField(20);
 		textPass.setBounds( 420, 110, 185, 25);
 		loginPanel.add(textPass);
 		
-		loginPanel.add(buildJLabel("pinÂë", 360, 160, 50, 20));
+		loginPanel.add(buildJLabel("pinç ", 360, 160, 50, 20));
 		textPassPin = new JPasswordField(20);
 		textPassPin.setBounds( 420, 160, 185, 25);
 		loginPanel.add(textPassPin);
 		
-		radioButton1 =new JRadioButton("Éó¼ÆÓÃ»§");
+		radioButton1 =new JRadioButton("å®¡è®¡ç”¨æˆ·");
 		radioButton1.setBounds( 338, 200, 100, 20);
 		loginPanel.add(radioButton1);
-		radioButton2 =new JRadioButton("ÅäÖÃÓÃ»§");
+		radioButton2 =new JRadioButton("é…ç½®ç”¨æˆ·");
 		radioButton2.setBounds( 438, 200, 100, 20);
 		loginPanel.add(radioButton2);
-		radioButton3 =new JRadioButton("³¬¼¶ÓÃ»§");
+		radioButton3 =new JRadioButton("è¶…çº§ç”¨æˆ·");
 		radioButton3.setBounds(538, 200, 100, 20);
 		loginPanel.add(radioButton3);
 		ButtonGroup group=new ButtonGroup();
@@ -72,7 +72,7 @@ public class tool_ui_login extends tool_ui_base {
         
 		
 		
-	    btLogin =  buildJButton("µÇ  Â¼", 432, 240, 100, 30);
+	    btLogin =  buildJButton("ç™»  å½•", 432, 240, 100, 30);
 	    btLogin.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -82,16 +82,16 @@ public class tool_ui_login extends tool_ui_base {
 					String name = textName.getText();
 					String passPin = String.valueOf(textPassPin.getPassword());
 					if(!dtu_tool_ui.Panel_load.connect){
-						JOptionPane.showMessageDialog(null, "ÇëÏÈÁ¬½ÓÉè±¸");
+						JOptionPane.showMessageDialog(null, "è¯·å…ˆè¿æ¥è®¾å¤‡");
 						return;
 					}
 					if(name.equals("")||pass.equals("")){
-						JOptionPane.showMessageDialog(null, "ÕËºÅÃÜÂë²»ÄÜÎª¿Õ");
+						JOptionPane.showMessageDialog(null, "è´¦å·å¯†ç ä¸èƒ½ä¸ºç©º");
 						return;
 					}
 					if(!(name.equals("root_zr")&&pass.equals("123#456@189"))){
 					 if(usb_key2.INSTANCE.epass_login(passPin, passPin.length())!=0){
-						JOptionPane.showMessageDialog(null, "pinÂë²»ÕıÈ·");
+						JOptionPane.showMessageDialog(null, "pinç ä¸æ­£ç¡®");
 						return;
 					 }
 					}
@@ -100,10 +100,10 @@ public class tool_ui_login extends tool_ui_base {
 						    	dtu_tool_ui.showLoginSuccessSuper();
 						   else{
 							   OpSqliteDB.addError();
-							   JOptionPane.showMessageDialog(null, "ÕËºÅÃÜÂë´íÎó");
+							   JOptionPane.showMessageDialog(null, "è´¦å·å¯†ç é”™è¯¯");
 						   }
 					}else{	
-							dtu_tool_ui.loading("ÕıÔÚÅä¶ÔÃÜÔ¿");	
+							dtu_tool_ui.loading("æ­£åœ¨é…å¯¹å¯†é’¥");	
 							new Thread(new Runnable() {
 								
 								@Override
@@ -112,12 +112,12 @@ public class tool_ui_login extends tool_ui_base {
 									        usb_key.INSTANCE.export_pubkey_pair("pubkey.msblob");
 									        String md5 = Md5CaculateUtil.getMD5(new File("pubkey.msblob"));
 									        if(!md5.equals(dtu_tool_ui.g_data_process.Md5)){
-									        	JOptionPane.showMessageDialog(null, "¸ÃÃÜÔ¿ÎŞĞ§");
+									        	JOptionPane.showMessageDialog(null, "è¯¥å¯†é’¥æ— æ•ˆ");
 									        	dtu_tool_ui.stop();
 												return;
 									        }		
 									        }else{
-									        	JOptionPane.showMessageDialog(null, "¸Ãusb key»¹Î´ÉèÖÃ");
+									        	JOptionPane.showMessageDialog(null, "è¯¥usb keyè¿˜æœªè®¾ç½®");
 									        	dtu_tool_ui.stop();
 												return;
 									        }
@@ -127,14 +127,14 @@ public class tool_ui_login extends tool_ui_base {
 												   dtu_tool_ui.showLoginSuccess();
 												 else{
 													   OpSqliteDB.addError();
-													   JOptionPane.showMessageDialog(null, "ÕËºÅÃÜÂë´íÎó");
+													   JOptionPane.showMessageDialog(null, "è´¦å·å¯†ç é”™è¯¯");
 												   }
 											}else {
 												if(dtu_tool_ui.g_data_process.canConfigLogin(name, pass))
 													   dtu_tool_ui.showLoginSuccess();
 												 else{
 													   OpSqliteDB.addError();
-													   JOptionPane.showMessageDialog(null, "ÕËºÅÃÜÂë´íÎó");
+													   JOptionPane.showMessageDialog(null, "è´¦å·å¯†ç é”™è¯¯");
 												   }
 											}
 									
@@ -143,13 +143,13 @@ public class tool_ui_login extends tool_ui_base {
 							
 					}
 					}else{
-						 JOptionPane.showMessageDialog(null, "Á¬Ğø´íÎó£¬5·ÖÖÓºóÖØÊÔ");
+						 JOptionPane.showMessageDialog(null, "è¿ç»­é”™è¯¯ï¼Œ5åˆ†é’Ÿåé‡è¯•");
 					}
 					
 					
 				}else{
 					
-					addTip("Çë²åÈëusbÃÜÔ¿");
+					addTip("è¯·æ’å…¥usbå¯†é’¥");
 //					 dtu_tool_ui.showLoginSuccess();
 //					 dtu_tool_ui.showLoginSuccessSuper();
 				}
